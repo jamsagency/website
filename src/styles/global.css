@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Self-hosted fonts ------------------------------------------- */
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  src: url("/fonts/NeueHaasDisplay-Roman.ttf") format("truetype");
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Haas Grotesk Display Pro";
+  src: url("/fonts/NeueHaasDisplay-Medium.ttf") format("truetype");
+  font-weight: 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/fonts/InstrumentSerif-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- CSS custom properties --------------------------------------- */
+:root {
+  --font-display: "Instrument Serif", "Times New Roman", ui-serif, Georgia, serif;
+  --font-sans:    "Neue Haas Grotesk Display Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --violet-50:  #F5F3FF;
+  --violet-100: #EDE9FE;
+  --violet-200: #DDD6FE;
+  --violet-300: #C4B5FD;
+  --violet-400: #A78BFA;
+  --violet-500: #8B5CF6;
+  --violet-600: #7C3AED;
+  --violet-700: #6D28D9;
+  --violet-800: #5B21B6;
+  --violet-900: #4C1D95;
+  --violet-950: #2E1065;
+
+  --orange-500: #F97316;
+
+  --neutral-0:   #FFFFFF;
+  --neutral-50:  #FAFAFA;
+  --neutral-75:  #F7F7F8;
+  --neutral-100: #F3F3F5;
+  --neutral-150: #E3E3E5;
+  --neutral-400: #A0A0A3;
+  --neutral-500: #737373;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-850: #252526;
+  --neutral-900: #171717;
+  --neutral-950: #0B0B0B;
+
+  --bg:             #FFFFFF;
+  --bg-muted:       #F3F3F5;
+  --bg-inverse:     #0B0B0B;
+  --fg:             #171717;
+  --fg-muted:       #404040;
+  --fg-subtle:      #737373;
+  --fg-faint:       #A0A0A3;
+  --fg-on-dark:     #FEFEFE;
+  --border:         #E3E3E5;
+  --border-soft:    rgba(227, 227, 229, 0.5);
+
+  --primary-gradient:  linear-gradient(180deg, #864ACC 0%, #A85CFF 51%, #864ACC 100%);
+  --primary-highlight: #CC9EFF;
+
+  --radius-xs:   4px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
+  --radius-pill: 999px;
+
+  --shadow-card:       0 2px 10px 0 rgba(0,0,0,0.06);
+  --shadow-inset-top:  inset 0 2px 2px 0 rgb(254,254,254);
+  --shadow-primary:    inset 2px 2px 4px 0 #CC9EFF;
+
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast:  120ms;
+  --dur-base:  200ms;
+}
+
+.dark, [data-theme="dark"] {
+  --bg:        #0B0B0B;
+  --bg-muted:  #171717;
+  --fg:        #FEFEFE;
+  --fg-muted:  #D4D4D4;
+  --fg-subtle: #A0A0A3;
+  --border:    rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- Base -------------------------------------------------------- */
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--fg-muted);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ---------- Components -------------------------------------------------- */
+@layer components {
+  /* Primary CTA button — violet gradient */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded font-sans font-semibold text-sm text-white tracking-wide transition-all duration-fast;
+    background: var(--primary-gradient);
+    box-shadow: var(--shadow-primary);
+    transition-timing-function: var(--ease-out);
+  }
+  .btn-primary:hover {
+    background: linear-gradient(180deg, #7C3AED 0%, #A85CFF 51%, #7C3AED 100%);
+  }
+  .btn-primary:active {
+    transform: scale(0.98);
+    box-shadow: none;
+  }
+
+  /* Ghost / secondary button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded font-sans font-medium text-sm transition-all duration-fast;
+    color: var(--fg);
+    border: 0.5px solid var(--border-soft);
+    box-shadow: var(--shadow-inset-top);
+    transition-timing-function: var(--ease-out);
+  }
+  .btn-ghost:hover {
+    background: rgba(234, 234, 234, 0.75);
+  }
+  .btn-ghost:active {
+    transform: scale(0.98);
+  }
+
+  /* Pill chip */
+  .chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-pill font-sans text-p-xs font-medium;
+    border: 0.5px solid var(--border-soft);
+    box-shadow: var(--shadow-inset-top), var(--shadow-card);
+    color: var(--fg-subtle);
+    background: var(--bg);
+  }
+
+  /* Vertical rhythm — no horizontal padding here */
+  .section {
+    @apply py-[100px];
+  }
+
+  /* Universal horizontal container — used inside every section, never overridden */
+  .container {
+    @apply mx-auto w-full px-6 md:px-[100px];
+    max-width: 1440px;
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    @apply font-sans font-medium text-p-xs uppercase tracking-[0.12em] text-neutral-500;
+  }
+
+  /* Card base */
+  .card {
+    @apply rounded-2xl bg-white overflow-hidden;
+    border: 0.5px solid var(--border-soft);
+    box-shadow: var(--shadow-card), var(--shadow-inset-top);
+    transition: box-shadow var(--dur-base) var(--ease-out);
+  }
+  .card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10), var(--shadow-inset-top);
+  }
+
+  /* Hairline divider */
+  .hairline {
+    border-top: 0.5px solid var(--border-soft);
+  }
+}

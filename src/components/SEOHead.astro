@@ -1,0 +1,78 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonical?: string;
+  schema?: object;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogImage = '/og-default.jpg',
+  canonical,
+  schema,
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageURL   = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site).toString();
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Jams',
+  url: 'https://jams.agency',
+  logo: 'https://jams.agency/jams-logo-black.svg',
+  email: 'juan@jams.agency',
+  foundingDate: '2022',
+};
+
+const siteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  url: 'https://jams.agency',
+  name: 'Jams',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://jams.agency/?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
+  },
+};
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Favicons -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+<!-- Open Graph -->
+<meta property="og:type"        content="website" />
+<meta property="og:site_name"   content="Jams" />
+<meta property="og:title"       content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image"       content={ogImageURL} />
+<meta property="og:url"         content={canonicalURL} />
+
+<!-- Twitter -->
+<meta name="twitter:card"        content="summary_large_image" />
+<meta name="twitter:site"        content="@jamsdotio" />
+<meta name="twitter:title"       content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image"       content={ogImageURL} />
+
+<!-- Schema: Organization + WebSite (every page) -->
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
+
+<!-- Schema: page-specific -->
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogCard from '../../components/BlogCard.astro';
+
+const posts = [
+  {
+    title: 'Custom Booking Technology for Dude Ranches: A Digital Hospitality Guide',
+    slug: 'dude-ranch-booking-technology',
+    date: '2026-02-17',
+    excerpt: 'Custom booking technology for dude ranches in Bubble: branded flows, real-time availability from Checkfront, guest portals, and deposit collection via Stripe.',
+  },
+];
+---
+
+<BaseLayout
+  title="Blog — Custom Software, AI, and Digital Operations | Jams"
+  description="Practical writing on custom software, AI implementation, and digital operations for business owners and operators."
+>
+  <!-- Hero -->
+  <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
+    <div class="rounded-[24px] pt-[120px] pb-[64px]" style="background: var(--neutral-100);">
+      <div class="container">
+        <div class="flex flex-col gap-4">
+          <span class="eyebrow">Blog</span>
+          <h1 class="font-display text-h1 text-neutral-900">Blog</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hairline">
+    <div class="container flex flex-col gap-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((p) => <BlogCard {...p} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,61 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  title="MyEmendu: From Spreadsheets to SaaS with Lisa AI | Jams"
+  description="How Jams built a full IT asset management platform for Emendu, with Lisa — an AI agent that handles onboarding and device assignment automatically."
+  projectName="Emendu"
+  tags={['Web app', 'B2B SaaS', 'AI agent']}
+>
+  <article class="section">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-16">
+
+        <header class="flex flex-col gap-4">
+          <h1 class="font-display text-h1 text-neutral-900">From spreadsheets to SaaS — with Lisa</h1>
+          <p class="font-sans text-p-l text-neutral-700">Emendu was managing thousands of devices across spreadsheets and email. We built a full SaaS platform and an AI agent that runs the operation.</p>
+        </header>
+
+        <section>
+          <h2 class="font-display text-h2 text-neutral-900 mb-6">Escaping the spreadsheet</h2>
+          <p class="font-sans text-p text-neutral-700 leading-relaxed">Emendu was a B2B hardware rental company managing thousands of laptops, licenses, and contracts across clients in Spain. Every device lived in a spreadsheet. Every client onboarding required manual back-and-forth across email. Clients had no visibility into their own IT inventory — checking the status of a device or a license meant calling or emailing someone on the Emendu team. The operation worked, but it was fragile. Every new client added more manual work. There was no way to scale without hiring more people to do the same thing by hand.</p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-h2 text-neutral-900 mb-6">MyEmendu and Lisa</h2>
+          <ul class="flex flex-col gap-3">
+            {['8-week migration from spreadsheets to live MVP', 'Lisa: an AI agent that handles employee onboarding, device assignment, and software provisioning automatically — without human intervention', 'One-click employee import via Google Workspace', 'Hybrid catalog for renting and purchasing in a single checkout', 'Atera MDM integration for remote device management', 'AI-triaged helpdesk with escalation for complex issues'].map((item) => (
+              <li class="flex items-start gap-3 font-sans text-p text-neutral-700">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" aria-hidden="true"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-display text-h2 text-neutral-900 mb-6">Tech stack</h2>
+          <dl class="grid grid-cols-2 gap-x-8 gap-y-3">
+            {[['Core', 'Bubble (logic and database)'], ['Identity', 'Google Workspace API'], ['Payments', 'Stripe'], ['AI brain', 'OpenAI'], ['Device management', 'Atera (MDM and remote access)']].map(([label, value]) => (
+              <div>
+                <dt class="font-sans text-p-xs text-neutral-500 uppercase tracking-widest mb-1">{label}</dt>
+                <dd class="font-sans text-p-s text-neutral-900 font-medium">{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section class="dark bg-neutral-950 rounded-2xl p-10">
+          <p class="font-display text-h3 text-white">Emendu doubled their paid onboarding rate after the spreadsheet system was replaced with a platform that runs itself.</p>
+        </section>
+
+        <blockquote class="border-l-2 border-violet-500 pl-6 flex flex-col gap-3">
+          <p class="font-display text-h4 text-neutral-900">"We were drowning in logistics. Jams didn't just build us a dashboard; they gave us a scalable product. Today, Lisa handles the admin so our team can focus on growth."</p>
+          <footer class="font-sans text-p-s text-neutral-500">Emendu team</footer>
+        </blockquote>
+
+      </div>
+    </div>
+  </article>
+</CaseStudyLayout>

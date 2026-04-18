@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jams Agency · Design System</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="icon" href="assets/logos/jams-logo-iso-black.svg">
+<style>
+  html, body { margin:0; padding:0; background:#FAFAFA; }
+  body { font-family: var(--font-sans); color: var(--fg);}
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 80px 40px 120px;}
+  header { display:flex; justify-content:space-between; align-items:end; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 0.5px solid var(--border);}
+  header img { height: 32px; margin-bottom: 18px;}
+  h1 { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: 0.95; letter-spacing:-0.02em; margin: 0 0 12px;}
+  h1 em { color: var(--primary); font-style: italic;}
+  .sub { font-size: 17px; color: var(--neutral-600); max-width: 480px; line-height: 1.5;}
+  .meta { text-align: right; font-family: var(--font-mono); font-size: 12px; color: var(--neutral-500);}
+  .grid { display:grid; grid-template-columns: 1fr 1fr; gap: 20px;}
+  .card { background:#fff; border: 0.5px solid var(--border); border-radius: 20px; padding: 28px 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); text-decoration:none; color: inherit; transition: box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out);}
+  .card:hover { box-shadow: 0 10px 28px -10px rgba(0,0,0,0.12); transform: translateY(-2px);}
+  .card .eye { font-family: var(--font-ui); font-size: 11px; color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; margin-bottom: 6px; display:block;}
+  .card h3 { font-family: var(--font-display); font-weight: 400; font-size: 30px; letter-spacing:-0.01em; margin: 0 0 8px; line-height: 1;}
+  .card p { font-size: 14px; color: var(--neutral-600); margin: 0 0 18px; line-height: 1.5;}
+  .card .go { display:inline-flex; align-items:center; gap:6px; font-size: 13px; font-weight: 500; color: var(--neutral-850);}
+  h2 { font-family: var(--font-display); font-weight: 400; font-size: 32px; margin: 56px 0 20px;}
+  .list { display:grid; grid-template-columns: repeat(3, 1fr); gap: 10px;}
+  .list a { padding: 14px 16px; background:#fff; border: 0.5px solid var(--border); border-radius: 12px; font-size: 13px; font-weight: 500; color: var(--fg); text-decoration:none; display:flex; justify-content:space-between; align-items:center;}
+  .list a:hover { background: #F3F3F5;}
+  .list a span { color: var(--neutral-400); font-family: var(--font-mono); font-size: 11px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <img src="assets/logos/jams-logo-black.svg" alt="Jams">
+      <h1>The <em>Jams</em> design system.</h1>
+      <div class="sub">Tokens, type, components, and kits for anyone designing on behalf of Jams Agency. Read the README first — it covers voice, tone, and visual rules.</div>
+    </div>
+    <div class="meta">v1 · 2026<br>NYC</div>
+  </header>
+
+  <div class="grid">
+    <a class="card" href="README.md">
+      <span class="eye">Foundations</span>
+      <h3>README</h3>
+      <p>Brand overview, content fundamentals, visual foundations, iconography — the single source of truth. Start here.</p>
+      <div class="go">Read →</div>
+    </a>
+    <a class="card" href="colors_and_type.css">
+      <span class="eye">Tokens</span>
+      <h3>colors_and_type.css</h3>
+      <p>Every CSS variable — palette, fonts, radii, shadows, transitions — plus semantic type classes like <code style="font-family:var(--font-mono); font-size:13px;">.h1</code> and <code style="font-family:var(--font-mono); font-size:13px;">.p-l</code>.</p>
+      <div class="go">Open →</div>
+    </a>
+    <a class="card" href="ui_kits/marketing_site/index.html">
+      <span class="eye">UI Kit · Marketing</span>
+      <h3>Homepage (desktop)</h3>
+      <p>Floating nav, hero, case-study grid, "How it works" steps, quote, FAQ accordion, footer. 1440px.</p>
+      <div class="go">View kit →</div>
+    </a>
+    <a class="card" href="ui_kits/marketing_site/mobile.html">
+      <span class="eye">UI Kit · Marketing</span>
+      <h3>Homepage (mobile)</h3>
+      <p>390px mobile version — status bar, floating bottom tabs, condensed hero, stacked cases.</p>
+      <div class="go">View kit →</div>
+    </a>
+    <a class="card" href="ui_kits/web_app/index.html">
+      <span class="eye">UI Kit · Web App</span>
+      <h3>Studio dashboard</h3>
+      <p>Sidebar chrome, top-bar, metric cards, revenue/hours chart, activity feed, projects table. Geist-powered.</p>
+      <div class="go">View kit →</div>
+    </a>
+    <a class="card" href="SKILL.md">
+      <span class="eye">Agent</span>
+      <h3>SKILL.md</h3>
+      <p>Invocation instructions for using this as an Agent Skill — what to read and what to honor.</p>
+      <div class="go">Read →</div>
+    </a>
+  </div>
+
+  <h2>Previews</h2>
+  <div class="list">
+    <a href="preview/logo.html">Logo <span>svg</span></a>
+    <a href="preview/brand-gradient.html">Brand gradient <span>css</span></a>
+    <a href="preview/colors-primary.html">Colors · Primary <span>violet</span></a>
+    <a href="preview/colors-secondary.html">Colors · Secondary <span>orange</span></a>
+    <a href="preview/colors-neutrals.html">Colors · Neutrals <span>grayscale</span></a>
+    <a href="preview/colors-semantic.html">Colors · Semantic <span>status</span></a>
+    <a href="preview/type-display.html">Type · Display <span>serif</span></a>
+    <a href="preview/type-body.html">Type · Body <span>neue haas</span></a>
+    <a href="preview/type-ui.html">Type · UI &amp; Mono <span>geist</span></a>
+    <a href="preview/radii.html">Radii <span>4–999</span></a>
+    <a href="preview/spacing.html">Spacing <span>4–100</span></a>
+    <a href="preview/shadows.html">Shadows <span>elevation</span></a>
+    <a href="preview/buttons.html">Buttons <span>4 variants</span></a>
+    <a href="preview/chips.html">Chips &amp; tags <span>capsule</span></a>
+    <a href="preview/inputs.html">Inputs <span>form</span></a>
+    <a href="preview/nav.html">Nav bar <span>floating</span></a>
+    <a href="preview/faq.html">FAQ accordion <span>serif</span></a>
+    <a href="preview/case-study-card.html">Case-study card <span>work</span></a>
+  </div>
+</div>
+</body>
+</html>

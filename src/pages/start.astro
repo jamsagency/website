@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const steps = [
+  {
+    n: '1',
+    title: 'Apply',
+    body: 'Fill out the form below. It takes about 5 minutes. Tell us about the problem, the business, and where you are right now.',
+  },
+  {
+    n: '2',
+    title: 'Free shaping workshop',
+    body: 'We review your submission and reach out to schedule a free 60-minute session. We map your business problem together and figure out what to build and why. No pitch, no deck — just honest strategy. You leave with clarity whether or not we move forward.',
+  },
+  {
+    n: '3',
+    title: 'The Blueprint',
+    body: 'If we move forward, every engagement starts with a Blueprint: a two-week paid discovery process where we define exactly what to build, in what order, and why. That is where the real work begins.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'What exactly do you build?',
+    a: 'Custom web and mobile applications. Not websites, not templates, not off-the-shelf SaaS tools with your logo on them. We build products from scratch: booking platforms, marketplaces, community platforms, internal ops tools, AI-powered apps. If your business has a specific workflow and no existing software handles it the way you need, that is what we build.',
+  },
+  {
+    q: 'Do you work with no-code? What does that mean for us?',
+    a: 'Yes. Our primary build tool is Bubble, the most powerful no-code platform available. In practice, it means we build faster and at a lower cost than traditional development, without compromising the end result. Bubble handles payments, AI integrations, real-time data, complex logic, and multi-role platforms. For performance-critical or backend-heavy work, we use a hybrid architecture with Cloudflare and Convex on top of Bubble.',
+  },
+  {
+    q: 'How do you scope a project and how is it priced?',
+    a: 'Every engagement starts with a Blueprint: a paid, two-week discovery process where we define exactly what gets built, in what order, and why. The Blueprint starts at $3,500. After the Blueprint, development runs as a monthly engagement: $8,000 per month for a full dedicated team, or $5,000 per month for a sprint-based model. The Blueprint fee applies toward the build if you continue with us.',
+  },
+  {
+    q: 'What happens if the scope changes?',
+    a: 'It gets acknowledged in writing and discussed before anything changes. We use a formal scope change process: if a feature grows or a new requirement surfaces mid-build, we stop and have a conversation. We decide together whether it fits the current budget and timeline, whether to defer it, or whether to price it separately.',
+  },
+  {
+    q: 'How long does a typical project take?',
+    a: 'The Blueprint takes two weeks. After that, most first-version products ship in 8 to 12 weeks depending on complexity. Booking flows and internal tools tend toward the shorter end. Marketplaces, community platforms, and AI-integrated products tend toward the longer end.',
+  },
+  {
+    q: 'Who owns the code and design at the end?',
+    a: 'You do. The Figma files, the Bubble application, all design assets, all documentation transfer to you at the end of the engagement. If you want to work with a different team after us, you can.',
+  },
+  {
+    q: 'What do we need to provide to get started?',
+    a: 'For the Blueprint: access to any existing systems or tools (if applicable), time from one or two decision-makers (two 90-minute sessions over two weeks), and a clear description of the problem you are trying to solve. You do not need a spec, a wireframe, or a technical brief.',
+  },
+  {
+    q: 'How involved do we need to be during the project?',
+    a: 'More than most clients expect, less than they fear. In the Blueprint, you are in two facilitated sessions. During the build, you review working product every Friday and give feedback within 48 hours.',
+  },
+  {
+    q: 'What happens after launch?',
+    a: 'Before you launch, we agree on what comes next. Three options: an ongoing retainer ($5,000 to $8,000 per month), a support agreement, or a clean handover. We do not disappear after delivery.',
+  },
+  {
+    q: 'Can we see something you have built that is similar to what we need?',
+    a: 'Probably yes. The portfolio is at jams.agency/work. If you want to see something specific to your use case before booking a call, email juan@jams.agency with a one-line description of what you are building.',
+  },
+];
+---
+
+<BaseLayout
+  title="Book Your Free Shaping Workshop | Jams"
+  description="A free 60-minute session to map your business problem and figure out exactly what to build. No pitch, no jargon."
+  noindex={true}
+>
+
+  <!-- Hero -->
+  <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
+    <div class="rounded-[24px] pt-[120px] pb-[64px]" style="background: var(--neutral-100);">
+      <div class="container">
+        <div class="max-w-2xl flex flex-col gap-6">
+          <span class="eyebrow">Apply</span>
+          <h1 class="font-display text-h1 text-neutral-900">
+            Thinking about AI in your business, or have a specific workflow that software should be handling? Tell us what you are working with.
+          </h1>
+          <p class="font-sans text-p-l text-neutral-700">
+            We build custom web and mobile applications for businesses that have outgrown what off-the-shelf tools can do. Not a dev team that executes tickets — a team that figures out what to build, designs it, builds it, and stays involved after launch. If you are not sure exactly what to build yet, that is fine. Figuring that out is part of what we do.
+          </p>
+          <p class="font-sans text-p text-neutral-700">
+            Fill out the form below. We review every submission and get back to you within 24 hours.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section hairline" aria-labelledby="next-steps-heading">
+    <div class="container flex flex-col gap-12">
+      <h2 id="next-steps-heading" class="eyebrow">What happens next</h2>
+      <ol class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {steps.map(({ n, title, body }) => (
+          <li class="flex flex-col gap-4">
+            <span class="font-display text-h3 text-violet-500">{n}</span>
+            <h3 class="font-display text-h4 text-neutral-900">{title}</h3>
+            <p class="font-sans text-p text-neutral-700">{body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section class="section hairline" aria-labelledby="form-heading">
+    <div class="container">
+      <div class="max-w-xl flex flex-col gap-8">
+        <div class="flex flex-col gap-2">
+          <h2 id="form-heading" class="font-display text-h2 text-neutral-900">Apply to work with Jams</h2>
+          <p class="font-sans text-p-s text-neutral-500">No commitment on either side until after the discovery call. This takes about 5 minutes.</p>
+        </div>
+
+        <!-- Embed your Tally or Typeform form here. Example Tally embed: -->
+        <!-- <script src="https://tally.so/widgets/embed.js"></script> -->
+        <!-- <div data-tally-src="https://tally.so/r/XXXXXX" data-tally-width="100%" data-tally-align-left="1"></div> -->
+
+        <p class="font-sans text-p-s text-neutral-400 italic">Form embed goes here — connect your Tally / Typeform.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section hairline" aria-labelledby="faq-start-heading">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-10">
+        <h2 id="faq-start-heading" class="font-display text-h2 text-neutral-900">Common questions</h2>
+        <dl class="flex flex-col divide-y divide-neutral-150">
+          {faqs.map(({ q, a }) => (
+            <details class="group py-6">
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-h4 text-neutral-900">
+                {q}
+                <span class="shrink-0 text-violet-500 transition-transform duration-fast group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="font-sans text-p text-neutral-700 mt-4 leading-relaxed">{a}</p>
+            </details>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

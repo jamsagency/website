@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_preview.css">
+<style>
+.card { padding: 24px; display:flex; gap:16px; align-items:flex-start;}
+.study { width: 300px; border-radius: 24px; overflow: hidden; background:#0B0B0B; color:#fff; box-shadow: 0 8px 24px -8px rgba(0,0,0,0.2);}
+.study .image { height: 170px; background: linear-gradient(135deg, #0D344B 0%, #65E4B4 100%); position:relative;}
+.study .image::before { content:""; position:absolute; inset:14px 14px auto auto; width:50px; height:22px; border-radius:999px;
+  background:linear-gradient(180deg, #C2F3E0, #65E4B4); display:block;}
+.study .body { padding: 18px 20px 20px;}
+.study .eyebrow { font-family:"Geist", sans-serif; font-size:10px; color:#65E4B4; letter-spacing:0.1em; text-transform:uppercase; font-weight:500;}
+.study h3 { font-family:"Instrument Serif", serif; font-size:28px; font-weight:400; margin: 6px 0 4px; line-height:1;}
+.study p { font-family:"Neue Haas Grotesk Display Pro", sans-serif; font-size:13px; color:#D4D4D4; margin:0; line-height:1.45;}
+
+.study.light { background:#FFFFFF; color:#171717; border:0.5px solid #E3E3E5;}
+.study.light .image { background: linear-gradient(135deg, #EDE9FE 0%, #A78BFA 100%);}
+.study.light .image::before { background: linear-gradient(180deg,#864ACC,#A85CFF);}
+.study.light .eyebrow { color:#8B5CF6; }
+.study.light p { color:#404040;}
+</style></head>
+<body>
+<div class="card">
+  <div class="study">
+    <div class="image"></div>
+    <div class="body">
+      <div class="eyebrow">AI · MOBILE · LAUNCHED</div>
+      <h3>DropCar</h3>
+      <p>Found parking for 23 NYC customers in 8 weeks.</p>
+    </div>
+  </div>
+  <div class="study light">
+    <div class="image"></div>
+    <div class="body">
+      <div class="eyebrow">B2B SAAS · SHIPPED</div>
+      <h3>Emendu</h3>
+      <p>A community learning platform for non-traditional students.</p>
+    </div>
+  </div>
+</div>
+</body></html>

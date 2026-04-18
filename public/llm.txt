@@ -1,0 +1,26 @@
+# Jams
+
+Jams is a custom software and AI development studio based in Buenos Aires, Argentina.
+
+## What we do
+
+We build custom web and mobile applications for operators and founders who need software that does not exist off the shelf. We specialize in booking platforms, B2B SaaS, AI agents, community platforms, and marketplace products.
+
+Our process starts with a free 60-minute shaping workshop. If there is a fit, we move into a paid two-week Blueprint to define exactly what to build before any development starts. Development runs as a monthly engagement.
+
+## How we work
+
+- Free shaping workshop: 60 minutes, no pitch, map the business problem together
+- Blueprint: $3,500, two weeks, user journeys, architecture, prototype, fixed price for the build
+- Build: monthly engagement, $5,000 to $8,000 per month, 3-month minimum
+- We build primarily on Bubble with Cloudflare and Convex for performance-critical work
+
+## Our work
+
+Case studies: The Fold (AI agent for private equity), Emendu (IT asset management SaaS), The Arena (student analytics platform), DropCar (logistics brand and UX), Red Horse Mountain Ranch (custom booking platform), Qmius (B2B marketplace), The 93% Club (community platform), Fletech.
+
+## Contact
+
+Founder: Juan Germano, juan@jams.agency
+Book a workshop: go.jams.agency/start
+Portfolio: jams.agency/work

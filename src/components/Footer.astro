@@ -1,0 +1,27 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer style="background: var(--neutral-950); border-top: 1px solid rgba(255,255,255,0.08);">
+  <div class="container flex flex-col md:flex-row items-start md:items-center justify-between gap-8 py-16">
+    <div class="flex flex-col gap-3">
+      <a href="/" aria-label="Jams home">
+        <img src="/jams-logo-white.svg" alt="Jams" width="80" height="29" class="h-7 w-auto" />
+      </a>
+      <p class="font-sans text-p-s" style="color: #D4D4D4;">
+        Custom software and AI for operators and founders.
+      </p>
+    </div>
+
+    <nav class="flex flex-wrap gap-x-8 gap-y-3" aria-label="Footer navigation">
+      <a href="/work"  class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">Work</a>
+      <a href="/faqs"  class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">FAQs</a>
+      <a href="/blog"  class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">Blog</a>
+      <a href="/start" class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">Book a workshop</a>
+    </nav>
+
+    <p class="font-sans text-p-xs" style="color: #737373;">
+      &copy; {year} Jams. All rights reserved.
+    </p>
+  </div>
+</footer>

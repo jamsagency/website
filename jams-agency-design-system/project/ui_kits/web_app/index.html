@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jams — Web App Template</title>
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #F7F7F8; color: var(--fg); font-family: var(--font-ui);}
+  * { box-sizing: border-box; }
+  .app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh;}
+
+  /* ---- Sidebar ---- */
+  .side { background: #FFFFFF; border-right: 0.5px solid var(--border); padding: 16px 14px; display:flex; flex-direction:column; gap: 4px;}
+  .side .brand { display:flex; align-items:center; gap: 10px; padding: 10px 10px 18px; border-bottom: 0.5px solid var(--border); margin-bottom: 10px;}
+  .side .brand img { height: 22px;}
+  .side .brand .pill { background: #F5F3FF; color:#7C3AED; font-size: 10px; padding: 3px 7px; border-radius: 999px; font-weight: 500; letter-spacing:0.06em; text-transform:uppercase;}
+  .nav-grp-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--neutral-400); padding: 16px 10px 6px;}
+  .nav-item { display:flex; align-items:center; gap: 10px; padding: 8px 10px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--neutral-700); cursor: pointer; transition: background 120ms var(--ease-out);}
+  .nav-item:hover { background: #F3F3F5;}
+  .nav-item.active { background: #F5F3FF; color: #5B21B6;}
+  .nav-item.active i { color: #7C3AED;}
+  .nav-item i { font-size: 16px; color: var(--neutral-500);}
+  .nav-item .count { margin-left:auto; font-size: 11px; color: var(--neutral-500); background: #F3F3F5; padding: 2px 8px; border-radius: 999px;}
+  .nav-item.active .count { background: #EDE9FE; color: #5B21B6;}
+
+  .side .user { margin-top: auto; padding-top: 14px; border-top: 0.5px solid var(--border);}
+  .side .user .row { display:flex; align-items:center; gap:10px; padding: 6px 8px;}
+  .side .user .av { width: 32px; height: 32px; border-radius: 999px; background: linear-gradient(135deg, #A78BFA, #F97316);}
+  .side .user .nm { font-size: 13px; font-weight: 500; color: var(--fg);}
+  .side .user .rl { font-size: 11px; color: var(--neutral-500);}
+
+  /* ---- Main ---- */
+  main { display: flex; flex-direction: column; min-height: 100vh;}
+  .topbar { height: 56px; background: #fff; border-bottom: 0.5px solid var(--border); display:flex; align-items:center; gap: 12px; padding: 0 24px;}
+  .search { flex: 1; max-width: 420px; display:flex; align-items:center; gap: 8px; padding: 8px 14px; border-radius: 10px; background: #F3F3F5; color: var(--neutral-500); font-size: 13px;}
+  .search kbd { margin-left:auto; font-family: var(--font-mono); font-size: 10px; padding: 2px 6px; background: #fff; border-radius: 4px; border: 0.5px solid var(--border); color: var(--neutral-500);}
+  .topbar .spacer { flex: 1;}
+  .topbar .ic { width: 34px; height: 34px; border-radius: 8px; display:flex; align-items:center; justify-content:center; color: var(--neutral-600); cursor:pointer;}
+  .topbar .ic:hover { background: #F3F3F5;}
+  .topbar .btn {
+    color:#fff; font-weight:500; font-family: var(--font-ui); font-size: 13px; padding: 8px 14px; border-radius: 10px; border:none; cursor:pointer;
+    background: linear-gradient(180deg, #864ACC 0%, #A85CFF 51%, #864ACC 100%);
+    box-shadow: inset 2px 2px 4px 0 #CC9EFF, 0 4px 12px -4px rgba(139,92,246,0.4);
+    display:inline-flex; align-items:center; gap: 6px;
+  }
+
+  .content { padding: 28px 32px; max-width: 1400px; width: 100%;}
+
+  /* ---- Page header ---- */
+  .ph-row { display:flex; justify-content:space-between; align-items:end; margin-bottom: 28px;}
+  .ph-row h1 { font-family: var(--font-display); font-weight: 400; font-size: 40px; line-height: 1; letter-spacing: -0.01em; margin: 0 0 4px; color: var(--fg);}
+  .ph-row .crumb { font-size: 12px; color: var(--neutral-500); margin-bottom: 6px; display:flex; gap:6px; align-items:center;}
+  .ph-row .crumb i { font-size: 11px; color: var(--neutral-300);}
+  .ph-row .actions { display:flex; gap: 8px;}
+  .ph-row .btn-ghost { border: 0.5px solid var(--border); background:#fff; padding: 8px 14px; border-radius: 10px; font-size: 13px; font-weight: 500; color: var(--fg); cursor:pointer; display:inline-flex; gap:6px; align-items:center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04), inset 0 1px 1px #fff;
+  }
+  .ph-row .btn-primary {
+    color:#fff; font-weight:500; font-family: var(--font-ui); font-size: 13px; padding: 8px 14px; border-radius: 10px; border:none; cursor:pointer;
+    background: linear-gradient(180deg, #864ACC 0%, #A85CFF 51%, #864ACC 100%);
+    box-shadow: inset 2px 2px 4px 0 #CC9EFF, 0 4px 12px -4px rgba(139,92,246,0.4);
+    display:inline-flex; align-items:center; gap: 6px;
+  }
+
+  /* ---- Metric cards ---- */
+  .cards { display:grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;}
+  .m-card { background: #fff; border: 0.5px solid var(--border); border-radius: 14px; padding: 18px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);}
+  .m-card .lbl { font-size: 11px; color: var(--neutral-500); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; display:flex; align-items:center; gap:6px;}
+  .m-card .lbl i { font-size: 14px; color: var(--neutral-400);}
+  .m-card .big { font-family: var(--font-display); font-size: 36px; font-weight: 400; margin: 10px 0 6px; letter-spacing: -0.01em; line-height: 1;}
+  .m-card .delta { font-size: 12px; font-weight: 500; display:inline-flex; gap:4px; align-items:center; padding: 2px 8px; border-radius: 999px;}
+  .up { background: #DCFCE7; color: #15803D;}
+  .down { background: #FFE2E2; color: #B91C1C;}
+  .flat { background: #F3F3F5; color: #737373;}
+
+  /* ---- Charts & table row ---- */
+  .split { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px;}
+  .panel { background:#fff; border: 0.5px solid var(--border); border-radius: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); overflow: hidden;}
+  .panel-h { padding: 18px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom: 0.5px solid var(--border);}
+  .panel-h h3 { margin: 0; font-family: var(--font-ui); font-size: 14px; font-weight: 500; color: var(--fg);}
+  .panel-h .seg { display:flex; background:#F3F3F5; border-radius: 8px; padding: 3px; gap: 2px;}
+  .panel-h .seg button { border:none; background: transparent; padding: 4px 10px; font-size: 11px; font-weight: 500; color: var(--neutral-600); border-radius: 6px; cursor: pointer;}
+  .panel-h .seg button.on { background:#fff; color: var(--fg); box-shadow: 0 1px 2px rgba(0,0,0,0.08);}
+
+  .chart { padding: 24px 20px 20px; height: 220px; position: relative;}
+  .chart svg { width: 100%; height: 100%; }
+  .chart-legend { padding: 0 20px 18px; display:flex; gap: 16px;}
+  .chart-legend span { font-size: 12px; color: var(--neutral-600); display:inline-flex; gap:6px; align-items:center;}
+  .chart-legend span::before { content:""; width:8px; height:8px; border-radius: 2px;}
+  .chart-legend .a::before { background: #8B5CF6;}
+  .chart-legend .b::before { background: #FB923C;}
+
+  /* Activity list */
+  .act-list { padding: 8px 0;}
+  .act { display:flex; gap: 12px; padding: 12px 20px; align-items:flex-start;}
+  .act .dot { width: 8px; height: 8px; border-radius: 999px; margin-top: 6px; flex-shrink: 0;}
+  .act .dot.v { background: #8B5CF6;}
+  .act .dot.o { background: #FB923C;}
+  .act .dot.g { background: #22C55E;}
+  .act .txt { font-size: 13px; color: var(--neutral-700); line-height: 1.5;}
+  .act .txt b { font-weight: 500; color: var(--fg);}
+  .act .meta { font-size: 11px; color: var(--neutral-400); margin-top: 2px; font-family: var(--font-mono);}
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-family: var(--font-ui); font-size: 13px;}
+  thead th { text-align: left; padding: 12px 20px; font-size: 11px; font-weight: 500; color: var(--neutral-500); letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 0.5px solid var(--border); background: #FAFAFA;}
+  tbody td { padding: 14px 20px; border-bottom: 0.5px solid var(--border); vertical-align: middle;}
+  tbody tr:last-child td { border-bottom: none;}
+  tbody tr:hover { background: #FAFAFA;}
+  .proj { display:flex; gap: 10px; align-items:center;}
+  .proj .sq { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;}
+  .proj .nm { font-weight: 500; color: var(--fg);}
+  .proj .sb { font-size: 11px; color: var(--neutral-500);}
+  .tag { font-size: 11px; padding: 3px 8px; border-radius: 999px; font-weight: 500;}
+  .tag.plan { background: #EDE9FE; color: #5B21B6;}
+  .tag.design { background: #FFEDD5; color: #9A3412;}
+  .tag.ship { background: #DCFCE7; color: #15803D;}
+  .tag.hold { background: #F3F3F5; color: #737373;}
+  .bar-cell { display:flex; align-items:center; gap: 8px;}
+  .bar { flex: 1; height: 6px; background: #F3F3F5; border-radius: 3px; overflow: hidden; max-width: 120px;}
+  .bar > span { display:block; height:100%; background: #8B5CF6;}
+  .people { display:flex;}
+  .people .a { width: 24px; height: 24px; border-radius: 999px; border: 2px solid #fff; margin-left: -8px; background: #F3F3F5;}
+  .people .a:first-child { margin-left: 0;}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="side">
+    <div class="brand">
+      <img src="../../assets/logos/jams-logo-black.svg" alt="Jams">
+      <span class="pill">Studio</span>
+    </div>
+
+    <div class="nav-grp-label">Workspace</div>
+    <div class="nav-item active"><i class="ph ph-squares-four"></i> Dashboard</div>
+    <div class="nav-item"><i class="ph ph-briefcase"></i> Projects <span class="count">12</span></div>
+    <div class="nav-item"><i class="ph ph-users-three"></i> Clients <span class="count">8</span></div>
+    <div class="nav-item"><i class="ph ph-calendar-blank"></i> Schedule</div>
+    <div class="nav-item"><i class="ph ph-chat-circle"></i> Inbox <span class="count">3</span></div>
+
+    <div class="nav-grp-label">Reports</div>
+    <div class="nav-item"><i class="ph ph-chart-line-up"></i> Revenue</div>
+    <div class="nav-item"><i class="ph ph-clock"></i> Time tracking</div>
+    <div class="nav-item"><i class="ph ph-file-text"></i> Invoices</div>
+
+    <div class="user">
+      <div class="row">
+        <div class="av"></div>
+        <div>
+          <div class="nm">Alex Morales</div>
+          <div class="rl">Founder · Jams</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main>
+    <div class="topbar">
+      <div class="search">
+        <i class="ph ph-magnifying-glass"></i>
+        <span>Search projects, clients, invoices…</span>
+        <kbd>⌘K</kbd>
+      </div>
+      <div class="spacer"></div>
+      <div class="ic"><i class="ph ph-bell"></i></div>
+      <div class="ic"><i class="ph ph-gear"></i></div>
+      <button class="btn"><i class="ph ph-plus"></i> New project</button>
+    </div>
+
+    <div class="content">
+
+      <div class="ph-row">
+        <div>
+          <div class="crumb"><span>Workspace</span> <i class="ph ph-caret-right"></i> <span>Dashboard</span></div>
+          <h1>Good evening, Alex.</h1>
+          <p class="p-s" style="margin:6px 0 0; color: var(--neutral-500);">Three projects are due this sprint. You're on track for a $48k close.</p>
+        </div>
+        <div class="actions">
+          <button class="btn-ghost"><i class="ph ph-download-simple"></i> Export</button>
+          <button class="btn-ghost"><i class="ph ph-funnel"></i> Filter</button>
+          <button class="btn-primary"><i class="ph ph-plus"></i> New project</button>
+        </div>
+      </div>
+
+      <!-- Metric cards -->
+      <div class="cards">
+        <div class="m-card">
+          <div class="lbl"><i class="ph ph-currency-dollar"></i> Monthly revenue</div>
+          <div class="big">$48,220</div>
+          <span class="delta up"><i class="ph ph-trend-up"></i> 12.4%</span>
+        </div>
+        <div class="m-card">
+          <div class="lbl"><i class="ph ph-briefcase"></i> Active projects</div>
+          <div class="big">12</div>
+          <span class="delta up"><i class="ph ph-trend-up"></i> 2 new</span>
+        </div>
+        <div class="m-card">
+          <div class="lbl"><i class="ph ph-clock"></i> Avg. ship time</div>
+          <div class="big">8.2 wks</div>
+          <span class="delta down"><i class="ph ph-trend-down"></i> 0.8 wks</span>
+        </div>
+        <div class="m-card">
+          <div class="lbl"><i class="ph ph-hand-heart"></i> Client NPS</div>
+          <div class="big">62</div>
+          <span class="delta flat"><i class="ph ph-minus"></i> Unchanged</span>
+        </div>
+      </div>
+
+      <!-- Chart + activity -->
+      <div class="split">
+        <div class="panel">
+          <div class="panel-h">
+            <h3>Revenue vs. hours — last 8 weeks</h3>
+            <div class="seg">
+              <button>Week</button>
+              <button class="on">Month</button>
+              <button>Quarter</button>
+            </div>
+          </div>
+          <div class="chart">
+            <svg viewBox="0 0 700 220" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="gv" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.4"/>
+                  <stop offset="100%" stop-color="#A78BFA" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="go" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#FDBA74" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#FDBA74" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <!-- gridlines -->
+              <g stroke="#F3F3F5" stroke-width="1">
+                <line x1="0" x2="700" y1="40" y2="40"/>
+                <line x1="0" x2="700" y1="90" y2="90"/>
+                <line x1="0" x2="700" y1="140" y2="140"/>
+                <line x1="0" x2="700" y1="190" y2="190"/>
+              </g>
+              <!-- Orange area (hours) -->
+              <path d="M0,160 C60,145 100,170 160,155 C220,140 260,165 320,135 C380,110 420,135 480,115 C540,100 580,125 640,110 L700,115 L700,220 L0,220 Z" fill="url(#go)"/>
+              <path d="M0,160 C60,145 100,170 160,155 C220,140 260,165 320,135 C380,110 420,135 480,115 C540,100 580,125 640,110 L700,115" fill="none" stroke="#FB923C" stroke-width="2"/>
+              <!-- Violet area (revenue) -->
+              <path d="M0,130 C60,110 100,125 160,100 C220,80 260,105 320,75 C380,50 420,80 480,55 C540,35 580,60 640,40 L700,30 L700,220 L0,220 Z" fill="url(#gv)"/>
+              <path d="M0,130 C60,110 100,125 160,100 C220,80 260,105 320,75 C380,50 420,80 480,55 C540,35 580,60 640,40 L700,30" fill="none" stroke="#8B5CF6" stroke-width="2.5"/>
+              <!-- dots -->
+              <g fill="#8B5CF6">
+                <circle cx="160" cy="100" r="3"/><circle cx="320" cy="75" r="3"/>
+                <circle cx="480" cy="55" r="3"/><circle cx="640" cy="40" r="4" stroke="#fff" stroke-width="2"/>
+              </g>
+            </svg>
+          </div>
+          <div class="chart-legend">
+            <span class="a">Revenue</span>
+            <span class="b">Hours billed</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-h">
+            <h3>Activity</h3>
+            <span style="font-size:11px; color: var(--neutral-500); font-family: var(--font-mono);">Live</span>
+          </div>
+          <div class="act-list">
+            <div class="act"><span class="dot v"></span><div><div class="txt"><b>Priya</b> approved the DropCar v2 design.</div><div class="meta">2m ago</div></div></div>
+            <div class="act"><span class="dot g"></span><div><div class="txt"><b>Invoice #2048</b> for The Fold was paid — $12,000.</div><div class="meta">1h ago</div></div></div>
+            <div class="act"><span class="dot o"></span><div><div class="txt"><b>Emendu</b> kickoff scoped for Mon 10:00.</div><div class="meta">Today · 09:14</div></div></div>
+            <div class="act"><span class="dot v"></span><div><div class="txt"><b>Arena</b> moved to "Design" — 3 screens queued.</div><div class="meta">Yesterday</div></div></div>
+            <div class="act"><span class="dot g"></span><div><div class="txt"><b>Two</b> new discovery calls booked this week.</div><div class="meta">Yesterday</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="panel">
+        <div class="panel-h">
+          <h3>Projects</h3>
+          <div class="seg">
+            <button class="on">All · 12</button>
+            <button>Active · 7</button>
+            <button>Shipped · 4</button>
+            <button>On hold · 1</button>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Stage</th>
+              <th>Progress</th>
+              <th>Team</th>
+              <th>Budget</th>
+              <th>Due</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="proj"><div class="sq" style="background: linear-gradient(135deg,#D7C4FF,#7C3AED);"></div><div><div class="nm">The Fold — v2 workspace</div><div class="sb">B2B SaaS · 16 wk</div></div></div></td>
+              <td><span class="tag design">Design</span></td>
+              <td><div class="bar-cell"><div class="bar"><span style="width:62%"></span></div><span style="font-family:var(--font-mono); font-size:11px; color: var(--neutral-500);">62%</span></div></td>
+              <td><div class="people"><div class="a" style="background:linear-gradient(135deg,#A78BFA,#F97316)"></div><div class="a" style="background:linear-gradient(135deg,#22C55E,#3B82F6)"></div><div class="a" style="background:linear-gradient(135deg,#F97316,#EF4444)"></div></div></td>
+              <td style="font-family:var(--font-mono); font-size:12px;">$24,000</td>
+              <td style="color: var(--neutral-700);">May 12</td>
+            </tr>
+            <tr>
+              <td><div class="proj"><div class="sq" style="background: linear-gradient(135deg,#FFEDD5,#EA580C);"></div><div><div class="nm">Emendu — mobile rebuild</div><div class="sb">EdTech · 12 wk</div></div></div></td>
+              <td><span class="tag plan">Planning</span></td>
+              <td><div class="bar-cell"><div class="bar"><span style="width:18%"></span></div><span style="font-family:var(--font-mono); font-size:11px; color: var(--neutral-500);">18%</span></div></td>
+              <td><div class="people"><div class="a" style="background:linear-gradient(135deg,#3B82F6,#22C55E)"></div><div class="a" style="background:linear-gradient(135deg,#A78BFA,#F97316)"></div></div></td>
+              <td style="font-family:var(--font-mono); font-size:12px;">$18,500</td>
+              <td style="color: var(--neutral-700);">Jun 28</td>
+            </tr>
+            <tr>
+              <td><div class="proj"><div class="sq" style="background: linear-gradient(135deg,#0F6B8B,#065F46);"></div><div><div class="nm">DropCar — v2 booking</div><div class="sb">Mobile · 8 wk</div></div></div></td>
+              <td><span class="tag ship">Shipping</span></td>
+              <td><div class="bar-cell"><div class="bar"><span style="width:94%; background:#22C55E;"></span></div><span style="font-family:var(--font-mono); font-size:11px; color: var(--neutral-500);">94%</span></div></td>
+              <td><div class="people"><div class="a" style="background:linear-gradient(135deg,#F97316,#EF4444)"></div><div class="a" style="background:linear-gradient(135deg,#22C55E,#3B82F6)"></div><div class="a" style="background:linear-gradient(135deg,#A78BFA,#F97316)"></div><div class="a" style="background:#F3F3F5; color:#737373; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:500;">+2</div></div></td>
+              <td style="font-family:var(--font-mono); font-size:12px;">$32,000</td>
+              <td style="color: var(--neutral-700);">Apr 30</td>
+            </tr>
+            <tr>
+              <td><div class="proj"><div class="sq" style="background: linear-gradient(135deg,#FEF3C7,#D97706);"></div><div><div class="nm">The Arena — v1 marketplace</div><div class="sb">Marketplace · 10 wk</div></div></div></td>
+              <td><span class="tag design">Design</span></td>
+              <td><div class="bar-cell"><div class="bar"><span style="width:40%"></span></div><span style="font-family:var(--font-mono); font-size:11px; color: var(--neutral-500);">40%</span></div></td>
+              <td><div class="people"><div class="a" style="background:linear-gradient(135deg,#A78BFA,#F97316)"></div><div class="a" style="background:linear-gradient(135deg,#F97316,#EF4444)"></div></div></td>
+              <td style="font-family:var(--font-mono); font-size:12px;">$22,000</td>
+              <td style="color: var(--neutral-700);">Jul 15</td>
+            </tr>
+            <tr>
+              <td><div class="proj"><div class="sq" style="background: linear-gradient(135deg,#E5E5E5,#A0A0A3);"></div><div><div class="nm">Kindred — AI triage</div><div class="sb">Enterprise · Paused</div></div></div></td>
+              <td><span class="tag hold">On hold</span></td>
+              <td><div class="bar-cell"><div class="bar"><span style="width:28%; background:#A0A0A3"></span></div><span style="font-family:var(--font-mono); font-size:11px; color: var(--neutral-500);">28%</span></div></td>
+              <td><div class="people"><div class="a" style="background:linear-gradient(135deg,#3B82F6,#22C55E)"></div></div></td>
+              <td style="font-family:var(--font-mono); font-size:12px;">$41,000</td>
+              <td style="color: var(--neutral-400);">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

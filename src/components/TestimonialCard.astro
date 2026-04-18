@@ -1,0 +1,20 @@
+---
+interface Props {
+  quote: string;
+  author: string;
+  role: string;
+  dark?: boolean;
+}
+
+const { quote, author, role, dark = false } = Astro.props;
+---
+
+<figure class:list={['card p-8 flex flex-col gap-6', dark && 'dark bg-neutral-900 border-white/10']}>
+  <blockquote class="font-display text-h4 leading-snug" class:list={[dark ? 'text-white' : 'text-neutral-900']}>
+    &ldquo;{quote}&rdquo;
+  </blockquote>
+  <figcaption class="flex flex-col gap-0.5">
+    <span class="font-sans text-p-s font-semibold" class:list={[dark ? 'text-white' : 'text-neutral-900']}>{author}</span>
+    <span class="font-sans text-p-xs" class:list={[dark ? 'text-neutral-400' : 'text-neutral-500']}>{role}</span>
+  </figcaption>
+</figure>

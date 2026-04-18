@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_preview.css">
+<style>
+.card { padding: 24px; display:flex; gap: 20px; align-items:stretch; }
+.big { flex:1; border-radius: 16px; background: linear-gradient(180deg, #864ACC 0%, #A85CFF 51%, #864ACC 100%);
+  box-shadow: inset 2px 2px 4px 0 #CC9EFF, 0 16px 40px -12px rgba(139,92,246,0.35);
+  display:flex; align-items:flex-end; padding:18px; color:#fff;
+}
+.big .t { font-family:"Instrument Serif", serif; font-size:18px; letter-spacing:-0.01em; }
+.stops { width: 210px; display:flex; flex-direction:column; gap:8px; }
+.stop { display:flex; align-items:center; gap:10px; font-family:"Geist Mono", monospace; font-size:11px; color:#404040; }
+.stop .sw { width:22px; height:22px; border-radius:6px; border:0.5px solid rgba(0,0,0,0.06);}
+.cap { font-family:"Geist", sans-serif; font-size:10px; color:#A0A0A3; letter-spacing:0.08em; text-transform:uppercase; padding-top:4px;}
+</style></head>
+<body>
+<div class="card">
+  <div class="big"><div class="t">Primary gradient</div></div>
+  <div class="stops">
+    <div class="cap">Gradient stops</div>
+    <div class="stop"><div class="sw" style="background:#864ACC"></div>#864ACC · 0%</div>
+    <div class="stop"><div class="sw" style="background:#A85CFF"></div>#A85CFF · 51%</div>
+    <div class="stop"><div class="sw" style="background:#864ACC"></div>#864ACC · 100%</div>
+    <div class="cap" style="padding-top:8px">Inner highlight</div>
+    <div class="stop"><div class="sw" style="background:#CC9EFF"></div>#CC9EFF · inset top</div>
+  </div>
+</div>
+</body></html>

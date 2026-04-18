@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  date: string;
+  excerpt: string;
+  image?: string;
+}
+
+const { title, slug, date, excerpt, image } = Astro.props;
+
+const formattedDate = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
+});
+---
+
+<a href={`/blog/${slug}`} class="card group flex flex-col no-underline">
+  {image && (
+    <div class="aspect-[16/9] overflow-hidden">
+      <img
+        src={image}
+        alt={title}
+        width="800"
+        height="450"
+        class="w-full h-full object-cover transition-transform duration-[400ms] ease-out-custom group-hover:scale-[1.02]"
+        loading="lazy"
+      />
+    </div>
+  )}
+  <div class="flex flex-col gap-3 p-6">
+    <time class="font-sans text-p-xs text-neutral-500" datetime={date}>{formattedDate}</time>
+    <h3 class="font-display text-h4 text-neutral-900 leading-snug">{title}</h3>
+    <p class="font-sans text-p-s text-neutral-700 line-clamp-3">{excerpt}</p>
+    <span class="font-sans text-p-s font-medium text-violet-600 mt-1 transition-colors duration-fast group-hover:text-violet-700">
+      Read more &rarr;
+    </span>
+  </div>
+</a>

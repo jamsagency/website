@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_preview.css">
+<style>
+.grid { display:grid; grid-template-columns: repeat(11, 1fr); gap:6px; padding: 20px 24px 8px; }
+.chip { aspect-ratio: 1; border-radius: 8px; border: 0.5px solid rgba(0,0,0,0.04); }
+.labels { display:grid; grid-template-columns: repeat(11, 1fr); gap:6px; padding: 0 24px 20px; }
+.labels span { font-family:"Geist Mono", monospace; font-size:10px; color:#737373; text-align:center; }
+h3 { margin: 20px 24px 0; font-family:"Geist", sans-serif; font-size:12px; color:#A0A0A3; letter-spacing:0.08em; text-transform:uppercase; font-weight:500;}
+</style></head>
+<body>
+<div class="card">
+  <h3>Primary · violet</h3>
+  <div class="grid">
+    <div class="chip" style="background:#F5F3FF"></div>
+    <div class="chip" style="background:#EDE9FE"></div>
+    <div class="chip" style="background:#DDD6FE"></div>
+    <div class="chip" style="background:#C4B5FD"></div>
+    <div class="chip" style="background:#A78BFA"></div>
+    <div class="chip" style="background:#8B5CF6; outline:2px solid #000; outline-offset:-4px; outline-style:dashed;"></div>
+    <div class="chip" style="background:#7C3AED"></div>
+    <div class="chip" style="background:#6D28D9"></div>
+    <div class="chip" style="background:#5B21B6"></div>
+    <div class="chip" style="background:#4C1D95"></div>
+    <div class="chip" style="background:#2E1065"></div>
+  </div>
+  <div class="labels">
+    <span>50</span><span>100</span><span>200</span><span>300</span><span>400</span><span><b>500</b></span><span>600</span><span>700</span><span>800</span><span>900</span><span>950</span>
+  </div>
+</div>
+</body></html>

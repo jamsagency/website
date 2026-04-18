@@ -1,0 +1,55 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import CTASection from '@components/CTASection.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  projectName: string;
+  tags: string[];
+  schema?: object;
+}
+
+const { title, description, projectName, tags, schema } = Astro.props;
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://jams.agency' },
+    { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://jams.agency/work' },
+    { '@type': 'ListItem', position: 3, name: projectName },
+  ],
+};
+---
+
+<BaseLayout {title} {description} schema={schema ?? breadcrumbSchema}>
+  <!-- Internal hero container -->
+  <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
+    <div class="rounded-[24px] pt-[120px] pb-[64px]" style="background: var(--neutral-100);">
+      <div class="container">
+        <div class="flex flex-col gap-6">
+          <!-- Breadcrumb as eyebrow navigation -->
+          <nav aria-label="Breadcrumb">
+            <ol class="flex items-center gap-2 font-sans text-p-xs text-neutral-500">
+              <li><a href="/" class="hover:text-neutral-900 transition-colors duration-fast">Home</a></li>
+              <li aria-hidden="true">/</li>
+              <li><a href="/work" class="hover:text-neutral-900 transition-colors duration-fast">Work</a></li>
+              <li aria-hidden="true">/</li>
+              <li class="text-neutral-900" aria-current="page">{projectName}</li>
+            </ol>
+          </nav>
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => <span class="chip">{tag}</span>)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page content -->
+  <slot />
+
+  <CTASection />
+</BaseLayout>

@@ -1,0 +1,62 @@
+---
+import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
+---
+
+<CaseStudyLayout
+  title="Red Horse Mountain Ranch: Custom Booking Platform | Jams"
+  description="How Jams built a custom Checkfront-integrated booking platform for Red Horse Mountain Ranch, enabling direct bookings and 50% deposit collection online."
+  projectName="Red Horse Mountain Ranch"
+  tags={['Web app', 'Booking platform', 'Hospitality', 'Checkfront integration']}
+>
+  <article class="section">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-16">
+
+        <header class="flex flex-col gap-4">
+          <h1 class="font-display text-h1 text-neutral-900">A world-class ranch deserves a world-class booking experience</h1>
+          <p class="font-sans text-p-l text-neutral-700">Red Horse Mountain Ranch was taking zero direct bookings online. We fixed that in four weeks.</p>
+        </header>
+
+        <section>
+          <h2 class="font-display text-h2 text-neutral-900 mb-6">A world-class ranch, a generic booking page</h2>
+          <p class="font-sans text-p text-neutral-700 leading-relaxed">Don Britton had built something rare at Red Horse Mountain Ranch in Idaho: a luxury all-inclusive dude ranch where the entire experience — guided horseback riding, fly fishing, specialty weeks, genuine Western hospitality — was designed and delivered by hand. The digital front door told a completely different story. The website could not take a direct booking. Every reservation started with a contact form or an Airbnb listing. The reservation manager handled every inquiry manually: back and forth on availability, dates, cabin preferences, and deposit logistics. Platform commissions were bleeding revenue that should have stayed with the ranch. And nothing about the digital experience reflected the quality of the property.</p>
+        </section>
+
+        <section>
+          <h2 class="font-display text-h2 text-neutral-900 mb-6">The solution</h2>
+          <p class="font-sans text-p text-neutral-700 leading-relaxed mb-6">A custom Bubble booking platform integrated with Checkfront for availability and Stripe for payments. Guests now see real-time availability for specialty weeks and cabins, select dates and preferences, and pay a 50% deposit directly through a branded interface that feels like Red Horse — not a generic booking widget.</p>
+          <ul class="flex flex-col gap-3">
+            {['Real-time availability synced with Checkfront via API', 'Stripe payment processing at booking (50% deposit)', 'Automated email notifications at each stage of the reservation', 'Full backend visibility for the reservations team', 'No changes required to existing Checkfront operations workflow'].map((item) => (
+              <li class="flex items-start gap-3 font-sans text-p text-neutral-700">
+                <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" aria-hidden="true"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="font-display text-h2 text-neutral-900 mb-6">Tech stack</h2>
+          <dl class="grid grid-cols-2 gap-x-8 gap-y-3">
+            {[['Core', 'Bubble (logic and database)'], ['Availability', 'Checkfront API'], ['Payments', 'Stripe']].map(([label, value]) => (
+              <div>
+                <dt class="font-sans text-p-xs text-neutral-500 uppercase tracking-widest mb-1">{label}</dt>
+                <dd class="font-sans text-p-s text-neutral-900 font-medium">{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section class="dark bg-neutral-950 rounded-2xl p-10">
+          <p class="font-display text-h3 text-white">Four weeks after launch: 1,600 users on the new booking platform. 80 leads generated. Zero online bookings before launch. Direct bookings became the default channel.</p>
+        </section>
+
+        <blockquote class="border-l-2 border-violet-500 pl-6 flex flex-col gap-3">
+          <p class="font-display text-h4 text-neutral-900">"Their communication and follow-up were a pleasure to work with."</p>
+          <footer class="font-sans text-p-s text-neutral-500">Don Britton, Owner at Red Horse Mountain Ranch</footer>
+        </blockquote>
+
+      </div>
+    </div>
+  </article>
+</CaseStudyLayout>

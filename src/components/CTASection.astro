@@ -1,0 +1,27 @@
+---
+interface Props {
+  headline?: string;
+  body?: string;
+}
+
+const {
+  headline = 'Everyone is talking about AI. Most businesses do not know where to start.',
+  body = 'The free shaping workshop is 60 minutes where we map your operation, figure out exactly where AI moves the needle, and give you a clear next step. Whether you are starting from scratch or already have something built — come in and we will figure it out together. You leave with a direction. No pitch. No jargon.',
+} = Astro.props;
+---
+
+<section class="section" style="background: var(--neutral-950); border-top: 1px solid rgba(255,255,255,0.08);">
+  <div class="container">
+    <div class="flex flex-col items-center text-center gap-8" style="max-width: 640px; margin: 0 auto;">
+      <h2 class="font-display text-h2" style="color: #FEFEFE;">
+        {headline}
+      </h2>
+      <p class="font-sans text-p-l" style="color: #D4D4D4;">
+        {body}
+      </p>
+      <a href="/start" class="btn-primary rounded-pill py-4 px-9">
+        Book your free shaping workshop
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CaseStudyCard from '../components/CaseStudyCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import CTASection from '../components/CTASection.astro';
+
+const projects = [
+  { title: 'The Fold',               slug: 'the-fold',                tags: ['Mobile app', 'AI agent'],         oneliner: 'WhatsApp deal flow, replaced by Alfred — an AI concierge for private equity.' },
+  { title: 'Emendu',                  slug: 'emendu',                  tags: ['Web app', 'B2B SaaS'],            oneliner: 'Thousands of devices managed in spreadsheets, replaced by a full SaaS platform with an AI agent.' },
+  { title: 'The Arena',               slug: 'the-arena',               tags: ['Web app', 'AI automation'],       oneliner: 'Manual Notion pages and one-by-one ChatGPT reports, replaced by an automated student platform.' },
+  { title: 'DropCar',                 slug: 'dropcar',                 tags: ['Web app', 'Design'],              oneliner: 'A two-sided logistics business, unified into one digital story.' },
+  { title: 'Red Horse Mountain Ranch',slug: 'red-horse-mountain-ranch',tags: ['Web app', 'Booking platform'],    oneliner: 'A luxury dude ranch with no direct bookings, replaced by a branded booking flow with Stripe deposits.' },
+  { title: 'Qmius',                   slug: 'qmius',                   tags: ['Web app', 'B2B marketplace'],     oneliner: 'Coming soon.' },
+  { title: 'The 93% Club',            slug: '93-percent-club',         tags: ['Web app', 'Community'],           oneliner: 'Coming soon.' },
+  { title: 'Fletech',                 slug: 'fletech',                 tags: ['Web app'],                        oneliner: 'Coming soon.' },
+];
+
+const faqs = [
+  { q: 'What do you actually build?', a: 'Custom web and mobile applications. Not websites or templates — products built around the specific workflow your business depends on. Booking platforms, internal ops tools, marketplaces, AI agents, membership platforms. If no existing software does exactly what you need, that is what we build.' },
+  { q: 'How does the process start?', a: 'With a free 60-minute shaping workshop. We map your business problem together and translate it into a clear product direction. You leave with real clarity on what to build and why. After that, if there is a fit, we move into the Blueprint — a paid two-week process that defines exactly what to build and produces a fixed price for the build.' },
+  { q: 'What does it cost?', a: 'The shaping workshop is free. The Blueprint — the two-week discovery and planning process — starts at $3,500. Development runs as a monthly engagement starting at $5,000 per month after that. The Blueprint fee applies toward the build if you continue.' },
+  { q: 'How fast do you ship?', a: 'The Blueprint takes two weeks. Most first-version products ship in 8 to 12 weeks depending on complexity. You get a timeline estimate at the end of the Blueprint before committing to the build.' },
+  { q: 'What is Bubble, and does it matter?', a: 'Bubble is the most powerful no-code development platform available. We build on it because it lets us ship five times faster than traditional development without sacrificing capability. The products we deliver handle millions in transactions, sensitive data, and complex logic. Your users cannot tell the difference.' },
+  { q: 'Do I own everything at the end?', a: 'Yes. The Bubble application, Figma files, all assets, and all documentation transfer to you at the end of the engagement. If you want to work with a different team after us, you can. We have never held a client\'s product hostage.' },
+  { q: 'Do you work with AI?', a: 'Yes, from the start — not bolted on at the end. Every product we build today has AI considered in the design phase. Whether that is an agent that automates a workflow, a recommendation layer, a document reader, or a matching system, we figure out where AI actually moves the needle and build it in.' },
+  { q: 'What if I already have a product that needs a team?', a: 'We work with that too. Several of our longest-running clients came to us with an existing product that had outgrown their previous team. We take over, stabilize it, and become the embedded product team — roadmap ownership, regular shipping, and data-driven decisions about what to build next.' },
+];
+---
+
+<BaseLayout
+  title="Jams — Custom Software and AI for Operators and Founders"
+  description="We work with operators and founders who know AI should be changing how they run their business. We figure out exactly what to build and build it."
+>
+
+  <!-- ===== HERO ===== -->
+  <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
+    <div class="rounded-[24px] pt-[120px] pb-[80px] dark" style="background: var(--neutral-950);">
+      <div class="container flex flex-col gap-10">
+        <h1 class="font-display text-display leading-[1.05] max-w-3xl" style="color: var(--fg);">
+          Everyone is telling you to use AI. Nobody is telling you what to actually do.
+        </h1>
+        <div class="flex flex-col gap-8">
+          <p class="font-sans text-p-l max-w-lg" style="color: var(--fg-muted);">
+            We work with operators and founders who know AI should be changing how they run their business but cannot get a straight answer on where to start. We figure out exactly what to implement and build it.
+          </p>
+          <div>
+            <a href="/start" class="btn-primary rounded-pill py-4 px-9">Book your free shaping workshop</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== YOU FEEL SEEN ===== -->
+  <section class="section hairline" style="background: var(--neutral-75);">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-6 leading-relaxed">
+        <p class="font-sans text-p-l" style="color: var(--fg-muted);">You have a real business. Revenue, clients, a team. But at some point you hit a ceiling. Not because of the market or your effort. Because the software your operation needs does not exist yet. And every time you tried to fix it, something went wrong. A freelancer who disappeared. An agency that delivered something that did not work. A tool that was almost right but not quite.</p>
+        <p class="font-sans text-p-l" style="color: var(--fg-muted);">Meanwhile, everyone around you is moving on AI. Competitors are implementing things. You have seen demos that feel relevant to your business but the gap between "that looks interesting" and "I know exactly what to build for my operation" is real and wide.</p>
+        <p class="font-sans text-p-l font-medium" style="color: var(--fg);">You are probably sitting with questions nobody has answered properly yet:</p>
+        <ul class="flex flex-col pl-0 list-none">
+          <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">What should I actually build.</li>
+          <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">We have twenty ideas — which one do we start with.</li>
+          <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">How much is this going to cost me.</li>
+          <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">Who do I trust to deliver it and not disappear halfway through.</li>
+          <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">Will it work the way my business actually works.</li>
+        </ul>
+        <p class="font-sans text-p-l mt-6" style="color: var(--fg-muted);">If any of that sounds right, you are in the right place. This is for you if your business has outgrown what off-the-shelf software can do — if you have real processes, real customers, and a specific gap that no existing tool fills exactly right.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORK SHOWCASE ===== -->
+  <section class="section hairline" aria-labelledby="work-heading">
+    <div class="container flex flex-col gap-12">
+      <div class="flex items-end justify-between">
+        <h2 id="work-heading" class="eyebrow">Work</h2>
+        <a href="/work" class="font-sans text-p-s font-medium text-violet-600 hover:text-violet-700 transition-colors duration-fast">View all work &rarr;</a>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {projects.map((p) => <CaseStudyCard {...p} />)}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESULTS ===== -->
+  <section class="section hairline dark bg-neutral-950" aria-labelledby="results-heading">
+    <div class="container flex flex-col gap-12">
+      <h2 id="results-heading" class="font-display text-h2" style="color: #FEFEFE;">What changes when the right product gets built</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
+          <p class="font-sans text-p-l" style="color: #D4D4D4;">The Arena shipped in 8 weeks. Julieta went from duplicating Notion pages by hand to a platform serving hundreds of students across multiple cohorts.</p>
+        </div>
+        <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
+          <p class="font-sans text-p-l" style="color: #D4D4D4;">Emendu doubled their paid onboarding rate after we replaced their spreadsheet system with a SaaS platform that runs itself.</p>
+        </div>
+        <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
+          <p class="font-sans text-p-l" style="color: #D4D4D4;">The Fold went from 25% to 67% member engagement after Alfred replaced WhatsApp and started curating personalized deal feeds for every member.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section hairline" style="background: radial-gradient(ellipse at 50% 50%, rgba(204,158,255,0.3) 0%, rgba(251,251,251,0.3) 60%, rgba(235,236,238,0.3) 100%);">
+    <div class="container flex flex-col gap-6">
+      <TestimonialCard
+        quote="They took the time to really understand our business. Jams didn't just make it look good — they translated our complex dual-strategy into a clear digital experience."
+        author="Spencer Richardson"
+        role="Founder and CEO at DropCar"
+      />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <TestimonialCard
+          quote="I was drowning in manual work. Jams transformed our unique methodology into a scalable product. Now the students love the app and we can generate hundreds of reports in the time it used to take to do one."
+          author="Julieta Lombroni"
+          role="Founder at The Arena"
+        />
+        <TestimonialCard
+          quote="Their communication and follow-up were a pleasure to work with."
+          author="Don Britton"
+          role="Owner at Red Horse Mountain Ranch"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CORE MESSAGING ===== -->
+  <section class="section hairline">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-6">
+        <h2 class="font-display text-h2 text-neutral-900">Most agencies build what you ask for. We figure out what you actually need.</h2>
+        <p class="font-sans text-p-l text-neutral-700">There is a difference between a team that executes requirements and a team that owns the outcome. We sit with you before anything is designed or built, map the business problem, and define exactly what to build. Then we design it, build it, and stay involved after launch. You get a product that works — not a deliverable that checks the box.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PHILOSOPHY ===== -->
+  <section class="section hairline" aria-labelledby="philosophy-heading">
+    <div class="container flex flex-col gap-12">
+      <h2 id="philosophy-heading" class="eyebrow">What you get working with Jams</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+        {[
+          { title: 'We figure out what to build before we touch anything', body: 'Most projects fail because the wrong thing gets built. We spend the first two weeks mapping your business problem and defining the right solution before design or development starts. For new builds that means a clear MVP. For existing products it means cutting through the backlog noise and deciding what actually moves the business. You know exactly what you are getting before committing to it.' },
+          { title: 'Design built around how your business actually works', body: 'Not a template with your colors. A product designed around your operation, your users, and the specific workflow that needs to change. Built to feel premium and hold up under real pressure.' },
+          { title: 'Shipped in weeks, not months', body: 'We build on Bubble and the most capable no-code infrastructure available. It ships five times faster than traditional development. The products we deliver handle real transaction volume, sensitive data, and complex business logic. Your users will not be able to tell the difference.' },
+          { title: 'A team that stays after launch', body: 'We do not disappear after delivery. We watch the data, fix bugs, and run regular shaping sessions to decide what to build next. Decisions are based on how real users interact with the product, not on whoever shouted loudest in the last meeting.' },
+        ].map(({ title, body }) => (
+          <div class="flex flex-col gap-4">
+            <h3 class="font-display text-h4 text-neutral-900">{title}</h3>
+            <p class="font-sans text-p text-neutral-700">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOUNDER'S MESSAGE ===== -->
+  <section class="section hairline dark bg-neutral-950">
+    <div class="container">
+      <div class="max-w-xl flex flex-col gap-6">
+        <p class="font-sans text-p-l text-neutral-300">I cannot walk past a bad restaurant without seeing the million ways I would fix it. Bad menu. Slow service. No hospitality. It drives me crazy. That is how I feel about bad software.</p>
+        <p class="font-sans text-p-l text-neutral-300">I started Jams because too many founders are drowning in the same questions: what should we build? How much will it cost? Will this actually work?</p>
+        <p class="font-sans text-p-l text-neutral-300">So they hire agencies that speak in jargon to hide the fact that they do not understand the business.</p>
+        <p class="font-sans text-p-l font-medium text-white">We are different. We speak Founder.</p>
+        <p class="font-sans text-p-l text-neutral-300">We do not care about the code as much as we care about your operation. We are obsessed with building products that fit the way your business actually runs — because we took the time to understand it first.</p>
+        <p class="font-sans text-p-l text-neutral-300">If you are tired of guessing what to build, let us figure it out together.</p>
+        <p class="font-sans text-p font-semibold text-white mt-2">Juan, Founder of Jams</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section hairline" aria-labelledby="how-it-works-heading">
+    <div class="container flex flex-col gap-12">
+      <h2 id="how-it-works-heading" class="font-display text-h2 text-neutral-900">How it works</h2>
+      <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+          { n: '1', title: 'Workshop', body: 'We run a free 60-minute shaping session where we map your business problem together and translate it into a clear product direction. You leave knowing what to build and why. No pitch, no jargon — just honest strategy.' },
+          { n: '2', title: 'Blueprint', body: 'If we move forward, we spend two weeks going deep — user journeys, technical architecture, a design prototype, and a fixed price for the build. Everything defined before a single line of code is written.' },
+          { n: '3', title: 'Build', body: 'Our team designs and builds on the most capable no-code stack available. Mobile-first, AI-ready, connected to the systems you already use. Shipped in weeks.' },
+          { n: '4', title: 'Own it', body: 'We launch, monitor the data, and keep building. We become your product team — not a vendor you call when something breaks.' },
+        ].map(({ n, title, body }) => (
+          <li class="flex flex-col gap-4">
+            <span class="font-display text-h3 text-violet-500">{n}</span>
+            <h3 class="font-display text-h4 text-neutral-900">{title}</h3>
+            <p class="font-sans text-p text-neutral-700">{body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section
+    class="section hairline"
+    style="background: radial-gradient(ellipse at 50% 50%, rgba(204,158,255,0.15) 0%, rgba(251,251,251,0) 70%);"
+    aria-labelledby="faq-heading"
+  >
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-10">
+        <h2 id="faq-heading" class="font-display text-h2 text-neutral-900">Things you are probably wondering</h2>
+        <dl class="flex flex-col divide-y divide-neutral-150">
+          {faqs.map(({ q, a }) => (
+            <details class="group py-6">
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-h4 text-neutral-900">
+                {q}
+                <span class="shrink-0 text-violet-500 transition-transform duration-fast group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="font-sans text-p text-neutral-700 mt-4 leading-relaxed">{a}</p>
+            </details>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+
+</BaseLayout>

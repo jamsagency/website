@@ -1,0 +1,41 @@
+---
+const links = [
+  { label: 'Work',  href: '/work' },
+  { label: 'FAQs',  href: '/faqs' },
+  { label: 'Blog',  href: '/blog' },
+];
+---
+
+<header class="fixed top-0 inset-x-0 z-50 pt-10 pointer-events-none">
+  <div class="container pointer-events-auto">
+    <nav
+      class="flex items-center gap-2 px-4 py-2 rounded-pill"
+      style="border: 0.5px solid var(--border-soft); background: rgba(243,243,245,0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow-card), var(--shadow-inset-top);"
+    >
+      <!-- Logo -->
+      <a href="/" class="flex items-center shrink-0 mr-2" aria-label="Jams home">
+        <img src="/jams-logo-black.svg" alt="Jams" width="80" height="29" class="h-7 w-auto" />
+      </a>
+
+      <!-- Nav links -->
+      <div class="flex items-center gap-1">
+        {links.map(({ label, href }) => (
+          <a
+            href={href}
+            class="px-3 py-1.5 rounded-pill font-sans text-p-s font-medium text-neutral-850 transition-colors duration-fast hover:text-neutral-950"
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+
+      <!-- CTA pushed to the right -->
+      <div class="ml-auto">
+        <a href="/start" class="btn-primary py-2 px-4 text-p-s">
+          Book a workshop
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+

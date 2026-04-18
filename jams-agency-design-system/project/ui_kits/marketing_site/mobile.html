@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jams — Marketing Mobile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../colors_and_type.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<style>
+  html, body { margin:0; padding:0; background: #E5E5E5; }
+  body { font-family: var(--font-sans); }
+  .device { width: 390px; margin: 40px auto; background:#fff; border-radius: 40px; box-shadow: 0 40px 80px -20px rgba(0,0,0,0.25); overflow: hidden; border: 1px solid #D4D4D4; position:relative;}
+  .status { height: 44px; display:flex; justify-content:space-between; align-items:center; padding: 0 28px; font-family: var(--font-ui); font-size: 15px; font-weight: 600;}
+  .status .right { display:flex; gap:6px; align-items:center; color:#000;}
+
+  /* ---- top bar ---- */
+  .topbar { padding: 8px 20px 16px; display:flex; justify-content:space-between; align-items:center; }
+  .topbar img { height: 22px;}
+  .burger { width: 40px; height: 40px; border-radius: 999px; border: 0.5px solid #E3E3E5; background: #F3F3F5; display:flex; align-items:center; justify-content:center; color:#404040;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06), inset 0 2px 2px #fff;
+  }
+
+  /* ---- dark hero ---- */
+  .hero { background:#0B0B0B; color:#fff; margin: 0 16px; border-radius: 24px; padding: 48px 28px; }
+  .hero .eye { font-family: var(--font-ui); font-size: 12px; color: #A78BFA; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px;}
+  .hero h1 { font-family: var(--font-display); font-weight: 400; font-size: 56px; line-height: 0.95; letter-spacing:-0.01em; margin: 0 0 18px;}
+  .hero h1 em { color: #A78BFA; font-style: italic;}
+  .hero p { font-size: 15px; color: #D4D4D4; line-height: 1.5; margin: 0 0 28px;}
+
+  .btn { display:inline-flex; gap:8px; align-items:center; justify-content:center; border:none; cursor:pointer; border-radius: 12px;
+    padding: 14px 22px; font-family: var(--font-sans); font-size: 14px; font-weight: 600;}
+  .btn-primary { color:#fff; background: linear-gradient(180deg, #864ACC 0%, #A85CFF 51%, #864ACC 100%);
+    box-shadow: inset 2px 2px 4px 0 #CC9EFF, 0 10px 24px -6px rgba(139,92,246,0.35);}
+  .btn-primary span { text-decoration: underline; text-underline-offset: 3px;}
+  .btn-dark { background:#fff; color:#0B0B0B;}
+
+  .section { padding: 56px 20px; }
+  .section .eye { font-family: var(--font-ui); font-size: 12px; color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; font-weight:500;}
+  .section h2 { font-family: var(--font-display); font-weight: 400; font-size: 44px; line-height: 1; letter-spacing: -0.01em; margin: 0 0 14px;}
+  .section h2 em { color: var(--primary); font-style: italic;}
+  .section > p { font-size: 15px; color: var(--neutral-600); line-height: 1.5; margin: 0 0 28px;}
+
+  /* ---- case study cards ---- */
+  .case { background:#fff; border: 0.5px solid rgba(227,227,229,0.7); border-radius: 20px; overflow:hidden; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.04);}
+  .case .image { aspect-ratio: 16/11; background:#F3F3F5; position: relative; overflow:hidden;}
+  .case .body { padding: 22px 22px 26px; display:flex; justify-content:space-between; align-items:flex-end; gap: 14px;}
+  .case .body .eye-case { font-family: var(--font-ui); font-size: 10px; color: var(--primary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; font-weight:500;}
+  .case h3 { font-family: var(--font-display); font-weight: 400; font-size: 28px; line-height: 1; margin: 0; letter-spacing:-0.01em;}
+  .case .go { width: 40px; height: 40px; border-radius: 999px; background:#F3F3F5; border:0.5px solid #E3E3E5; display:flex; align-items:center; justify-content:center; color:#252526; flex-shrink:0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05), inset 0 2px 2px #fff;
+  }
+  .img-a { background: linear-gradient(135deg, #D7C4FF 0%, #A78BFA 60%, #7C3AED 100%);}
+  .img-a::after { content:""; position:absolute; inset:30% 22% 14% 22%; background:#fff; border-radius:12px; box-shadow: 0 20px 40px -14px rgba(60,30,120,0.45);}
+  .img-b { background: linear-gradient(135deg, #FFEDD5 0%, #FB923C 60%, #C2410C 100%);}
+  .img-b::after { content:""; position:absolute; inset:24% 40% 14% 16%; background:#fff; border-radius:12px; box-shadow: 0 20px 40px -14px rgba(120,60,10,0.35);}
+  .img-b::before { content:""; position:absolute; top:32%; right:14%; width:32%; height:52%; background:#171717; border-radius:14px; box-shadow: 0 16px 30px -10px rgba(0,0,0,0.4); z-index:2;}
+
+  /* ---- FAQ ---- */
+  .faq-wrap { position: relative; overflow: hidden; padding: 56px 16px;}
+  .faq-wrap::before { content:""; position:absolute; inset:-20% -20% 40% -20%; background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(204,158,255,0.28) 0%, transparent 70%); pointer-events:none;}
+  .faq-wrap > * { position:relative;}
+  .faq-wrap h2 { text-align:center; margin: 0 0 28px; font-family: var(--font-display); font-weight: 400; font-size: 44px; line-height: 1;}
+  .faq-item { border: 1px solid #A0A0A3; padding: 20px 22px; background: rgba(255,255,255,0.55); backdrop-filter: blur(8px); display:flex; justify-content:space-between; align-items:flex-start; gap: 14px; margin-bottom: 8px;}
+  .faq-item .q { font-family: var(--font-display); font-size: 24px; line-height: 1.05; color: var(--neutral-900); letter-spacing:-0.01em; flex:1;}
+  .faq-item .t { width: 36px; height: 36px; border-radius: 10px; background:#F3F3F5; border:0.5px solid #E3E3E5; display:flex; align-items:center; justify-content:center; color:#737373; flex-shrink:0; box-shadow: 0 2px 10px rgba(0,0,0,0.06), inset 0 2px 2px #fff;}
+
+  /* ---- footer ---- */
+  .cta-card { background:#0B0B0B; color:#fff; margin: 0 16px 16px; border-radius: 24px; padding: 40px 28px;}
+  .cta-card h2 { font-family: var(--font-display); font-size: 44px; line-height: 1; margin: 0 0 14px;}
+  .cta-card p { font-size: 14px; color:#A0A0A3; line-height: 1.5; margin: 0 0 22px;}
+
+  .foot { padding: 24px 24px 40px; display:flex; flex-direction:column; gap: 16px; background:#171717; color:#A0A0A3;}
+  .foot img { height: 22px;}
+  .foot .meta { font-size: 12px; color:#737373;}
+
+  /* ---- bottom tab bar ---- */
+  .tabbar { position: absolute; left: 50%; transform: translateX(-50%); bottom: 18px; display:flex; gap: 4px;
+    padding: 6px; background: rgba(11,11,11,0.85); backdrop-filter: blur(24px); border-radius: 999px;
+    box-shadow: 0 16px 40px -10px rgba(0,0,0,0.4); border: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .tabbar button { border:none; background: transparent; color: #D4D4D4; padding: 10px 14px; border-radius: 999px; font-family: var(--font-sans); font-size: 13px; font-weight: 500; display:inline-flex; gap:6px; align-items:center;}
+  .tabbar button.active { background: #fff; color:#0B0B0B;}
+</style>
+</head>
+<body>
+
+<div class="device">
+  <div class="status">
+    <span>20:32</span>
+    <span class="right"><i class="ph ph-cell-signal-full"></i><i class="ph ph-wifi-high"></i><i class="ph ph-battery-full"></i></span>
+  </div>
+
+  <div class="topbar">
+    <img src="../../assets/logos/jams-logo-black.svg" alt="Jams">
+    <div class="burger"><i class="ph ph-list"></i></div>
+  </div>
+
+  <div class="hero">
+    <div class="eye">Creative agency · Since 2012</div>
+    <h1>Hey there, we're <em>Jams.</em></h1>
+    <p>We help non-technical founders boost revenue through cohesive product design and development.</p>
+    <button class="btn btn-dark"><span>Let's talk</span> <i class="ph ph-arrow-up-right"></i></button>
+  </div>
+
+  <div class="section">
+    <div class="eye">Selected work</div>
+    <h2>Products that <em>actually</em> shipped.</h2>
+    <p>Four teams, four industries, one honest process.</p>
+
+    <div class="case">
+      <div class="image img-a"></div>
+      <div class="body">
+        <div>
+          <div class="eye-case">B2B SaaS · 16 weeks</div>
+          <h3>The Fold</h3>
+        </div>
+        <div class="go"><i class="ph ph-arrow-up-right"></i></div>
+      </div>
+    </div>
+    <div class="case">
+      <div class="image img-b"></div>
+      <div class="body">
+        <div>
+          <div class="eye-case">EdTech · 12 weeks</div>
+          <h3>Emendu</h3>
+        </div>
+        <div class="go"><i class="ph ph-arrow-up-right"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-wrap">
+    <h2>FAQ's</h2>
+    <div class="faq-item"><div class="q">What is Jams?</div><div class="t"><i class="ph ph-minus"></i></div></div>
+    <div class="faq-item"><div class="q">How much do you charge?</div><div class="t"><i class="ph ph-plus"></i></div></div>
+    <div class="faq-item"><div class="q">Do you work with non-technical founders?</div><div class="t"><i class="ph ph-plus"></i></div></div>
+  </div>
+
+  <div class="cta-card">
+    <h2>Let's talk about your business.</h2>
+    <p>30 minutes, no strings attached. We'll do some ideation together and figure out if we're a fit.</p>
+    <button class="btn btn-primary"><span>Book a call</span> <i class="ph ph-arrow-up-right"></i></button>
+  </div>
+
+  <div class="foot">
+    <img src="../../assets/logos/jams-logo-white.svg" alt="Jams">
+    <span class="meta">© 2026 Jams Agency · NYC</span>
+  </div>
+
+  <div class="tabbar">
+    <button class="active"><i class="ph ph-house"></i> Home</button>
+    <button><i class="ph ph-briefcase"></i> Work</button>
+    <button><i class="ph ph-chat-circle"></i> Talk</button>
+  </div>
+</div>
+
+</body>
+</html>
