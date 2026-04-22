@@ -53,8 +53,8 @@ export default {
       },
       fontFamily: {
         display: ['"Instrument Serif"', '"Times New Roman"', 'ui-serif', 'Georgia', 'serif'],
-        sans: ['"Neue Haas Grotesk Display Pro"', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
-        ui: ['Geist', '"Neue Haas Grotesk Display Pro"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Geist', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+        ui: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"Geist Mono"', '"JetBrains Mono"', 'ui-monospace', 'Menlo', 'Courier', 'monospace'],
       },
       fontSize: {

@@ -6,12 +6,12 @@ import CTASection from '../../components/CTASection.astro';
 const projects = [
   { title: 'The Fold',                slug: 'the-fold',                tags: ['Mobile app', 'AI agent', 'Community platform'],        oneliner: 'WhatsApp deal flow, replaced by Alfred — an AI concierge for private equity.' },
   { title: 'DropCar',                 slug: 'dropcar',                 tags: ['Web app', 'Brand and design', 'High-converting UX'],    oneliner: 'A two-sided logistics business, unified into one digital story.' },
-  { title: 'Emendu',                  slug: 'emendu',                  tags: ['Web app', 'B2B SaaS', 'AI agent'],                      oneliner: 'Thousands of devices managed in spreadsheets, replaced by a full SaaS platform with an AI agent.' },
   { title: 'The Arena',               slug: 'the-arena',               tags: ['Web app', 'AI automation', 'EdTech', 'Gamification'],   oneliner: 'Manual Notion pages and one-by-one ChatGPT reports, replaced by an automated student platform.' },
   { title: 'Red Horse Mountain Ranch',slug: 'red-horse-mountain-ranch',tags: ['Web app', 'Booking platform', 'Hospitality'],           oneliner: 'A luxury dude ranch with no direct bookings, replaced by a branded booking flow with Stripe deposits.' },
   { title: 'Qmius',                   slug: 'qmius',                   tags: ['Web app', 'B2B marketplace'],                           oneliner: 'Coming soon.' },
   { title: 'The 93% Club',            slug: '93-percent-club',         tags: ['Web app', 'Community platform'],                        oneliner: 'Coming soon.' },
   { title: 'Fletech',                 slug: 'fletech',                 tags: ['Web app'],                                              oneliner: 'Coming soon.' },
+  { title: 'Buyer Match',             slug: 'buyer-match',             tags: ['Web app', 'AI agent'],                                  oneliner: 'Coming soon.' },
 ];
 ---
 
@@ -34,7 +34,7 @@ const projects = [
   <!-- Project grid -->
   <section class="section hairline">
     <div class="container">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {projects.map((p) => <CaseStudyCard {...p} />)}
       </div>
     </div>

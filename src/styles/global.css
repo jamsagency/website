@@ -1,22 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ---------- Self-hosted fonts ------------------------------------------- */
-@font-face {
-  font-family: "Neue Haas Grotesk Display Pro";
-  src: url("/fonts/NeueHaasDisplay-Roman.ttf") format("truetype");
-  font-weight: 400 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Neue Haas Grotesk Display Pro";
-  src: url("/fonts/NeueHaasDisplay-Medium.ttf") format("truetype");
-  font-weight: 600 700;
-  font-style: normal;
-  font-display: swap;
-}
 @font-face {
   font-family: "Instrument Serif";
   src: url("/fonts/InstrumentSerif-Regular.ttf") format("truetype");
@@ -28,7 +16,7 @@
 /* ---------- CSS custom properties --------------------------------------- */
 :root {
   --font-display: "Instrument Serif", "Times New Roman", ui-serif, Georgia, serif;
-  --font-sans:    "Neue Haas Grotesk Display Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans:    "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   --violet-50:  #F5F3FF;
   --violet-100: #EDE9FE;

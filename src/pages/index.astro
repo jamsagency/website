@@ -5,14 +5,10 @@ import TestimonialCard from '../components/TestimonialCard.astro';
 import CTASection from '../components/CTASection.astro';
 
 const projects = [
-  { title: 'The Fold',               slug: 'the-fold',                tags: ['Mobile app', 'AI agent'],         oneliner: 'WhatsApp deal flow, replaced by Alfred — an AI concierge for private equity.' },
-  { title: 'Emendu',                  slug: 'emendu',                  tags: ['Web app', 'B2B SaaS'],            oneliner: 'Thousands of devices managed in spreadsheets, replaced by a full SaaS platform with an AI agent.' },
-  { title: 'The Arena',               slug: 'the-arena',               tags: ['Web app', 'AI automation'],       oneliner: 'Manual Notion pages and one-by-one ChatGPT reports, replaced by an automated student platform.' },
-  { title: 'DropCar',                 slug: 'dropcar',                 tags: ['Web app', 'Design'],              oneliner: 'A two-sided logistics business, unified into one digital story.' },
-  { title: 'Red Horse Mountain Ranch',slug: 'red-horse-mountain-ranch',tags: ['Web app', 'Booking platform'],    oneliner: 'A luxury dude ranch with no direct bookings, replaced by a branded booking flow with Stripe deposits.' },
-  { title: 'Qmius',                   slug: 'qmius',                   tags: ['Web app', 'B2B marketplace'],     oneliner: 'Coming soon.' },
-  { title: 'The 93% Club',            slug: '93-percent-club',         tags: ['Web app', 'Community'],           oneliner: 'Coming soon.' },
-  { title: 'Fletech',                 slug: 'fletech',                 tags: ['Web app'],                        oneliner: 'Coming soon.' },
+  { title: 'The Fold',                slug: 'the-fold',                tags: ['Mobile app', 'AI agent'],      oneliner: 'WhatsApp deal flow, replaced by Alfred — an AI concierge for private equity.' },
+  { title: 'The Arena',               slug: 'the-arena',               tags: ['Web app', 'AI automation'],    oneliner: 'Manual Notion pages and one-by-one ChatGPT reports, replaced by an automated student platform.' },
+  { title: 'DropCar',                 slug: 'dropcar',                 tags: ['Web app', 'Design'],           oneliner: 'A two-sided logistics business, unified into one digital story.' },
+  { title: 'Red Horse Mountain Ranch',slug: 'red-horse-mountain-ranch',tags: ['Web app', 'Booking platform'], oneliner: 'A luxury dude ranch with no direct bookings, replaced by a branded booking flow with Stripe deposits.' },
 ];
 
 const faqs = [
@@ -35,17 +31,15 @@ const faqs = [
   <!-- ===== HERO ===== -->
   <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
     <div class="rounded-[24px] pt-[120px] pb-[80px] dark" style="background: var(--neutral-950);">
-      <div class="container flex flex-col gap-10">
-        <h1 class="font-display text-display leading-[1.05] max-w-3xl" style="color: var(--fg);">
+      <div class="container flex flex-col items-center text-center gap-10">
+        <h1 class="font-display text-h1 max-w-3xl" style="color: var(--fg);">
           Everyone is telling you to use AI. Nobody is telling you what to actually do.
         </h1>
-        <div class="flex flex-col gap-8">
+        <div class="flex flex-col items-center gap-8">
           <p class="font-sans text-p-l max-w-lg" style="color: var(--fg-muted);">
             We work with operators and founders who know AI should be changing how they run their business but cannot get a straight answer on where to start. We figure out exactly what to implement and build it.
           </p>
-          <div>
-            <a href="/start" class="btn-primary rounded-pill py-4 px-9">Book your free shaping workshop</a>
-          </div>
+          <a href="/start" class="btn-primary rounded-pill py-4 px-9">Book your free shaping workshop</a>
         </div>
       </div>
     </div>
@@ -55,8 +49,8 @@ const faqs = [
   <section class="section hairline" style="background: var(--neutral-75);">
     <div class="container">
       <div class="max-w-2xl flex flex-col gap-6 leading-relaxed">
-        <p class="font-sans text-p-l" style="color: var(--fg-muted);">You have a real business. Revenue, clients, a team. But at some point you hit a ceiling. Not because of the market or your effort. Because the software your operation needs does not exist yet. And every time you tried to fix it, something went wrong. A freelancer who disappeared. An agency that delivered something that did not work. A tool that was almost right but not quite.</p>
-        <p class="font-sans text-p-l" style="color: var(--fg-muted);">Meanwhile, everyone around you is moving on AI. Competitors are implementing things. You have seen demos that feel relevant to your business but the gap between "that looks interesting" and "I know exactly what to build for my operation" is real and wide.</p>
+        <p class="font-sans text-p-l" style="color: var(--fg-muted);">You have a real business. Revenue, clients, a team. But at some point you hit a ceiling — not because of the market or your effort. Because the software your operation needs does not exist yet.</p>
+        <p class="font-sans text-p-l" style="color: var(--fg-muted);">And every time you tried to fix it, something went wrong. A freelancer who disappeared. An agency that delivered something that did not work. A tool that was almost right but not quite.</p>
         <p class="font-sans text-p-l font-medium" style="color: var(--fg);">You are probably sitting with questions nobody has answered properly yet:</p>
         <ul class="flex flex-col pl-0 list-none">
           <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">What should I actually build.</li>
@@ -65,7 +59,7 @@ const faqs = [
           <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">Who do I trust to deliver it and not disappear halfway through.</li>
           <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">Will it work the way my business actually works.</li>
         </ul>
-        <p class="font-sans text-p-l mt-6" style="color: var(--fg-muted);">If any of that sounds right, you are in the right place. This is for you if your business has outgrown what off-the-shelf software can do — if you have real processes, real customers, and a specific gap that no existing tool fills exactly right.</p>
+        <p class="font-sans text-p-l mt-6" style="color: var(--fg-muted);">If any of that sounds right, you are in the right place.</p>
       </div>
     </div>
   </section>
@@ -77,7 +71,7 @@ const faqs = [
         <h2 id="work-heading" class="eyebrow">Work</h2>
         <a href="/work" class="font-sans text-p-s font-medium text-violet-600 hover:text-violet-700 transition-colors duration-fast">View all work &rarr;</a>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {projects.map((p) => <CaseStudyCard {...p} />)}
       </div>
     </div>
@@ -92,7 +86,7 @@ const faqs = [
           <p class="font-sans text-p-l" style="color: #D4D4D4;">The Arena shipped in 8 weeks. Julieta went from duplicating Notion pages by hand to a platform serving hundreds of students across multiple cohorts.</p>
         </div>
         <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
-          <p class="font-sans text-p-l" style="color: #D4D4D4;">Emendu doubled their paid onboarding rate after we replaced their spreadsheet system with a SaaS platform that runs itself.</p>
+          <p class="font-sans text-p-l" style="color: #D4D4D4;">Red Horse Mountain Ranch went from zero online bookings to 1,600 users on a custom platform in four weeks. Direct bookings became the default channel.</p>
         </div>
         <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
           <p class="font-sans text-p-l" style="color: #D4D4D4;">The Fold went from 25% to 67% member engagement after Alfred replaced WhatsApp and started curating personalized deal feeds for every member.</p>
@@ -202,7 +196,7 @@ const faqs = [
         <dl class="flex flex-col divide-y divide-neutral-150">
           {faqs.map(({ q, a }) => (
             <details class="group py-6">
-              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-h4 text-neutral-900">
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-h3 text-neutral-900">
                 {q}
                 <span class="shrink-0 text-violet-500 transition-transform duration-fast group-open:rotate-45" aria-hidden="true">+</span>
               </summary>
