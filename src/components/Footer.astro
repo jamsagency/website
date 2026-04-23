@@ -1,27 +1,74 @@
 ---
 const year = new Date().getFullYear();
+
+const pages = [
+  { label: 'Home',             href: '/' },
+  { label: 'Work',             href: '/work' },
+  { label: 'FAQs',             href: '/faqs' },
+  { label: 'Blog',             href: '/blog' },
+  { label: 'Book a workshop',  href: '/start' },
+];
+
+const caseStudies = [
+  { label: 'AI community app',          href: '/work/the-fold' },
+  { label: 'Hospitality booking engine',href: '/work/red-horse-mountain-ranch' },
+  { label: 'AI education app',          href: '/work/the-arena' },
+  { label: 'Parking booking flow',      href: '/work/dropcar' },
+];
 ---
 
 <footer style="background: var(--neutral-950); border-top: 1px solid rgba(255,255,255,0.08);">
-  <div class="container flex flex-col md:flex-row items-start md:items-center justify-between gap-8 py-16">
-    <div class="flex flex-col gap-3">
-      <a href="/" aria-label="Jams home">
-        <img src="/jams-logo-white.svg" alt="Jams" width="80" height="29" class="h-7 w-auto" />
-      </a>
-      <p class="font-sans text-p-s" style="color: #D4D4D4;">
-        Custom software and AI for operators and founders.
-      </p>
+  <div class="container py-16 flex flex-col gap-12">
+
+    <!-- Top row: brand + nav columns -->
+    <div class="flex flex-col md:flex-row gap-12 md:gap-16 justify-between">
+
+      <!-- Brand -->
+      <div class="flex flex-col gap-3 shrink-0">
+        <a href="/" aria-label="Jams home">
+          <img src="/jams-logo-white.svg" alt="Jams" width="121" height="44" class="h-11 w-auto" />
+        </a>
+        <p class="font-sans text-p-s max-w-xs" style="color: #D4D4D4;">
+          Custom software and AI for operators and founders.
+        </p>
+        <div class="flex gap-3 mt-1">
+          <div class="flex flex-col items-center gap-2 rounded-lg" style="border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px;">
+            <img src="/bubble-logo.svg" alt=".bubble" width="72" height="16" />
+            <span class="font-sans" style="color: #737373; font-size: 10px; letter-spacing: 0.01em;">Silver Agency Partner</span>
+          </div>
+          <div class="flex flex-col items-center gap-2 rounded-lg" style="border: 1px solid rgba(255,255,255,0.1); padding: 12px 20px;">
+            <img src="/clutch-logo.svg" alt="Clutch" width="58" height="16" />
+            <span class="flex items-center gap-1 font-sans" style="color: #737373; font-size: 10px;">5.0 <i class="ph-fill ph-star" style="font-size: 10px; color: #A3A3A3;"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav columns -->
+      <div class="flex gap-12 md:gap-16">
+
+        <!-- Pages -->
+        <nav class="flex flex-col gap-3" aria-label="Site pages">
+          <span class="font-sans text-p-xs uppercase tracking-widest" style="color: #737373;">Pages</span>
+          {pages.map(({ label, href }) => (
+            <a href={href} class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">{label}</a>
+          ))}
+        </nav>
+
+        <!-- Case studies -->
+        <nav class="flex flex-col gap-3" aria-label="Case studies">
+          <span class="font-sans text-p-xs uppercase tracking-widest" style="color: #737373;">Work</span>
+          {caseStudies.map(({ label, href }) => (
+            <a href={href} class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">{label}</a>
+          ))}
+        </nav>
+
+      </div>
     </div>
 
-    <nav class="flex flex-wrap gap-x-8 gap-y-3" aria-label="Footer navigation">
-      <a href="/work"  class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">Work</a>
-      <a href="/faqs"  class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">FAQs</a>
-      <a href="/blog"  class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">Blog</a>
-      <a href="/start" class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">Book a workshop</a>
-    </nav>
-
+    <!-- Bottom row: copyright -->
     <p class="font-sans text-p-xs" style="color: #737373;">
       &copy; {year} Jams. All rights reserved.
     </p>
+
   </div>
 </footer>

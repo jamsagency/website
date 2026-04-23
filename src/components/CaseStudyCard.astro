@@ -6,12 +6,15 @@ interface Props {
   oneliner: string;
   image?: string;
   imageAlt?: string;
+  comingSoon?: boolean;
 }
 
-const { title, slug, tags, oneliner, image, imageAlt } = Astro.props;
+const { title, slug, tags, oneliner, image, imageAlt, comingSoon } = Astro.props;
+const Tag = comingSoon ? 'div' : 'a';
+const linkProps = comingSoon ? {} : { href: `/work/${slug}` };
 ---
 
-<a href={`/work/${slug}`} class="card group flex flex-col no-underline">
+<Tag {...linkProps} class="card group flex flex-col no-underline">
   <!-- Image area -->
   <div class="aspect-[4/3] bg-neutral-100 overflow-hidden">
     {image ? (
@@ -38,9 +41,13 @@ const { title, slug, tags, oneliner, image, imageAlt } = Astro.props;
       ))}
     </div>
     <h3 class="font-display text-h3 text-neutral-900 leading-snug">{title}</h3>
-    <p class="font-sans text-p-s text-neutral-700">{oneliner}</p>
-    <span class="font-sans text-p-s font-medium text-violet-600 mt-1 transition-colors duration-fast group-hover:text-violet-700">
-      View project &rarr;
-    </span>
+    {oneliner && <p class="font-sans text-p-s text-neutral-700">{oneliner}</p>}
+    {comingSoon ? (
+      <span class="font-sans text-p-s font-medium mt-1" style="color: #A3A3A3;">Coming soon</span>
+    ) : (
+      <span class="font-sans text-p-s font-medium text-violet-600 mt-1 transition-colors duration-fast group-hover:text-violet-700">
+        View project &rarr;
+      </span>
+    )}
   </div>
-</a>
+</Tag>

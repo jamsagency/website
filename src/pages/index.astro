@@ -5,10 +5,9 @@ import TestimonialCard from '../components/TestimonialCard.astro';
 import CTASection from '../components/CTASection.astro';
 
 const projects = [
-  { title: 'The Fold',                slug: 'the-fold',                tags: ['Mobile app', 'AI agent'],      oneliner: 'WhatsApp deal flow, replaced by Alfred — an AI concierge for private equity.' },
-  { title: 'The Arena',               slug: 'the-arena',               tags: ['Web app', 'AI automation'],    oneliner: 'Manual Notion pages and one-by-one ChatGPT reports, replaced by an automated student platform.' },
-  { title: 'DropCar',                 slug: 'dropcar',                 tags: ['Web app', 'Design'],           oneliner: 'A two-sided logistics business, unified into one digital story.' },
-  { title: 'Red Horse Mountain Ranch',slug: 'red-horse-mountain-ranch',tags: ['Web app', 'Booking platform'], oneliner: 'A luxury dude ranch with no direct bookings, replaced by a branded booking flow with Stripe deposits.' },
+  { title: 'The Fold',                slug: 'the-fold',                tags: ['Mobile app', 'AI agent'],      oneliner: 'WhatsApp deal flow, replaced by Alfred — an AI concierge for private equity.',                                        image: '/thefold-cover.png',  imageAlt: 'The Fold app interface' },
+  { title: 'The Arena',               slug: 'the-arena',               tags: ['Web app', 'AI automation'],    oneliner: 'Manual Notion pages and one-by-one ChatGPT reports, replaced by an automated student platform.',                       image: '/thearena-cover.png', imageAlt: 'The Arena student platform' },
+  { title: 'Red Horse Mountain Ranch',slug: 'red-horse-mountain-ranch',tags: ['Web app', 'Booking platform'], oneliner: 'A luxury dude ranch with no direct bookings, replaced by a branded booking flow with Stripe deposits.',                image: '/redhorse-cover.png', imageAlt: 'Red Horse Mountain Ranch booking platform' },
 ];
 
 const faqs = [
@@ -29,13 +28,23 @@ const faqs = [
 >
 
   <!-- ===== HERO ===== -->
-  <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
-    <div class="rounded-[24px] pt-[120px] pb-[80px] dark" style="background: var(--neutral-950);">
-      <div class="container flex flex-col items-center text-center gap-10">
-        <h1 class="font-display text-h1 max-w-3xl" style="color: var(--fg);">
-          Everyone is telling you to use AI. Nobody is telling you what to actually do.
+  <section class="px-3 pt-4 pb-0 md:px-4" style="background: var(--neutral-75);">
+    <div class="rounded-[24px] pt-[160px] pb-[80px] dark" style="background: var(--neutral-950);">
+      <div class="container flex flex-col items-center text-center">
+        <div class="flex flex-wrap justify-center gap-3 mb-6">
+          <div class="flex flex-col items-center gap-2 rounded-lg" style="border: 1px solid rgba(255,255,255,0.1); padding: 10px 20px;">
+            <img src="/bubble-logo.svg" alt=".bubble" width="80" height="18" />
+            <span class="font-sans" style="color: #737373; font-size: 11px;">Silver Agency Partner</span>
+          </div>
+          <div class="flex flex-col items-center gap-2 rounded-lg" style="border: 1px solid rgba(255,255,255,0.1); padding: 10px 20px;">
+            <img src="/clutch-logo.svg" alt="Clutch" width="64" height="18" />
+            <span class="flex items-center gap-1 font-sans" style="color: #737373; font-size: 11px;">5.0 <i class="ph-fill ph-star" style="font-size: 11px; color: #A3A3A3;"></i></span>
+          </div>
+        </div>
+        <h1 class="font-display text-h1 max-w-5xl mb-6" style="color: var(--fg); font-size: 72px;">
+          Everyone is telling you to use AI.<br />Nobody is telling you what to actually do.
         </h1>
-        <div class="flex flex-col items-center gap-8">
+        <div class="flex flex-col items-center gap-12">
           <p class="font-sans text-p-l max-w-lg" style="color: var(--fg-muted);">
             We work with operators and founders who know AI should be changing how they run their business but cannot get a straight answer on where to start. We figure out exactly what to implement and build it.
           </p>
@@ -71,7 +80,7 @@ const faqs = [
         <h2 id="work-heading" class="eyebrow">Work</h2>
         <a href="/work" class="font-sans text-p-s font-medium text-violet-600 hover:text-violet-700 transition-colors duration-fast">View all work &rarr;</a>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {projects.map((p) => <CaseStudyCard {...p} />)}
       </div>
     </div>
@@ -83,7 +92,7 @@ const faqs = [
       <h2 id="results-heading" class="font-display text-h2" style="color: #FEFEFE;">What changes when the right product gets built</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
-          <p class="font-sans text-p-l" style="color: #D4D4D4;">The Arena shipped in 8 weeks. Julieta went from duplicating Notion pages by hand to a platform serving hundreds of students across multiple cohorts.</p>
+          <p class="font-sans text-p-l" style="color: #D4D4D4;">The Arena shipped in 8 weeks. The team went from duplicating Notion pages by hand to a platform serving hundreds of students across multiple cohorts.</p>
         </div>
         <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
           <p class="font-sans text-p-l" style="color: #D4D4D4;">Red Horse Mountain Ranch went from zero online bookings to 1,600 users on a custom platform in four weeks. Direct bookings became the default channel.</p>

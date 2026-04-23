@@ -7,10 +7,14 @@ interface Props {
   description: string;
   projectName: string;
   tags: string[];
+  headline?: string;
+  intro?: string;
+  heroImage?: string;
+  heroImageAlt?: string;
   schema?: object;
 }
 
-const { title, description, projectName, tags, schema } = Astro.props;
+const { title, description, projectName, tags, headline, intro, heroImage, heroImageAlt, schema } = Astro.props;
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
@@ -26,8 +30,9 @@ const breadcrumbSchema = {
 <BaseLayout {title} {description} schema={schema ?? breadcrumbSchema}>
   <!-- Internal hero container -->
   <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
-    <div class="rounded-[24px] pt-[120px] pb-[64px]" style="background: var(--neutral-100);">
-      <div class="container">
+    <div class="rounded-[24px] overflow-hidden" style="background: var(--neutral-100);">
+      <!-- Content: keeps all internal padding -->
+      <div class="container pt-[120px] pb-[64px]">
         <div class="flex flex-col gap-6">
           <!-- Breadcrumb as eyebrow navigation -->
           <nav aria-label="Breadcrumb">
@@ -43,8 +48,25 @@ const breadcrumbSchema = {
           <div class="flex flex-wrap gap-2">
             {tags.map((tag) => <span class="chip">{tag}</span>)}
           </div>
+          {headline && (
+            <div class="flex flex-col gap-4 pt-2">
+              <h1 class="font-display text-h1 text-neutral-900 max-w-3xl">{headline}</h1>
+              {intro && <p class="font-sans text-p-l text-neutral-600 max-w-2xl">{intro}</p>}
+            </div>
+          )}
         </div>
       </div>
+      <!-- Hero image: full width, flush to bottom edge -->
+      {heroImage && (
+        <img
+          src={heroImage}
+          alt={heroImageAlt ?? projectName}
+          width="1240"
+          height="700"
+          class="w-full h-auto block"
+          loading="eager"
+        />
+      )}
     </div>
   </section>
 

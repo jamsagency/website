@@ -4,14 +4,14 @@ import CaseStudyCard from '../../components/CaseStudyCard.astro';
 import CTASection from '../../components/CTASection.astro';
 
 const projects = [
-  { title: 'The Fold',                slug: 'the-fold',                tags: ['Mobile app', 'AI agent', 'Community platform'],        oneliner: 'WhatsApp deal flow, replaced by Alfred — an AI concierge for private equity.' },
-  { title: 'DropCar',                 slug: 'dropcar',                 tags: ['Web app', 'Brand and design', 'High-converting UX'],    oneliner: 'A two-sided logistics business, unified into one digital story.' },
-  { title: 'The Arena',               slug: 'the-arena',               tags: ['Web app', 'AI automation', 'EdTech', 'Gamification'],   oneliner: 'Manual Notion pages and one-by-one ChatGPT reports, replaced by an automated student platform.' },
-  { title: 'Red Horse Mountain Ranch',slug: 'red-horse-mountain-ranch',tags: ['Web app', 'Booking platform', 'Hospitality'],           oneliner: 'A luxury dude ranch with no direct bookings, replaced by a branded booking flow with Stripe deposits.' },
-  { title: 'Qmius',                   slug: 'qmius',                   tags: ['Web app', 'B2B marketplace'],                           oneliner: 'Coming soon.' },
-  { title: 'The 93% Club',            slug: '93-percent-club',         tags: ['Web app', 'Community platform'],                        oneliner: 'Coming soon.' },
-  { title: 'Fletech',                 slug: 'fletech',                 tags: ['Web app'],                                              oneliner: 'Coming soon.' },
-  { title: 'Buyer Match',             slug: 'buyer-match',             tags: ['Web app', 'AI agent'],                                  oneliner: 'Coming soon.' },
+  { title: 'The Fold',                slug: 'the-fold',                tags: ['Mobile app', 'AI agent', 'Community platform'],        oneliner: 'WhatsApp deal flow, replaced by Alfred — an AI concierge for private equity.',                                        image: '/thefold-cover.png',  imageAlt: 'The Fold app interface' },
+  { title: 'DropCar',                 slug: 'dropcar',                 tags: ['Web app', 'Booking flow'],   oneliner: 'A two-sided logistics business, unified into one digital story.',                                                      image: '/dropcar-cover.png',  imageAlt: 'DropCar web app' },
+  { title: 'The Arena',               slug: 'the-arena',               tags: ['Web app', 'AI automation', 'EdTech', 'Gamification'],  oneliner: 'Manual Notion pages and one-by-one ChatGPT reports, replaced by an automated student platform.',                       image: '/thearena-cover.png', imageAlt: 'The Arena student platform' },
+  { title: 'Red Horse Mountain Ranch',slug: 'red-horse-mountain-ranch',tags: ['Web app', 'Booking platform', 'Hospitality'],          oneliner: 'A luxury dude ranch with no direct bookings, replaced by a branded booking flow with Stripe deposits.',                 image: '/redhorse-cover.png', imageAlt: 'Red Horse Mountain Ranch booking platform' },
+  { title: 'Qmius',                   slug: 'qmius',                   tags: ['Web app', 'B2B marketplace'],                          oneliner: '', image: '/qmius-cover.png',       imageAlt: 'Qmius marketplace',           comingSoon: true },
+  { title: 'The 93% Club',            slug: '93-percent-club',         tags: ['Web app', 'Community platform'],                       oneliner: '', image: '/93percent-cover.png',   imageAlt: 'The 93% Club platform',       comingSoon: true },
+  { title: 'Fletech',                 slug: 'fletech',                 tags: ['Web app'],                                             oneliner: '', image: '/fletech-cover.png',     imageAlt: 'Fletech web app',             comingSoon: true },
+  { title: 'Buyer Match',             slug: 'buyer-match',             tags: ['Web app', 'AI agent'],                                 oneliner: '', image: '/buyermatch-cover.png',  imageAlt: 'Buyer Match app',             comingSoon: true },
 ];
 ---
 
@@ -34,7 +34,7 @@ const projects = [
   <!-- Project grid -->
   <section class="section hairline">
     <div class="container">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {projects.map((p) => <CaseStudyCard {...p} />)}
       </div>
     </div>
