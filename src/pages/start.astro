@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const steps = [
+const processSteps = [
   {
     n: '1',
     title: 'Apply',
@@ -94,7 +94,7 @@ const faqs = [
     <div class="container flex flex-col gap-12">
       <h2 id="next-steps-heading" class="eyebrow">What happens next</h2>
       <ol class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {steps.map(({ n, title, body }) => (
+        {processSteps.map(({ n, title, body }) => (
           <li class="flex flex-col gap-4">
             <span class="font-display text-h3 text-violet-500">{n}</span>
             <h3 class="font-display text-h4 text-neutral-900">{title}</h3>
@@ -105,20 +105,192 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Form -->
+  <!-- Multi-step form -->
   <section class="section hairline" aria-labelledby="form-heading">
     <div class="container">
-      <div class="max-w-xl flex flex-col gap-8">
+      <div class="max-w-2xl mx-auto flex flex-col gap-8">
+
         <div class="flex flex-col gap-2">
           <h2 id="form-heading" class="font-display text-h2 text-neutral-900">Apply to work with Jams</h2>
           <p class="font-sans text-p-s text-neutral-500">No commitment on either side until after the discovery call. This takes about 5 minutes.</p>
         </div>
 
-        <!-- Embed your Tally or Typeform form here. Example Tally embed: -->
-        <!-- <script src="https://tally.so/widgets/embed.js"></script> -->
-        <!-- <div data-tally-src="https://tally.so/r/XXXXXX" data-tally-width="100%" data-tally-align-left="1"></div> -->
+        <!-- Form card -->
+        <div id="form-card" class="rounded-2xl overflow-hidden" style="border: 1px solid #E5E5E5; background: #fff; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.06), inset 0 2px 2px 0 #FEFEFE;">
 
-        <p class="font-sans text-p-s text-neutral-400 italic">Form embed goes here — connect your Tally / Typeform.</p>
+          <!-- Progress -->
+          <div class="px-8 md:px-10 pt-8 pb-0 flex flex-col gap-3">
+            <span id="step-label" class="font-sans uppercase tracking-widest" style="font-size: 11px; color: #A3A3A3;">Step 1 of 4</span>
+            <div class="h-px w-full rounded-full" style="background: #F3F3F5;">
+              <div id="progress-fill" style="height: 1px; width: 25%; border-radius: 999px; background: #7C3AED; transition: width 300ms ease;"></div>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <form id="apply-form" novalidate>
+
+            <!-- ── Step 1: Who you are + the problem ── -->
+            <div class="apply-step" data-step="1">
+              <div class="p-8 md:p-10 flex flex-col gap-7">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="flex flex-col gap-2">
+                    <label class="field-label" for="f-name">Your name</label>
+                    <input id="f-name" name="name" type="text" required class="form-input" placeholder="Juan Germano" autocomplete="name" />
+                  </div>
+                  <div class="flex flex-col gap-2">
+                    <label class="field-label" for="f-email">Email address</label>
+                    <input id="f-email" name="email" type="email" required class="form-input" placeholder="you@company.com" autocomplete="email" />
+                  </div>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                  <label class="field-label" for="f-problem">What problem are you trying to solve?</label>
+                  <p class="field-hint">Tell us what is broken, missing, or taking too long. Not the solution you have in mind — the problem itself.</p>
+                  <textarea id="f-problem" name="problem" required rows="5" class="form-textarea" placeholder="Describe the problem in plain terms..."></textarea>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ── Step 2: Users + existing work + success ── -->
+            <div class="apply-step" data-step="2" style="display:none;">
+              <div class="p-8 md:p-10 flex flex-col gap-7">
+
+                <div class="flex flex-col gap-2">
+                  <label class="field-label" for="f-users">Who uses this product?</label>
+                  <p class="field-hint">Describe the main person this is built for. Customer, employee, member — and if there are multiple user types, list them all.</p>
+                  <textarea id="f-users" name="users" required rows="4" class="form-textarea" placeholder="e.g. Ranch guests booking stays, and an admin managing reservations..."></textarea>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                  <span class="field-label">Have you built anything for this yet?</span>
+                  <div class="flex flex-col gap-2">
+                    <label class="radio-card"><input type="radio" name="existing" value="no" /><span>No, starting from scratch</span></label>
+                    <label class="radio-card"><input type="radio" name="existing" value="yes-app" /><span>Yes, we have an existing app or tool</span></label>
+                    <label class="radio-card"><input type="radio" name="existing" value="yes-mockups" /><span>Yes, we have mockups or a spec</span></label>
+                  </div>
+                </div>
+
+                <div id="existing-detail" class="flex flex-col gap-2" style="display:none;">
+                  <label class="field-hint block" for="f-existing-detail">Describe what exists and what is working or broken about it.</label>
+                  <textarea id="f-existing-detail" name="existing_detail" rows="3" class="form-textarea" placeholder="What exists, and what is working or broken..."></textarea>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                  <label class="field-label" for="f-success">What does success look like in 6 months?</label>
+                  <p class="field-hint">Be specific. A number, a behavior, an outcome. Not "a great product."</p>
+                  <textarea id="f-success" name="success" required rows="3" class="form-textarea" placeholder="In 6 months we will have..."></textarea>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ── Step 3: Timeline + revenue + team ── -->
+            <div class="apply-step" data-step="3" style="display:none;">
+              <div class="p-8 md:p-10 flex flex-col gap-7">
+
+                <div class="flex flex-col gap-3">
+                  <span class="field-label">What is your timeline?</span>
+                  <div class="flex flex-col gap-2">
+                    <label class="radio-card"><input type="radio" name="timeline" value="asap" /><span>As soon as possible</span></label>
+                    <label class="radio-card"><input type="radio" name="timeline" value="3months" /><span>Within 3 months</span></label>
+                    <label class="radio-card"><input type="radio" name="timeline" value="6months" /><span>Within 6 months</span></label>
+                    <label class="radio-card"><input type="radio" name="timeline" value="no-deadline" /><span>No hard deadline yet</span></label>
+                  </div>
+                </div>
+
+                <div id="deadline-detail" class="flex flex-col gap-2" style="display:none;">
+                  <label class="field-hint block" for="f-deadline">Is there a fixed event, launch date, or deadline driving this?</label>
+                  <input id="f-deadline" name="deadline" type="text" class="form-input" placeholder="e.g. Product launch on June 1st" />
+                </div>
+
+                <div class="flex flex-col gap-3">
+                  <span class="field-label">What is your company's annual revenue?</span>
+                  <p class="field-hint">This helps us understand scale and scope early.</p>
+                  <div class="grid grid-cols-2 gap-2">
+                    <label class="radio-card"><input type="radio" name="revenue" value="pre-revenue" /><span>Pre-revenue</span></label>
+                    <label class="radio-card"><input type="radio" name="revenue" value="under-500k" /><span>Under $500k</span></label>
+                    <label class="radio-card"><input type="radio" name="revenue" value="500k-2m" /><span>$500k – $2M</span></label>
+                    <label class="radio-card"><input type="radio" name="revenue" value="2m-10m" /><span>$2M – $10M</span></label>
+                    <label class="radio-card"><input type="radio" name="revenue" value="over-10m" /><span>Over $10M</span></label>
+                    <label class="radio-card"><input type="radio" name="revenue" value="prefer-not" /><span>Prefer not to say</span></label>
+                  </div>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                  <span class="field-label">How many people are on your team?</span>
+                  <div class="grid grid-cols-2 gap-2">
+                    <label class="radio-card"><input type="radio" name="team" value="solo" /><span>Just me</span></label>
+                    <label class="radio-card"><input type="radio" name="team" value="2-5" /><span>2 to 5</span></label>
+                    <label class="radio-card"><input type="radio" name="team" value="6-20" /><span>6 to 20</span></label>
+                    <label class="radio-card"><input type="radio" name="team" value="21-100" /><span>21 to 100</span></label>
+                    <label class="radio-card col-span-2"><input type="radio" name="team" value="over-100" /><span>Over 100</span></label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ── Step 4: Budget + source ── -->
+            <div class="apply-step" data-step="4" style="display:none;">
+              <div class="p-8 md:p-10 flex flex-col gap-7">
+
+                <div class="flex flex-col gap-3">
+                  <span class="field-label">What is your budget for the build?</span>
+                  <p class="field-hint">The Blueprint starts at $3,500. Development starts at $5,000 per month with a 3-month minimum. Where do you see yourself?</p>
+                  <div class="flex flex-col gap-2">
+                    <label class="radio-card"><input type="radio" name="budget" value="under-10k" /><span>Under $10k</span></label>
+                    <label class="radio-card"><input type="radio" name="budget" value="10k-20k" /><span>$10k to $20k</span></label>
+                    <label class="radio-card"><input type="radio" name="budget" value="20k-50k" /><span>$20k to $50k</span></label>
+                    <label class="radio-card"><input type="radio" name="budget" value="over-50k" /><span>Over $50k</span></label>
+                    <label class="radio-card"><input type="radio" name="budget" value="not-sure" /><span>Not sure yet</span></label>
+                  </div>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                  <span class="field-label">How did you find us?</span>
+                  <div class="grid grid-cols-2 gap-2">
+                    <label class="radio-card"><input type="radio" name="source" value="referral" /><span>Referral</span></label>
+                    <label class="radio-card"><input type="radio" name="source" value="linkedin" /><span>LinkedIn</span></label>
+                    <label class="radio-card"><input type="radio" name="source" value="search" /><span>Search</span></label>
+                    <label class="radio-card"><input type="radio" name="source" value="content" /><span>Content</span></label>
+                    <label class="radio-card col-span-2"><input type="radio" name="source" value="other" /><span>Other</span></label>
+                  </div>
+                </div>
+
+                <div id="referral-detail" class="flex flex-col gap-2" style="display:none;">
+                  <label class="field-hint block" for="f-referral">Who referred you?</label>
+                  <input id="f-referral" name="referral" type="text" class="form-input" placeholder="Name of the person who referred you" />
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex items-center px-8 md:px-10 py-6" style="border-top: 1px solid #F3F3F5;">
+              <button type="button" id="back-btn" class="font-sans text-p-s text-neutral-400 hover:text-neutral-700 transition-colors duration-fast" style="display:none;">← Back</button>
+              <div class="ml-auto">
+                <button type="button" id="next-btn" class="btn-primary rounded-pill py-3 px-6 font-sans text-p-s">Continue →</button>
+                <button type="submit" id="submit-btn" class="btn-primary rounded-pill py-3 px-6 font-sans text-p-s" style="display:none;">Submit application</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Success state -->
+        <div id="success-card" class="rounded-2xl p-10 md:p-14 flex-col items-center gap-6 text-center" style="display:none; border: 1px solid #E5E5E5; background: #fff; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.06);">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center shrink-0 mx-auto" style="background: rgba(124,58,237,0.07);">
+            <i class="ph ph-check-circle" style="font-size: 28px; color: #7C3AED;"></i>
+          </div>
+          <div class="flex flex-col gap-3 max-w-sm mx-auto">
+            <h3 class="font-display text-h2 text-neutral-900">We got it.</h3>
+            <p class="font-sans text-p text-neutral-600">Someone from Jams will review your submission and reach out within 24 hours. If you want to get ahead of it, you can book a call directly.</p>
+          </div>
+          <a href="https://cal.com/jjams/discovery" class="btn-primary rounded-pill py-3 px-7 font-sans text-p-s inline-block mt-2">Book a call now</a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -144,3 +316,188 @@ const faqs = [
   </section>
 
 </BaseLayout>
+
+<style>
+  .field-label {
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: #262626;
+    line-height: 1.4;
+  }
+  .field-hint {
+    font-family: inherit;
+    font-size: 13px;
+    color: #A3A3A3;
+    line-height: 1.6;
+    margin-top: -4px;
+  }
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    border: 1px solid #E5E5E5;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #171717;
+    background: #fff;
+    outline: none;
+    transition: border-color 150ms ease;
+  }
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: #A78BFA;
+  }
+  .form-input.error,
+  .form-textarea.error {
+    border-color: #F87171;
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  .radio-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #E5E5E5;
+    border-radius: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    color: #525252;
+    line-height: 1.4;
+    transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+    user-select: none;
+  }
+  .radio-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+  }
+  .radio-card:hover {
+    border-color: #C4B5FD;
+  }
+  .radio-card:has(input:checked) {
+    border-color: #7C3AED;
+    background-color: rgba(124, 58, 237, 0.04);
+    color: #171717;
+    font-weight: 500;
+  }
+  .apply-step {
+    animation: stepIn 200ms ease;
+  }
+  @keyframes stepIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  ::placeholder {
+    color: #A3A3A3;
+  }
+</style>
+
+<script>
+  const TOTAL = 4;
+  let current = 1;
+
+  const formCard = document.getElementById('form-card');
+  const successCard = document.getElementById('success-card');
+  const stepLabel = document.getElementById('step-label');
+  const progressFill = document.getElementById('progress-fill');
+  const backBtn = document.getElementById('back-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const submitBtn = document.getElementById('submit-btn');
+  const form = document.getElementById('apply-form');
+
+  function getStep(n) {
+    return document.querySelector('.apply-step[data-step="' + n + '"]');
+  }
+
+  function goto(n) {
+    document.querySelectorAll('.apply-step').forEach(el => el.style.display = 'none');
+    const step = getStep(n);
+    if (step) step.style.display = 'block';
+    current = n;
+
+    stepLabel.textContent = 'Step ' + n + ' of ' + TOTAL;
+    progressFill.style.width = ((n / TOTAL) * 100) + '%';
+
+    backBtn.style.display = n > 1 ? 'block' : 'none';
+    nextBtn.style.display = n === TOTAL ? 'none' : 'block';
+    submitBtn.style.display = n === TOTAL ? 'block' : 'none';
+
+    const top = formCard.getBoundingClientRect().top + window.scrollY - 120;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  function validate(n) {
+    const step = getStep(n);
+    if (!step) return true;
+    let ok = true;
+    step.querySelectorAll('[required]').forEach(el => {
+      if (!el.value.trim()) {
+        el.classList.add('error');
+        ok = false;
+      } else {
+        el.classList.remove('error');
+      }
+    });
+    return ok;
+  }
+
+  // Conditional fields
+  document.addEventListener('change', e => {
+    const t = e.target;
+    if (t.type !== 'radio') return;
+    if (t.name === 'existing') {
+      document.getElementById('existing-detail').style.display = t.value !== 'no' ? 'flex' : 'none';
+    }
+    if (t.name === 'timeline') {
+      document.getElementById('deadline-detail').style.display = t.value !== 'no-deadline' ? 'flex' : 'none';
+    }
+    if (t.name === 'source') {
+      document.getElementById('referral-detail').style.display = t.value === 'referral' ? 'flex' : 'none';
+    }
+  });
+
+  // Clear error on input
+  document.addEventListener('input', e => e.target.classList.remove('error'));
+
+  backBtn.addEventListener('click', () => goto(current - 1));
+  nextBtn.addEventListener('click', () => { if (validate(current)) goto(current + 1); });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!validate(current)) return;
+
+    submitBtn.textContent = 'Submitting...';
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('/api/apply', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      const json = await res.json();
+
+      if (json.ok) {
+        formCard.style.display = 'none';
+        successCard.style.display = 'flex';
+        successCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        submitBtn.textContent = 'Submit application';
+        submitBtn.disabled = false;
+      }
+    } catch {
+      submitBtn.textContent = 'Submit application';
+      submitBtn.disabled = false;
+    }
+  });
+
+  goto(1);
+</script>

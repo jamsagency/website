@@ -45,7 +45,7 @@ const faqs = [
           Everyone is telling you to use AI.<br />Nobody is telling you what to actually do.
         </h1>
         <div class="flex flex-col items-center gap-12">
-          <p class="font-sans text-p-l max-w-lg" style="color: var(--fg-muted);">
+          <p class="font-sans text-p-l max-w-2xl" style="color: var(--fg-muted);">
             We work with operators and founders who know AI should be changing how they run their business but cannot get a straight answer on where to start. We figure out exactly what to implement and build it.
           </p>
           <a href="/start" class="btn-primary rounded-pill py-4 px-9">Book your free shaping workshop</a>
@@ -106,13 +106,13 @@ const faqs = [
 
   <!-- ===== TESTIMONIALS ===== -->
   <section class="section hairline" style="background: radial-gradient(ellipse at 50% 50%, rgba(204,158,255,0.3) 0%, rgba(251,251,251,0.3) 60%, rgba(235,236,238,0.3) 100%);">
-    <div class="container flex flex-col gap-6">
-      <TestimonialCard
-        quote="They took the time to really understand our business. Jams didn't just make it look good — they translated our complex dual-strategy into a clear digital experience."
-        author="Spencer Richardson"
-        role="Founder and CEO at DropCar"
-      />
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <TestimonialCard
+          quote="They took the time to really understand our business. Jams didn't just make it look good — they translated our complex dual-strategy into a clear digital experience."
+          author="Spencer Richardson"
+          role="Founder and CEO at DropCar"
+        />
         <TestimonialCard
           quote="I was drowning in manual work. Jams transformed our unique methodology into a scalable product. Now the students love the app and we can generate hundreds of reports in the time it used to take to do one."
           author="Julieta Lombroni"
@@ -160,14 +160,50 @@ const faqs = [
   <!-- ===== FOUNDER'S MESSAGE ===== -->
   <section class="section hairline dark bg-neutral-950">
     <div class="container">
-      <div class="max-w-xl flex flex-col gap-6">
-        <p class="font-sans text-p-l text-neutral-300">I cannot walk past a bad restaurant without seeing the million ways I would fix it. Bad menu. Slow service. No hospitality. It drives me crazy. That is how I feel about bad software.</p>
-        <p class="font-sans text-p-l text-neutral-300">I started Jams because too many founders are drowning in the same questions: what should we build? How much will it cost? Will this actually work?</p>
-        <p class="font-sans text-p-l text-neutral-300">So they hire agencies that speak in jargon to hide the fact that they do not understand the business.</p>
-        <p class="font-sans text-p-l font-medium text-white">We are different. We speak Founder.</p>
-        <p class="font-sans text-p-l text-neutral-300">We do not care about the code as much as we care about your operation. We are obsessed with building products that fit the way your business actually runs — because we took the time to understand it first.</p>
-        <p class="font-sans text-p-l text-neutral-300">If you are tired of guessing what to build, let us figure it out together.</p>
-        <p class="font-sans text-p font-semibold text-white mt-2">Juan, Founder of Jams</p>
+      <div class="max-w-2xl mx-auto flex flex-col gap-10">
+
+        <!-- Section header -->
+        <div class="flex flex-col items-center text-center gap-4">
+          <span class="font-sans text-p-xs uppercase tracking-widest" style="color: var(--violet-400);">From the founder</span>
+          <h2 class="font-display text-h1 text-white">We speak Founder.</h2>
+        </div>
+
+        <!-- Stacked paper effect -->
+        <div class="relative pb-[24px]">
+
+          <!-- Paper 3 — furthest back, peeks lowest -->
+          <div class="absolute inset-x-[10px] top-[12px] bottom-0 rounded-2xl" style="z-index:1; background: #1c1c1c; border: 1px solid #2e2e2e; transform: rotate(-2deg); transform-origin: center top; margin-top: -20px;"></div>
+          <!-- Paper 2 — middle layer -->
+          <div class="absolute inset-x-[5px] top-[6px] bottom-[12px] rounded-2xl" style="z-index:2; background: #242424; border: 1px solid #383838; transform: rotate(1.2deg); transform-origin: center top; margin-top: -20px;"></div>
+
+          <!-- Main card — front -->
+          <div class="relative flex flex-col rounded-2xl overflow-hidden" style="z-index:3; background: #2e2e2e; border: 1px solid #444444;">
+
+            <!-- Letter body -->
+            <div class="flex flex-col gap-6 p-10">
+              <p class="font-sans text-p-l text-neutral-300">Hey,</p>
+              <p class="font-sans text-p-l text-neutral-300">I cannot walk past a bad restaurant without seeing the million ways I would fix it. Bad menu. Slow service. No hospitality. It drives me crazy. That is how I feel about bad software.</p>
+              <p class="font-sans text-p-l text-neutral-300">I started Jams because too many founders are drowning in the same questions: what should we build? How much will it cost? Will this actually work?</p>
+              <p class="font-sans text-p-l text-neutral-300">So they hire agencies that speak in jargon to hide the fact that they do not understand the business.</p>
+              <p class="font-sans text-p-l text-neutral-300">We do not care about the code as much as we care about your operation. We are obsessed with building products that fit the way your business actually runs — because we took the time to understand it first.</p>
+              <p class="font-sans text-p-l text-neutral-300">If you are tired of guessing what to build, let us figure it out together.</p>
+            </div>
+
+            <!-- Signature block -->
+            <div class="flex flex-col gap-5 px-10 py-8" style="border-top: 1px solid #3a3a3a; background: #272727;">
+              <img src="/signature.svg" alt="Juan Germano signature" width="342" height="200" class="h-24 w-auto self-start" style="transform: rotate(-6deg);" />
+              <div class="flex items-center gap-4">
+                <img src="/jmg-avatar.jpg" alt="Juan Germano" width="56" height="56" class="w-14 h-14 rounded-full object-cover shrink-0" />
+                <div class="flex flex-col gap-0">
+                  <p class="font-sans text-p-l font-medium text-white">Juan Germano</p>
+                  <p class="font-sans text-p-s" style="color: #737373;">Founder and CEO, Jams</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

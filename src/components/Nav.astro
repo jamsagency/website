@@ -7,14 +7,14 @@ const links = [
 ---
 
 <header class="fixed top-0 inset-x-0 z-50 pt-10 pointer-events-none">
-  <div class="container pointer-events-auto">
+  <div class="w-full max-w-[850px] mx-auto px-4 pointer-events-auto">
     <nav
       class="relative flex items-center px-4 py-2 rounded-pill"
       style="border: 0.5px solid var(--border-soft); background: rgba(243,243,245,0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow-card), var(--shadow-inset-top);"
     >
       <!-- Logo -->
       <a href="/" class="flex items-center shrink-0" aria-label="Jams home">
-        <img src="/jams-logo-black.svg" alt="Jams" width="121" height="44" class="h-11 w-auto" />
+        <img src="/jams-logo-black.svg" alt="Jams" width="150" height="54" class="h-14 w-auto" />
       </a>
 
       <!-- Nav links + CTA pushed to the right -->
@@ -27,7 +27,7 @@ const links = [
             {label}
           </a>
         ))}
-        <a href="/start" class="btn-primary py-2 px-4 text-p-s ml-2">
+        <a href="/start" class="btn-primary rounded-pill py-2 px-4 text-p-s ml-2">
           Book a workshop
         </a>
       </div>
