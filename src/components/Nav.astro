@@ -6,18 +6,17 @@ const links = [
 ];
 ---
 
-<header class="fixed top-0 inset-x-0 z-50 pt-10 pointer-events-none">
+<!-- Desktop: floating capsule nav -->
+<header class="fixed top-0 inset-x-0 z-50 hidden md:block pt-10 pointer-events-none">
   <div class="w-full max-w-[850px] mx-auto px-4 pointer-events-auto">
     <nav
       class="relative flex items-center px-4 py-2 rounded-pill"
       style="border: 0.5px solid var(--border-soft); background: rgba(243,243,245,0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow-card), var(--shadow-inset-top);"
     >
-      <!-- Logo -->
       <a href="/" class="flex items-center shrink-0" aria-label="Jams home">
         <img src="/jams-logo-black.svg" alt="Jams" width="150" height="54" class="h-14 w-auto" />
       </a>
 
-      <!-- Nav links + CTA pushed to the right -->
       <div class="ml-auto flex items-center gap-1">
         {links.map(({ label, href }) => (
           <a
@@ -35,3 +34,100 @@ const links = [
   </div>
 </header>
 
+<!-- Mobile: topbar -->
+<header
+  class="fixed top-0 inset-x-0 z-50 flex md:hidden items-center justify-between px-6 py-3"
+  style="background: rgba(243,243,245,0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 0.5px solid var(--border-soft);"
+>
+  <a href="/" aria-label="Jams home">
+    <img src="/jams-logo-black.svg" alt="Jams" width="120" height="44" class="h-10 w-auto" />
+  </a>
+  <button
+    id="mobile-menu-open"
+    aria-label="Open menu"
+    aria-expanded="false"
+    aria-controls="mobile-menu"
+    style="width:40px; height:40px; border-radius:999px; border:0.5px solid var(--border-soft); background:#F3F3F5; box-shadow: var(--shadow-card), var(--shadow-inset-top); display:flex; align-items:center; justify-content:center; color:#404040;"
+  >
+    <i class="ph ph-list" style="font-size:18px;"></i>
+  </button>
+</header>
+
+<!-- Mobile: full-screen overlay menu -->
+<div
+  id="mobile-menu"
+  aria-hidden="true"
+  class="fixed inset-0 z-[200] flex flex-col transition-all duration-200"
+  style="background:#0B0B0B; opacity:0; pointer-events:none; transform:translateY(8px);"
+>
+  <!-- Overlay header -->
+  <div class="flex items-center justify-between px-6 py-3" style="border-bottom: 0.5px solid rgba(255,255,255,0.08);">
+    <a href="/" aria-label="Jams home" class="mobile-menu-link">
+      <img src="/jams-logo-white.svg" alt="Jams" width="120" height="44" class="h-10 w-auto" />
+    </a>
+    <button
+      id="mobile-menu-close"
+      aria-label="Close menu"
+      style="width:40px; height:40px; border-radius:999px; border:0.5px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; color:#fff;"
+    >
+      <i class="ph ph-x" style="font-size:18px;"></i>
+    </button>
+  </div>
+
+  <!-- Nav links -->
+  <nav class="flex flex-col px-6 pt-10 gap-1 flex-1">
+    {links.map(({ label, href }) => (
+      <a
+        href={href}
+        class="mobile-menu-link font-display text-white py-4 flex items-center justify-between"
+        style="font-size:52px; line-height:1; letter-spacing:-0.01em; border-bottom: 0.5px solid rgba(255,255,255,0.08);"
+      >
+        {label}
+        <i class="ph ph-arrow-right" style="font-size:24px; color:rgba(255,255,255,0.3);"></i>
+      </a>
+    ))}
+  </nav>
+
+  <!-- CTA -->
+  <div class="px-6 pb-12 pt-8">
+    <a
+      href="/start"
+      class="mobile-menu-link btn-primary flex items-center justify-center gap-2 py-4 px-6 text-base font-semibold"
+      style="border-radius:12px; width:100%;"
+    >
+      Book a workshop
+      <i class="ph ph-arrow-right" style="font-size:16px;"></i>
+    </a>
+  </div>
+</div>
+
+<script>
+  const openBtn = document.getElementById('mobile-menu-open');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const menu = document.getElementById('mobile-menu') as HTMLElement;
+
+  function openMenu() {
+    menu.style.opacity = '1';
+    menu.style.pointerEvents = 'auto';
+    menu.style.transform = 'translateY(0)';
+    menu.setAttribute('aria-hidden', 'false');
+    openBtn?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    menu.style.opacity = '0';
+    menu.style.pointerEvents = 'none';
+    menu.style.transform = 'translateY(8px)';
+    menu.setAttribute('aria-hidden', 'true');
+    openBtn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  openBtn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+
+  document.querySelectorAll('.mobile-menu-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
