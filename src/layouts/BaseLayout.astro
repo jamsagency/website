@@ -30,6 +30,15 @@ const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY;
       noindex={noindex}
     />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2C8B7RQML" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Z2C8B7RQML');
+    </script>
+
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" is:inline></script>
 
     {posthogKey && (
