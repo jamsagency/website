@@ -13,7 +13,7 @@ const projects = [
 const faqs = [
   { q: 'What do you actually build?', a: 'Custom web and mobile applications. Not websites or templates — products built around the specific workflow your business depends on. Booking platforms, internal ops tools, marketplaces, AI agents, membership platforms. If no existing software does exactly what you need, that is what we build.' },
   { q: 'How does the process start?', a: 'With a free 60-minute shaping workshop. We map your business problem together and translate it into a clear product direction. You leave with real clarity on what to build and why. After that, if there is a fit, we move into the Blueprint — a paid two-week process that defines exactly what to build and produces a fixed price for the build.' },
-  { q: 'What does it cost?', a: 'The shaping workshop is free. The Blueprint — the two-week discovery and planning process — starts at $3,500. Development runs as a monthly engagement starting at $5,000 per month after that. The Blueprint fee applies toward the build if you continue.' },
+  { q: 'What does it cost?', a: 'The shaping workshop is free. The Blueprint — the two-week discovery and planning process — starts at $3,500. Development runs as a monthly engagement starting at $5,000 per month after that. .' },
   { q: 'How fast do you ship?', a: 'The Blueprint takes two weeks. Most first-version products ship in 8 to 12 weeks depending on complexity. You get a timeline estimate at the end of the Blueprint before committing to the build.' },
   { q: 'What is Bubble, and does it matter?', a: 'Bubble is the most powerful no-code development platform available. We build on it because it lets us ship five times faster than traditional development without sacrificing capability. The products we deliver handle millions in transactions, sensitive data, and complex logic. Your users cannot tell the difference.' },
   { q: 'Do I own everything at the end?', a: 'Yes. The Bubble application, Figma files, all assets, and all documentation transfer to you at the end of the engagement. If you want to work with a different team after us, you can. We have never held a client\'s product hostage.' },
@@ -32,14 +32,14 @@ const faqs = [
     <div class="rounded-[24px] pt-[160px] pb-[80px] dark" style="background: var(--neutral-950);">
       <div class="container flex flex-col items-center text-center">
         <div class="flex flex-wrap justify-center gap-3 mb-6">
-          <div class="flex flex-col items-center gap-2 rounded-lg" style="border: 1px solid rgba(255,255,255,0.1); padding: 10px 20px;">
+          <a href="https://bubble.io/expert/jamsagency" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 rounded-lg border border-white/10 hover:border-white/30 transition-colors duration-150" style="padding: 10px 20px;">
             <img src="/bubble-logo.svg" alt=".bubble" width="80" height="18" />
             <span class="font-sans" style="color: #737373; font-size: 11px;">Silver Agency Partner</span>
-          </div>
-          <div class="flex flex-col items-center gap-2 rounded-lg" style="border: 1px solid rgba(255,255,255,0.1); padding: 10px 20px;">
+          </a>
+          <a href="https://clutch.co/profile/jams-agency" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 rounded-lg border border-white/10 hover:border-white/30 transition-colors duration-150" style="padding: 10px 20px;">
             <img src="/clutch-logo.svg" alt="Clutch" width="64" height="18" />
             <span class="flex items-center gap-1 font-sans" style="color: #737373; font-size: 11px;">5.0 <i class="ph-fill ph-star" style="font-size: 11px; color: #A3A3A3;"></i></span>
-          </div>
+          </a>
         </div>
         <h1 class="font-display text-h1 max-w-5xl mb-6" style="color: var(--fg); font-size: 72px;">
           Everyone is telling you to use AI.<br />Nobody is telling you what to actually do.
@@ -95,7 +95,7 @@ const faqs = [
           <p class="font-sans text-p-l" style="color: #D4D4D4;">The Arena shipped in 8 weeks. The team went from duplicating Notion pages by hand to a platform serving hundreds of students across multiple cohorts.</p>
         </div>
         <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
-          <p class="font-sans text-p-l" style="color: #D4D4D4;">Red Horse Mountain Ranch went from zero online bookings to 1,600 users on a custom platform in four weeks. Direct bookings became the default channel.</p>
+          <p class="font-sans text-p-l" style="color: #D4D4D4;">Red Horse Mountain Ranch went from zero online bookings to 1,600 users on a custom platform in eight weeks. Direct bookings became the default channel.</p>
         </div>
         <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
           <p class="font-sans text-p-l" style="color: #D4D4D4;">The Fold went from 25% to 67% member engagement after Alfred replaced WhatsApp and started curating personalized deal feeds for every member.</p>
@@ -236,7 +236,7 @@ const faqs = [
     aria-labelledby="faq-heading"
   >
     <div class="container">
-      <div class="max-w-2xl flex flex-col gap-10">
+      <div class="max-w-2xl mx-auto flex flex-col gap-10">
         <h2 id="faq-heading" class="font-display text-h2 text-neutral-900">Things you are probably wondering</h2>
         <dl class="flex flex-col divide-y divide-neutral-150">
           {faqs.map(({ q, a }) => (

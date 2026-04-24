@@ -5,7 +5,7 @@ import CTASection from '../components/CTASection.astro';
 const faqs = [
   { q: 'What do you actually build?', a: 'Custom web and mobile applications. Not websites or templates — products built around the specific workflow your business depends on. Booking platforms, internal ops tools, marketplaces, AI agents, membership platforms. If no existing software does exactly what you need, that is what we build.' },
   { q: 'How does the process start?', a: 'With a free 60-minute shaping workshop. We map your business problem together and translate it into a clear product direction. You leave with real clarity on what to build and why. No pitch, no jargon — just honest strategy. After that, if there is a fit, we move into the Blueprint: a paid two-week process that defines exactly what to build, produces a prototype, and locks a fixed price for the build. You know what you are buying before committing to it.' },
-  { q: 'What does it cost?', a: 'The shaping workshop is free. The Blueprint — the two-week discovery and planning process — starts at $3,500. Development runs as a monthly engagement starting at $5,000 per month after that. The Blueprint fee applies toward the build if you continue with us. We do not quote projects we have not shaped first, because any number before discovery is a guess, and guesses turn into surprises mid-build.' },
+  { q: 'What does it cost?', a: 'The shaping workshop is free. The Blueprint — the two-week discovery and planning process — starts at $3,500. Development runs as a monthly engagement starting at $5,000 per month after that. We do not quote projects we have not shaped first, because any number before discovery is a guess, and guesses turn into surprises mid-build.' },
   { q: 'How fast do you ship?', a: 'The Blueprint takes two weeks. Most first-version products ship in 8 to 12 weeks depending on complexity — booking flows and internal tools on the shorter end, marketplaces and AI-integrated platforms on the longer end. You get a timeline estimate at the end of the Blueprint before committing to anything.' },
   { q: 'What is Bubble, and does it matter?', a: 'Bubble is the most powerful no-code development platform available. We build on it because it lets us ship five times faster than traditional development without sacrificing capability. The products we deliver handle millions in transactions, sensitive private data, and complex business logic. Your users cannot tell the difference. Most of our clients cannot either. If you want to know whether Bubble is the right tool for what you need, that is part of what the Blueprint answers.' },
   { q: 'Do I own everything at the end?', a: 'Yes. The Bubble application, Figma files, all design assets, and all documentation transfer to you at the end of the engagement. If you want to take the product to a different team after us, you can. We document everything to make that transition clean. We have never held a client\'s product hostage.' },
@@ -20,9 +20,9 @@ const faqs = [
 >
   <!-- Hero -->
   <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
-    <div class="rounded-[24px] pt-[120px] pb-[64px]" style="background: var(--neutral-100);">
+    <div class="rounded-[24px] pt-[160px] pb-[80px]" style="background: var(--neutral-100);">
       <div class="container">
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col items-center text-center gap-4">
           <span class="eyebrow">FAQs</span>
           <h1 class="font-display text-h1 text-neutral-900">Things you are probably wondering</h1>
         </div>
@@ -32,7 +32,7 @@ const faqs = [
 
   <section class="section">
     <div class="container">
-      <div class="max-w-2xl">
+      <div class="max-w-2xl mx-auto">
         <dl class="flex flex-col divide-y divide-neutral-150">
           {faqs.map(({ q, a }) => (
             <details class="group py-6">
