@@ -12,11 +12,22 @@ const faqs = [
   { q: 'Do you work with AI?', a: 'Yes, from the start — not bolted on at the end. Every product we build today has AI considered in the design phase. Whether that is an agent that automates a workflow, a recommendation layer, a document reader, or an intelligent matching system, we figure out where AI actually moves the needle and build it in. AI is not a feature we add. It is part of how we think about the product from day one.' },
   { q: 'What if I already have a product that needs a team?', a: 'We work with that too. Several of our longest-running clients came to us with an existing Bubble product that had outgrown their previous team — bugs piling up, no roadmap, no one looking at the data. We take over, stabilize it, and become the embedded product team. That means roadmap ownership, regular shipping, and data-driven decisions about what to build next. Not a vendor you call when something breaks.' },
 ];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 ---
 
 <BaseLayout
   title="Frequently Asked Questions — Working with Jams | Jams"
   description="Everything you want to know about working with Jams: process, pricing, timeline, ownership, Bubble, and AI."
+  schema={faqSchema}
 >
   <!-- Hero -->
   <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">

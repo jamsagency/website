@@ -20,11 +20,22 @@ const faqs = [
   { q: 'Do you work with AI?', a: 'Yes, from the start — not bolted on at the end. Every product we build today has AI considered in the design phase. Whether that is an agent that automates a workflow, a recommendation layer, a document reader, or a matching system, we figure out where AI actually moves the needle and build it in.' },
   { q: 'What if I already have a product that needs a team?', a: 'We work with that too. Several of our longest-running clients came to us with an existing product that had outgrown their previous team. We take over, stabilize it, and become the embedded product team — roadmap ownership, regular shipping, and data-driven decisions about what to build next.' },
 ];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 ---
 
 <BaseLayout
   title="Jams — Custom Software and AI for Operators and Founders"
-  description="We work with operators and founders who know AI should be changing how they run their business. We figure out exactly what to build and build it."
+  description="We work with operators and founders who know AI should be changing how they run their business. We figure out exactly what to build, then build it."
+  schema={faqSchema}
 >
 
   <!-- ===== HERO ===== -->

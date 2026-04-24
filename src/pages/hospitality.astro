@@ -9,12 +9,33 @@ const faqs = [
   { q: 'How long does a typical project take?', a: 'The Blueprint takes two weeks. After that, most first-version products ship in 8 to 12 weeks depending on complexity.' },
   { q: 'Who owns the code and design at the end?', a: 'You do. The Figma files, the Bubble application, all design assets, all documentation transfer to you at the end of the engagement. We have never held a client\'s product hostage.' },
 ];
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: 'Custom Booking Software for Hospitality Operators',
+      provider: { '@type': 'Organization', name: 'Jams', url: 'https://jams.agency' },
+      areaServed: 'Worldwide',
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
 ---
 
 <LandingPageLayout
   title="Custom Booking Software for Hospitality Operators | Jams"
   description="Custom booking platforms for boutique ranches, retreats, and experiential properties — integrated with Checkfront, built around your brand."
   vertical="Custom Booking Software for Hospitality Operators"
+  schema={pageSchema}
 >
 
   <!-- Hero -->

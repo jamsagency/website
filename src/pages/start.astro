@@ -58,15 +58,26 @@ const faqs = [
   },
   {
     q: 'Can we see something you have built that is similar to what we need?',
-    a: 'Probably yes. The portfolio is at jams.agency/work. If you want to see something specific to your use case before booking a call, email juan@jams.agency with a one-line description of what you are building.',
+    a: 'Probably yes. The portfolio is at jams.agency/work. If you want to see something specific to your use case before booking a call, email j@jams.agency with a one-line description of what you are building.',
   },
 ];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 ---
 
 <BaseLayout
   title="Book Your Free Shaping Workshop | Jams"
   description="A free 60-minute session to map your business problem and figure out exactly what to build. No pitch, no jargon."
   noindex={true}
+  schema={faqSchema}
 >
 
   <!-- Hero -->
@@ -238,7 +249,7 @@ const faqs = [
 
                 <div class="flex flex-col gap-3">
                   <span class="field-label">What is your budget for the build?</span>
-                  <p class="field-hint">The Blueprint starts at $3,500. Development starts at $5,000 per month with a 3-month minimum. Where do you see yourself?</p>
+                  <p class="field-hint">The Blueprint starts at $3,500. Development starts at $5,000 per month. Where do you see yourself?</p>
                   <div class="flex flex-col gap-2">
                     <label class="radio-card"><input type="radio" name="budget" value="under-10k" /><span>Under $10k</span></label>
                     <label class="radio-card"><input type="radio" name="budget" value="10k-20k" /><span>$10k to $20k</span></label>
