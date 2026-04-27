@@ -1,0 +1,109 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+---
+
+<BlogLayout
+  title="When to Migrate from Bubble: What Actually Triggers a Rebuild"
+  description="Not every Bubble app needs to migrate. Most shouldn't. Here are the signals that actually mean migration is the right call, and the ones that don't."
+  publishDate="2026-03-01"
+  slug="when-to-migrate-from-bubble"
+>
+
+  <div style="border: 1px solid rgba(134,74,204,0.2); background: rgba(134,74,204,0.04); border-radius: 12px; padding: 20px 24px;">
+    <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #864ACC; margin: 0 0 8px 0;">Quick answer</p>
+    <p style="margin: 0;">Migrate from Bubble when the platform is creating a constraint that costs more to work around than a rebuild would cost to fix. Specific triggers: workload unit costs growing faster than revenue and not reducible through better architecture; mobile performance requirements that Bubble's native wrapper cannot meet; compliance mandates requiring database-level tenant isolation; or a product where multiple constraints are appearing simultaneously. Most "Bubble is too slow" complaints resolve with better Bubble architecture, not migration.</p>
+  </div>
+
+  <h2>Why most Bubble apps should not migrate</h2>
+
+  <p>
+    The "Bubble doesn't scale" narrative is mostly wrong, or at least imprecise.
+  </p>
+  <p>
+    What people usually mean is one of three things: their Bubble app is poorly built, their workload unit consumption is high because of inefficient queries, or they're comparing Bubble's ceiling to a product that doesn't need to exist at massive scale.
+  </p>
+  <p>
+    Most business software doesn't need to handle millions of concurrent users with sub-millisecond latency. A booking system for a hospitality operator, a member portal for a private community, an internal operations tool: these products run well in Bubble at their natural scale. Red Horse Mountain Ranch runs on Bubble and doesn't need to be anything else. The Arena runs on Bubble and doesn't need to be anything else.
+  </p>
+  <p>
+    Migration is real and sometimes necessary. But the threshold is higher than most people assume when they first hit a frustration with their Bubble app.
+  </p>
+
+  <h2>The signals that actually mean migration</h2>
+
+  <p><strong>WU costs growing faster than the business can justify</strong></p>
+  <p>
+    Bubble charges for workload units — a measure of server-side compute: database searches, backend workflows, API calls. On the Growth plan ($209/month, annual billing), you get 250,000 WUs per month. WU add-on tiers range from $29/month for an additional 200K WUs to $1,499/month for 20M additional WUs.
+  </p>
+  <p>
+    At moderate scale and with well-built queries, most production apps stay comfortable on Growth or Team. When WU costs start requiring multiple add-on tiers that grow faster than revenue, and you've already ruled out architectural fixes, that's a real signal.
+  </p>
+  <p>
+    Before attributing this to Bubble's limits, rule out the architecture explanation first. Most WU over-consumption comes from unoptimized database searches without constraints, recursive workflows, and page loads fetching too much data at once. Fix the architecture. If WU costs are still unacceptable after that work, the conversation about migration changes.
+  </p>
+
+  <p><strong>Mobile performance requirements the native wrapper can't meet</strong></p>
+  <p>
+    Bubble's native app feature wraps your web app in a WebView. For most applications, this performs fine. For products where native mobile performance is core to the product experience — smooth animations at 60fps, background tasks, complex gestures, deep OS integration — the wrapper creates a real ceiling.
+  </p>
+  <p>
+    The Fold is a web and mobile product with a built-in AI agent. The web portal works well in Bubble. As the mobile experience requirements grow more demanding, the native wrapper's ceiling becomes a meaningful constraint.
+  </p>
+
+  <p><strong>Compliance requirements ruling out the shared data model</strong></p>
+  <p>
+    Bubble's database is shared infrastructure. You can simulate logical tenant separation through user roles and conditional visibility, and this works for most products. If compliance requirements demand database-level tenant isolation — some healthcare, financial, and enterprise contexts require this — Bubble structurally doesn't meet that requirement.
+  </p>
+
+  <p><strong>The product has outgrown multiple dimensions simultaneously</strong></p>
+  <p>
+    Migration makes most sense when constraints are appearing across multiple dimensions at once, not just one. WU costs high and mobile performance poor and the team is large enough that Bubble's collaboration model is creating bottlenecks. A single constraint is usually solvable. Multiple simultaneous constraints pointing at the same root cause is a clearer signal.
+  </p>
+  <p>
+    Some of the client products we've built in the hybrid configuration are strong future migration candidates: once daily transactions reach a meaningful volume and the infrastructure economics of a custom code stack start to make sense, the signals will be clear. The business case for migration doesn't exist at early or middle scale. When it does, you know, because multiple constraints appear at once.
+  </p>
+
+  <h2>Before you decide to migrate</h2>
+
+  <p>
+    <strong>Run the architecture diagnosis first.</strong> Most Bubble performance issues are architecture problems, not platform problems. Before committing to a migration, identify the specific constraints and rule out architectural fixes.
+  </p>
+  <p>
+    <strong>Evaluate a hybrid stack.</strong> Adding Cloudflare Workers for AI agent logic or edge processing can extend Bubble's runway significantly without a full rebuild. We've done this for The Fold and on other client products rather than rebuilding the entire product.
+  </p>
+  <p>
+    <strong>Start with a Blueprint.</strong> If migration is the right call after that analysis, it requires a Blueprint: a paid discovery engagement to map the existing product, redesign the data model, and scope the rebuild before any development starts. Migration without a Blueprint produces a new platform with the same underlying problems.
+  </p>
+
+  <h2>The migration stack we use</h2>
+
+  <p>When migration is the right answer, our default stack is:</p>
+  <ul>
+    <li><strong>Frontend:</strong> Next.js deployed on Vercel</li>
+    <li><strong>Database:</strong> Supabase (PostgreSQL, $25/month Pro)</li>
+    <li><strong>Backend:</strong> Convex for real-time and complex server logic; Cloudflare Workers for AI agent logic and edge compute; or Next.js API routes for simpler architectures</li>
+  </ul>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>How long does a Bubble migration take?</h3>
+  <p>
+    A moderate-complexity app (20 to 30 data types, 10 to 15 key user flows, 3 to 5 integrations) takes 10 to 16 weeks to rebuild. Simpler apps migrate faster. Large products with many integrations take longer.
+  </p>
+
+  <h3>Should I migrate before or after product-market fit?</h3>
+  <p>
+    After. Migration is expensive and time-consuming. If product-market fit isn't confirmed, the risk that you rebuild the wrong version is high. Bubble's speed advantage matters most when you're still discovering what the product needs to be. Migrate once the product is proven and specific constraints are appearing.
+  </p>
+
+  <h3>Can I keep some features in Bubble and migrate others?</h3>
+  <p>
+    Yes. Selective migration — moving the highest-constraint parts to custom code while keeping stable features in Bubble — reduces risk and keeps the team shipping. It creates a two-system architecture with added complexity, but it's often the right trade-off.
+  </p>
+
+  <h3>Do you do migrations at Jams?</h3>
+  <p>
+    Yes. We start with a Blueprint to evaluate what's worth migrating, what hybrid approach might resolve the constraint without a full rebuild, and what the migration would cost. Contact us at jams.agency/start.
+  </p>
+
+</BlogLayout>

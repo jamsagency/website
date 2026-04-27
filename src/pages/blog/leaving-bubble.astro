@@ -1,0 +1,117 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+---
+
+<BlogLayout
+  title="Bubble or Custom Code? How to Know Which Stack Fits Your Product"
+  description="The choice between Bubble and custom code isn't about which platform is better. It's about which one fits your product at its current stage."
+  publishDate="2026-03-17"
+  slug="leaving-bubble"
+>
+
+  <div style="border: 1px solid rgba(134,74,204,0.2); background: rgba(134,74,204,0.04); border-radius: 12px; padding: 20px 24px;">
+    <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #864ACC; margin: 0 0 8px 0;">Quick answer</p>
+    <p style="margin: 0;">Choose Bubble when you need to build fast, the product is still evolving, and your scale doesn't require custom infrastructure. Add Cloudflare Workers as a hybrid layer when a specific capability gap appears (AI agents, edge compute) but the rest of the product runs well in Bubble. Migrate to custom code when Bubble is a constraint across enough dimensions that the platform is slowing the business down faster than staying saves money. Most products should stay in Bubble longer than they think. The exceptions are identifiable and specific.</p>
+  </div>
+
+  <h2>The question behind the question</h2>
+
+  <p>
+    When founders and operators ask whether they should build in Bubble or custom code, the real question is usually one of three things: Am I building in the wrong environment? Is my current frustration with the platform or with the architecture? Is it time to make a larger infrastructure investment?
+  </p>
+  <p>
+    These have different answers. Getting to the right one requires looking at the actual constraint, not the general debate about which platform is better.
+  </p>
+
+  <h2>When Bubble is the right answer</h2>
+
+  <p>
+    Bubble is the right environment when speed to market matters, when the team is small and needs one environment that handles everything, and when the product doesn't have requirements that hit Bubble's structural limits.
+  </p>
+  <p>
+    Red Horse Mountain Ranch's booking system is a good example. It sits on top of Checkfront for availability and Stripe for payments. It delivers a custom branded booking experience at a fraction of what it would cost to build in code. There's no reason to move it. The product does exactly what it needs to do, it's well-built in Bubble, and the ongoing maintenance cost is low.
+  </p>
+  <p>
+    The Arena is the same. A gamification platform for an EdTech operator, built entirely in Bubble and shipped in 8 weeks. The product works. The infrastructure cost is predictable. There's no constraint pushing it toward migration.
+  </p>
+  <p>
+    For both products, migration would cost more, take longer, and produce the same outcome.
+  </p>
+
+  <h2>When a hybrid stack is the right answer</h2>
+
+  <p>
+    Bubble + Cloudflare is the right answer when one specific capability falls outside Bubble's strengths, but the rest of the product runs well in the platform.
+  </p>
+  <p>
+    The most common trigger today is AI agents. Running complex AI agent logic, multi-step LLM calls, and high-frequency processing from Bubble's server-side workflows is possible but creates workload unit pressure and slower performance. Offloading the AI layer to Cloudflare Workers solves that gap cleanly while keeping the application layer in Bubble.
+  </p>
+  <p>
+    The Fold is the example. The member portal, profiles, messaging, and events run in Bubble. Alfred, the AI concierge, runs in Cloudflare Workers. Two systems, cleanly separated by responsibility. The product shipped faster than a full custom stack would have allowed and performs at the level the product needs.
+  </p>
+  <p>
+    We've used the same pattern on client products: Bubble for the application layer, with Cloudflare handling the specific operations the platform isn't suited for.
+  </p>
+
+  <h2>When migration becomes the right answer</h2>
+
+  <p>
+    Migration makes sense when Bubble is a constraint across multiple dimensions simultaneously, and the business is generating enough revenue to support the investment.
+  </p>
+  <p>
+    Some products in the hybrid configuration will eventually reach a point where migration makes sense: when daily transactions are high and consistent, when multiple parties are actively transacting, and when the infrastructure economics of a custom code stack start to outperform the Bubble + Cloudflare setup. That moment doesn't exist at early or middle scale. When it does, the signals are clear, and the migration starts with a Blueprint to scope it properly.
+  </p>
+  <p>
+    The signals worth taking seriously: WU costs that can't be reduced through better architecture and are growing faster than revenue; mobile performance requirements the native wrapper can't meet; compliance demands requiring database-level isolation; or a large engineering team that needs a collaborative code environment.
+  </p>
+  <p>
+    None of these signals means migration is urgent. They mean it's worth evaluating carefully.
+  </p>
+
+  <h2>The decision isn't permanent, but it's expensive to reverse</h2>
+
+  <p>
+    Products start in Bubble and migrate to custom code. That transition is real and sometimes necessary.
+  </p>
+  <p>
+    What it is not: cheap or fast. A migration is a rebuild. It takes time, costs money, and pulls the team away from building new features. The best time to migrate is when the product is proven, the constraints are clear, and the business can absorb the investment without disrupting growth.
+  </p>
+  <p>
+    The worst time to migrate is when the product isn't performing in the market, when the team is frustrated with slow pages they haven't diagnosed yet, or when the decision is driven by technical preference rather than business constraint.
+  </p>
+
+  <h2>The right question to start with</h2>
+
+  <p>
+    Before deciding anything, identify the specific constraint: what is the actual thing Bubble can't do that the product needs? Not "Bubble is slow," but which operations are slow, how are they built, and is this an architecture problem or a platform problem?
+  </p>
+  <p>
+    Most of the time, it's an architecture problem. Fix the architecture. If the constraint remains, then the conversation about hybrid or migration becomes relevant.
+  </p>
+  <p>
+    We work through this with founders and operators in a shaping workshop. The answer is almost always more specific than the initial question.
+  </p>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>Is it too early to think about migrating if my product is still an MVP?</h3>
+  <p>
+    Yes. Build in Bubble, find product-market fit, get to revenue. Migration is an investment that makes sense once the product is proven. Making infrastructure decisions before you know if the product works adds cost and risk with no corresponding benefit.
+  </p>
+
+  <h3>I've heard Bubble is getting deprecated or acquired. Should that affect my decision?</h3>
+  <p>
+    Bubble is an established platform with significant investment and a large customer base. Platform risk is a real consideration for long-horizon product decisions, but it's not a reason to avoid Bubble for products that need to ship in the next one to three years.
+  </p>
+
+  <h3>Can Jams help us figure out which path is right?</h3>
+  <p>
+    Yes. We run a shaping workshop as the first step for any engagement: Bubble build, hybrid architecture, or migration scoping. The workshop produces a clear recommendation and a defined scope. Contact us at jams.agency/start.
+  </p>
+
+  <h3>What if we're already in Bubble and having problems?</h3>
+  <p>
+    Book a workshop. Most Bubble performance and scaling problems we see are architecture problems with known solutions. We evaluate the app, identify the constraints, and recommend the right path: architectural fixes, hybrid extension, or migration with a Blueprint.
+  </p>
+
+</BlogLayout>

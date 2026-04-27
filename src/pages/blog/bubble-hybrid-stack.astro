@@ -1,0 +1,123 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+---
+
+<BlogLayout
+  title="The Bubble Hybrid Stack: When to Extend Bubble with Cloudflare"
+  description="When Bubble handles 90% of your product but AI agents or edge compute need more, a Bubble + Cloudflare hybrid solves the gap without a full platform migration."
+  publishDate="2026-02-25"
+  slug="bubble-hybrid-stack"
+>
+
+  <div style="border: 1px solid rgba(134,74,204,0.2); background: rgba(134,74,204,0.04); border-radius: 12px; padding: 20px 24px;">
+    <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #864ACC; margin: 0 0 8px 0;">Quick answer</p>
+    <p style="margin: 0;">A Bubble hybrid stack combines Bubble's visual development environment with Cloudflare's infrastructure layer. Bubble handles the application layer: user interfaces, data management, and business logic. Cloudflare Workers replaces Bubble backend workflows for complex or high-frequency server logic. Workers AI adds LLM capabilities without a separate AI API. Vectorize provides a vector database for RAG-based AI assistants. KV gives low-latency key-value caching. Analytics Engine handles event tracking at volumes that strain Bubble's database. The result is a product that ships at Bubble speed and scales at infrastructure speed, without requiring a full migration to a custom code stack.</p>
+  </div>
+
+  <h2>What a hybrid stack is and why it exists</h2>
+
+  <p>
+    Bubble handles most of what a business application needs: user authentication, database operations, conditional logic, payment processing, and a visual UI. For most products, Bubble is the entire stack, and that's the right answer.
+  </p>
+  <p>
+    But some products have specific requirements that fall outside what Bubble does well: complex server logic that runs too slowly in Bubble's backend workflows, AI agents that need proper LLM infrastructure, high-volume event tracking that strains Bubble's database, or large file imports that Bubble handles poorly. A hybrid stack addresses these gaps without replacing Bubble. It extends it.
+  </p>
+  <p>
+    Cloudflare's ecosystem gives you a set of purpose-built tools that each solve a different constraint. Used together with Bubble, they form a complete architecture for products that have outgrown what the platform alone can do.
+  </p>
+
+  <h2>The Cloudflare layer</h2>
+
+  <h3>Workers: replacing Bubble backend workflows</h3>
+  <p>
+    Cloudflare Workers run JavaScript or TypeScript at the edge, globally distributed, with minimal cold start times. For a Bubble hybrid, Workers primarily serve as a backend runtime for logic that would be slow, expensive, or unreliable inside Bubble's server-side workflow system.
+  </p>
+  <ul>
+    <li><strong>Complex business logic.</strong> Multi-step operations with branching conditions, external API orchestration, and calculations that involve many database reads benefit from running in a proper server runtime. Bubble backend workflows handle simple sequences well; Workers handles the complex ones.</li>
+    <li><strong>Stripe webhook security.</strong> Receiving Stripe webhooks directly in Bubble requires opening a public Bubble endpoint, which creates a security surface. A Cloudflare Worker receives, validates, and processes the webhook before touching Bubble, with full signature verification and error handling.</li>
+    <li><strong>File uploads and CSV imports.</strong> Bubble has real limitations with file processing and large data imports. Workers handles these operations cleanly and writes the results back to Bubble's database via the Data API.</li>
+    <li><strong>Third-party API orchestration.</strong> When your product integrates a shipping API, a loyalty system, or any service that requires multi-step request sequences, Workers manages that coordination outside of Bubble's workflow queue.</li>
+  </ul>
+
+  <h3>Workers AI: LLMs without a separate provider</h3>
+  <p>
+    Workers AI is a binding on Cloudflare Workers that runs AI models natively on Cloudflare's infrastructure. It's not a separate service you integrate; it extends the Worker with LLM capabilities.
+  </p>
+  <p>
+    This covers: generating text content (product descriptions, summaries, recommendations), building AI assistants that respond to natural language queries, and running the inference layer for any feature that needs a language model. For products that want AI features without the complexity of managing a separate OpenAI or Anthropic integration, Workers AI keeps the AI logic inside the same infrastructure layer.
+  </p>
+
+  <h3>Vectorize: RAG for AI assistants</h3>
+  <p>
+    Vectorize is Cloudflare's vector database. It stores embeddings — the numerical representations of text used to power semantic search and retrieval-augmented generation (RAG).
+  </p>
+  <p>
+    A practical use: your product has a knowledge base (FAQs, product catalog, documentation). You embed that content and store it in Vectorize. When a user asks a question, Vectorize finds the most relevant content, Workers passes it to Workers AI as context, and the AI assistant answers with accurate, product-specific information instead of hallucinating.
+  </p>
+  <p>
+    Workers, Workers AI, and Vectorize together form a complete RAG architecture that runs entirely on Cloudflare's infrastructure, without managing separate services for each layer.
+  </p>
+
+  <h3>KV: low-latency caching</h3>
+  <p>
+    KV is Cloudflare's key-value data store. It's globally distributed and designed for very fast reads. For a Bubble hybrid, it solves a specific problem: when your app makes frequent requests to the same external data source (a third-party product catalog, a pricing API, session state), KV caches that data at the edge and returns it in milliseconds without hitting the external API each time.
+  </p>
+  <p>
+    This reduces external API costs, eliminates latency on repeated reads, and takes load off Bubble's database for data that doesn't need to be stored there permanently.
+  </p>
+
+  <h3>Analytics Engine: event tracking at scale</h3>
+  <p>
+    Bubble's database is a strong operational store. It's not designed for high-volume event tracking or analytical queries. When you need to track every user action at scale — product views, cart additions, checkout attempts, purchases — and visualize that data in dashboards, querying Bubble's database for the aggregate data is slow and expensive in workload units.
+  </p>
+  <p>
+    Cloudflare's Analytics Engine stores events at high volume and makes them queryable for charts. The Bubble frontend fires events to a Worker; the Worker writes to Analytics Engine; the dashboard queries it directly. The operational Bubble database stays clean and fast.
+  </p>
+
+  <h2>This in practice: The Fold and client work</h2>
+
+  <p>
+    Alfred, the AI concierge we built for The Fold, uses Workers for the agent logic and Workers AI for the LLM layer. The Bubble portal handles everything members see and do. The Cloudflare layer handles everything that requires AI inference or complex processing. Two systems, cleanly separated by responsibility.
+  </p>
+  <p>
+    We've used the same architecture pattern across client products: Workers replacing Bubble backend workflows for complex logic, Vectorize enabling RAG-based AI assistants, KV caching external API data, and Analytics Engine handling event tracking that Bubble's database isn't suited for.
+  </p>
+  <p>
+    The pattern is the same regardless of product type. The specific Cloudflare services you use depend on which gaps your Bubble app has.
+  </p>
+
+  <h2>When a hybrid stack is worth it</h2>
+
+  <p>
+    Hybrid architecture adds complexity. You're running two systems, two deployments, and two sets of logs. That's a real cost.
+  </p>
+  <p>
+    It's worth it when the capability gap is specific and well-defined: logic that's too slow in Bubble workflows, AI features that need proper LLM infrastructure, events at a volume that would strain Bubble's database. Each of those is a clean case for adding one Cloudflare layer without rebuilding the whole product.
+  </p>
+  <p>
+    It's not worth it when the problem is an architecture issue within Bubble — unoptimized queries, inefficient workflows — that could be fixed without adding infrastructure. Fix the Bubble architecture first. If the constraint remains, then the hybrid approach becomes the right conversation.
+  </p>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>Can Bubble communicate with Cloudflare Workers?</h3>
+  <p>
+    Yes. Cloudflare Workers expose HTTP endpoints. Bubble calls them via the API Connector plugin, the same way it calls any external API. Workers can also call Bubble's Data API to read from and write to the Bubble database. The integration is straightforward once both sides have their endpoints configured.
+  </p>
+
+  <h3>Does a Cloudflare Worker make my Bubble app faster for users?</h3>
+  <p>
+    Not across the board. Bubble's frontend still loads from Bubble's servers. What it does is make specific operations faster: complex server logic, AI calls, and webhook processing run outside Bubble's server queue. For those specific operations, the improvement is real and measurable.
+  </p>
+
+  <h3>Do I need all five Cloudflare services, or can I use just one?</h3>
+  <p>
+    You use what your product needs. Most products start with Workers alone, replacing a few specific Bubble backend workflows that are too slow or WU-intensive. Workers AI, Vectorize, KV, and Analytics Engine get added when a specific need appears. You don't adopt the full stack upfront.
+  </p>
+
+  <h3>Is Bubble + Cloudflare the same as Bubble + Convex?</h3>
+  <p>
+    Different tools for different gaps. Cloudflare is best for edge compute, AI infrastructure, caching, and event analytics. Convex is a reactive backend designed for real-time data sync across multiple simultaneous clients. Which one fits depends on what your product specifically needs. Some products use neither; some use both.
+  </p>
+
+</BlogLayout>

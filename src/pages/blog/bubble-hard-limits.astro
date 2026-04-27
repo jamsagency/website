@@ -1,0 +1,105 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+---
+
+<BlogLayout
+  title="What Bubble Actually Can't Do: A Practical Hard Limits Guide"
+  description="Bubble can build almost anything a business software product needs. Almost. Here are the actual structural limits, not the architecture problems people confuse for them."
+  publishDate="2026-03-09"
+  slug="bubble-hard-limits"
+>
+
+  <div style="border: 1px solid rgba(134,74,204,0.2); background: rgba(134,74,204,0.04); border-radius: 12px; padding: 20px 24px;">
+    <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #864ACC; margin: 0 0 8px 0;">Quick answer</p>
+    <p style="margin: 0;">Bubble's structural limits are: no code export (the product lives on Bubble's platform permanently unless rebuilt elsewhere), native mobile performance at the level of a pure Swift or Kotlin app, database-level multi-tenancy for enterprise compliance requirements, server-side rendering for SEO-heavy content, and real-time at very high concurrent volume. Most "Bubble can't do X" claims are architecture problems, not platform limits. Unoptimized queries, inefficient workflows, and pages loading too much data account for the majority of performance complaints.</p>
+  </div>
+
+  <h2>Separating real limits from architecture problems</h2>
+
+  <p>
+    Most Bubble performance complaints on developer forums are about slow apps, high workload unit consumption, and database limitations. Most of these are architecture problems, not platform limits.
+  </p>
+  <p>
+    If a Bubble app is slow, the likely cause is: unoptimized database searches without constraints, front-end pages loading too much data at once, or workflows that could be restructured to consume fewer server operations. These are fixable within Bubble.
+  </p>
+  <p>
+    Real hard limits are different. They're structural constraints the platform has by design, not problems you can optimize around.
+  </p>
+
+  <h2>The actual hard limits</h2>
+
+  <p><strong>No code export</strong></p>
+  <p>
+    Bubble is a proprietary platform. You cannot export your application as code. The product lives in Bubble's environment. If you migrate to a custom code stack, you take your data and your product knowledge. You rebuild the application from scratch in the new environment.
+  </p>
+  <p>
+    This is the most fundamental constraint and the one that matters most for long-term planning. It's a platform dependency, not a technical performance limit. For many products, it's acceptable. For products where owning the codebase is a hard requirement, it's a dealbreaker.
+  </p>
+
+  <p><strong>Native mobile performance at full fidelity</strong></p>
+  <p>
+    Bubble's native app feature wraps your web app in a WebView. For most applications, this performs fine and ships much faster than building a native app from scratch.
+  </p>
+  <p>
+    For products where native mobile performance is core to the experience — smooth 60fps animations, background processing, complex gesture recognition, or deep OS integrations — the WebView wrapper creates a ceiling that a pure native app built in Swift or Kotlin doesn't have.
+  </p>
+
+  <p><strong>Database-level multi-tenancy</strong></p>
+  <p>
+    Bubble uses shared infrastructure. You can create logical tenant separation through user roles and conditional visibility, and this works for most SaaS and multi-tenant products.
+  </p>
+  <p>
+    If compliance requirements demand physical database-level isolation per tenant — certain healthcare, financial services, and enterprise contexts require this — Bubble's shared data model structurally doesn't meet the requirement. This is a real constraint for a specific slice of products.
+  </p>
+
+  <p><strong>Server-side rendering</strong></p>
+  <p>
+    Bubble renders client-side. Pages load the shell first, then data populates. Bubble supports setting page metadata (title, description, Open Graph), which covers most application SEO needs. But for products where content needs to be pre-rendered for SEO — a content-heavy blog, a product catalog with thousands of indexed pages — Bubble's rendering model is a real limitation versus Next.js or Astro.
+  </p>
+
+  <p><strong>Real-time at very high concurrent volume</strong></p>
+  <p>
+    Bubble supports real-time data via its live updates feature, and for most products this is sufficient. For products where hundreds or thousands of simultaneous users are reading and writing to the same data in real-time — live auctions or high-frequency collaborative interfaces — Bubble's real-time implementation can become a bottleneck. This is not a common requirement for standard business software, but it's a real limit for specific product types.
+  </p>
+
+  <h2>What Bubble does better than people give it credit for</h2>
+
+  <p>
+    <strong>Full-stack in one environment.</strong> A single developer in Bubble can build the complete product: frontend, backend logic, database, and integrations. In a coded stack, this requires a full-stack developer or multiple specialists. For small teams, this changes the economics significantly.
+  </p>
+  <p>
+    <strong>Visual data modeling.</strong> Building and iterating on data structures in Bubble's visual interface is fast. For products still discovering their data model, this is a real speed advantage over running database migrations.
+  </p>
+  <p>
+    <strong>Iteration speed on live products.</strong> Once a Bubble product is in production, changes are fast. No deployments, no build pipelines. Product teams can ship improvements at a pace that's hard to match with traditional development.
+  </p>
+
+  <h2>The honest assessment</h2>
+
+  <p>
+    The products that should be in Bubble are the majority of business software: booking systems, member portals, internal tools, marketplace prototypes, operational dashboards. Red Horse's booking system and The Arena's gamification platform run well in Bubble and would cost more to maintain as custom code. The Fold's AI concierge needed Cloudflare Workers for the agent layer. These are distinct cases with different right answers.
+  </p>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>Can Bubble build a SaaS product?</h3>
+  <p>
+    Yes. Many production SaaS products run entirely on Bubble. The main constraints at scale are WU consumption and the multi-tenancy limitation for enterprise compliance contexts. For most SaaS products in their first several years, Bubble is an excellent build environment.
+  </p>
+
+  <h3>Does Bubble support server-side rendering?</h3>
+  <p>
+    No. Bubble renders client-side. This affects initial page load performance and SEO for content-heavy pages. Bubble supports page metadata, which is sufficient for most application SEO needs, but not for content sites that need pre-rendered HTML.
+  </p>
+
+  <h3>Can Bubble connect to external databases?</h3>
+  <p>
+    Bubble can connect to external data via APIs. It doesn't natively connect to an external relational database the way a coded application does. In a hybrid architecture, a Cloudflare Worker or Convex function handles the database layer and exposes data to Bubble via API.
+  </p>
+
+  <h3>Is Bubble good for e-commerce?</h3>
+  <p>
+    Bubble supports custom commerce experiences with workflows that platforms like Shopify don't handle. For standard e-commerce (catalog, cart, checkout, fulfillment), Shopify is typically better because it's purpose-built with a large ecosystem. Bubble makes sense when the commerce requirement is highly specific.
+  </p>
+
+</BlogLayout>

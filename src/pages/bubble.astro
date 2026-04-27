@@ -1,23 +1,206 @@
 ---
 import LandingPageLayout from '../layouts/LandingPageLayout.astro';
 import CTASection from '../components/CTASection.astro';
+
+const faqs = [
+  { q: 'What is a Bubble Silver Agency?', a: "Bubble's agency partner program ranks agencies based on projects delivered and client outcomes. Silver is a meaningful tier earned through real production work, not just certification. Partner agencies get access to Bubble's technical team, early feature access, and a verified listing in Bubble's agency directory." },
+  { q: 'How long does it take to build in Bubble?', a: 'A well-scoped product with 10 to 20 core features takes 8 to 12 weeks from design to launch. The most important variable is how much discovery and shaping work happens before development starts. Products that skip this step take longer, not shorter, because rework is expensive.' },
+  { q: 'What does a Bubble build cost?', a: 'A focused first version with authentication, data management, integrations, and a polished UI typically starts between $20,000 and $50,000. Simpler internal tools run lower. Complex multi-sided platforms or AI-integrated products run higher.' },
+  { q: 'When should I choose Bubble over custom code?', a: "Bubble is the right choice when speed to market matters, when you're still discovering the product's final form, and when your scale doesn't require custom infrastructure. Build in Bubble first. Migrate when specific constraints appear." },
+  { q: 'Can you migrate an existing Bubble app?', a: "Yes. We start with a Blueprint: a paid discovery engagement to evaluate what's worth migrating, what's worth keeping in Bubble, and whether a hybrid approach resolves the constraint without a full rebuild. Migration is often less necessary than it initially appears." },
+];
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: 'Bubble Development Agency',
+      provider: { '@type': 'Organization', name: 'Jams', url: 'https://jams.agency' },
+      areaServed: 'Worldwide',
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
 ---
+
 <LandingPageLayout
   title="Bubble Development Agency | Jams"
-  description="Jams is a Bubble development agency that builds custom web and mobile applications — faster and at lower cost than traditional development."
+  description="Jams is a Bubble Silver Agency. We build booking systems, member portals, AI concierges, and platforms in Bubble — and we know exactly when Bubble is the right answer and when it isn't."
   vertical="Bubble Development Agency"
+  schema={pageSchema}
 >
-  <!-- COPY NEEDED — see CLAUDE.md notes -->
+
+  <!-- Hero -->
   <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
-    <div class="rounded-[24px] pt-[120px] pb-[64px]" style="background: var(--neutral-100);">
+    <div class="rounded-[24px] pt-[160px] pb-[80px]" style="background: var(--neutral-100);">
       <div class="container">
-        <div class="max-w-2xl flex flex-col gap-4">
+        <div class="max-w-2xl mx-auto flex flex-col items-center text-center gap-6">
           <span class="eyebrow">Bubble</span>
-          <h1 class="font-display text-h1 text-neutral-900">Bubble development agency</h1>
-          <p class="font-sans text-p-l text-neutral-500 mt-2">Copy coming soon.</p>
+          <h1 class="font-display text-h1 text-neutral-900">
+            Build it in Bubble. Extend it when you need to. Migrate when it makes sense.
+          </h1>
+          <p class="font-sans text-p-l text-neutral-700">
+            Jams is a Bubble Silver Agency. We have shipped booking systems, member portals, and AI concierges in Bubble — and we know exactly when the platform is the right tool and when it isn't.
+          </p>
+          <a href="/start" class="btn-primary rounded-pill py-4 px-9">Apply to work with Jams</a>
         </div>
       </div>
     </div>
   </section>
-  <CTASection />
+
+  <!-- Who this is for -->
+  <section class="section hairline">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-6">
+        <h2 class="eyebrow">This is for you if</h2>
+        <ul class="flex flex-col gap-3">
+          {[
+            'You want a custom product built fast, without a full engineering team',
+            'You have a validated concept and need a real version shipped in weeks, not months',
+            'You are already running on Bubble and need more: better performance, AI agents, or real-time features',
+            'You have hit a wall with your Bubble app and need a clear path forward',
+          ].map((item) => (
+            <li class="flex items-start gap-3 font-sans text-p text-neutral-700">
+              <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" aria-hidden="true"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we build -->
+  <section class="section hairline">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-6">
+        <h2 class="eyebrow">What we build in Bubble</h2>
+        <ul class="flex flex-col gap-3">
+          {[
+            'Booking systems and reservation flows',
+            'Member portals and community platforms',
+            'AI-powered concierges and intelligent agents',
+            'Internal operations tools and dashboards',
+            'Marketplace and multi-sided platform prototypes',
+          ].map((item) => (
+            <li class="flex items-start gap-3 font-sans text-p text-neutral-700">
+              <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" aria-hidden="true"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three ways -->
+  <section class="section hairline">
+    <div class="container flex flex-col gap-12">
+      <h2 class="eyebrow">Three ways we work with Bubble</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          {
+            title: 'Pure Bubble',
+            body: "For most business software, Bubble is the entire stack. Fast to build, economical to run, easy to iterate. Red Horse Mountain Ranch's booking system, The Arena's gamification platform, and the majority of tools we have shipped run entirely in Bubble. This is the right answer more often than the developer community will admit. A well-built Bubble app on the Growth plan ($209/month) handles thousands of users and complex data operations without issue.",
+          },
+          {
+            title: 'Bubble + Cloudflare',
+            body: 'When a product needs AI agent logic at the edge, or heavy webhook processing that would create workload unit pressure on Bubble\'s servers, we extend Bubble rather than replace it. Bubble handles the application layer: user interfaces, data management, and business logic. Cloudflare Workers handles the AI orchestration, edge compute, and high-volume processing. This is the architecture behind Alfred, the AI concierge we built for The Fold.',
+          },
+          {
+            title: 'Migration to custom code',
+            body: "When Bubble is the constraint across enough of the product that the platform is slowing the business down, we migrate. Our default migration stack is Next.js on Vercel, Supabase for the database, and Convex or Cloudflare for backend and real-time logic. Migration isn't the right answer for most products. But when it is, it requires a Blueprint first — a paid discovery engagement to map the existing product and scope the rebuild before a line of code is written.",
+          },
+        ].map(({ title, body }) => (
+          <div class="flex flex-col gap-4 p-8 rounded-[24px] bg-neutral-50 border border-neutral-150">
+            <h3 class="font-display text-h4 text-neutral-900">{title}</h3>
+            <p class="font-sans text-p text-neutral-700">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- On "Bubble doesn't scale" -->
+  <section class="section hairline">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-6">
+        <h2 class="font-display text-h2 text-neutral-900">On "Bubble doesn't scale"</h2>
+        <p class="font-sans text-p-l text-neutral-700">It depends on what you mean by scale.</p>
+        <p class="font-sans text-p-l text-neutral-700">
+          Bubble handles thousands of users and complex data operations correctly when the app is built correctly. Workload unit costs grow with server-side compute volume, and at very high traffic or real-time requirements, a purpose-built backend performs better. Most businesses will never hit that ceiling.
+        </p>
+        <p class="font-sans text-p-l text-neutral-700">
+          What doesn't scale is a poorly architected Bubble app. Unoptimized database searches, front-end pages loading too much data at once, missing constraints: these are architecture problems, not platform problems. We build Bubble apps that don't create them.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof -->
+  <section class="section hairline dark bg-neutral-950">
+    <div class="container flex flex-col gap-12">
+      <h2 class="eyebrow text-neutral-400">Proof</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {[
+          {
+            client: 'Red Horse Mountain Ranch',
+            body: "A custom Bubble booking frontend connected to Checkfront's API for live availability and Stripe for deposit collection. Zero online bookings before launch. 76 qualified leads in month one.",
+          },
+          {
+            client: 'The Fold',
+            body: 'A Bubble member portal with Alfred, an AI concierge running on Cloudflare Workers. The portal handles member profiles, messaging, and events. Alfred analyzes deal flows, matches members by investment thesis, and surfaces connection opportunities. Engagement went from 25% to 67%.',
+          },
+          {
+            client: 'The Arena',
+            body: 'A gamification platform built entirely in Bubble. EdTech client went from generating student reports manually in Notion to an automated platform processing hundreds of students simultaneously. Shipped in 8 weeks.',
+          },
+          {
+            client: 'Qmius',
+            body: 'A Bubble product using the full Cloudflare hybrid stack: Workers for complex business logic and Stripe webhook security, Workers AI for content generation, Vectorize for a RAG-based AI assistant, KV for third-party data caching, and Analytics Engine for high-volume event tracking.',
+          },
+        ].map(({ client, body }) => (
+          <div class="flex flex-col gap-3 p-8 rounded-[24px] border border-neutral-800">
+            <h3 class="font-display text-h4 text-white">{client}</h3>
+            <p class="font-sans text-p text-neutral-400">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section hairline">
+    <div class="container">
+      <div class="max-w-2xl mx-auto flex flex-col gap-10">
+        <h2 class="font-display text-h2 text-neutral-900">Common questions</h2>
+        <dl class="flex flex-col divide-y divide-neutral-150">
+          {faqs.map(({ q, a }) => (
+            <details class="group py-6">
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-h4 text-neutral-900">
+                {q}
+                <span class="shrink-0 text-violet-500 transition-transform duration-fast group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="font-sans text-p text-neutral-700 mt-4 leading-relaxed">{a}</p>
+            </details>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTASection
+    headline="Build it in Bubble. Extend it when you need to. Migrate when it makes sense."
+    body="Apply below. We review every submission and reach out within 24 hours."
+  />
+
 </LandingPageLayout>

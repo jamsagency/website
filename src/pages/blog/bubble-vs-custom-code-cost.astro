@@ -1,0 +1,143 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+---
+
+<BlogLayout
+  title="Bubble vs Custom Code: What the Real Costs Look Like"
+  description="No-code isn't always cheaper than custom development. The real cost depends on scale, team size, and how much the product changes. Here's the honest picture."
+  publishDate="2026-03-05"
+  slug="bubble-vs-custom-code-cost"
+>
+
+  <div style="border: 1px solid rgba(134,74,204,0.2); background: rgba(134,74,204,0.04); border-radius: 12px; padding: 20px 24px;">
+    <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #864ACC; margin: 0 0 8px 0;">Quick answer</p>
+    <p style="margin: 0;">Bubble is faster and cheaper to build in; a custom code stack is cheaper to run at scale. Most production Bubble apps run on the Growth plan ($209/month) or Team plan ($549/month) plus workload unit add-ons. A comparable custom stack (Next.js on Vercel, Supabase Pro at $25/month, Convex at $25/month) costs less in infrastructure but more in development time and ongoing engineer maintenance. For most business software at early and middle scale, Bubble has a lower total cost of ownership. The math reverses at high traffic, heavy compute, or when the engineering team grows large enough that the visual builder becomes a bottleneck.</p>
+  </div>
+
+  <h2>The comparison most people get wrong</h2>
+
+  <p>
+    Most "Bubble vs custom code" comparisons online compare a well-built Bubble app against a poorly estimated custom development project, or a custom code stack with a full engineering team against a solo developer building in Bubble.
+  </p>
+  <p>
+    Neither is useful. The right comparison accounts for the actual product scope, the team building it, and the scale the product realistically needs to reach.
+  </p>
+
+  <h2>The build cost</h2>
+
+  <p><strong>Building in Bubble</strong></p>
+  <p>
+    A Bubble app of moderate complexity — user authentication, 8 to 12 data types, 3 to 5 integrations, 15 to 20 page types — takes 8 to 12 weeks and costs $20,000 to $50,000 with a competent Bubble agency. Simpler internal tools cost less. Complex AI-integrated products or multi-sided platforms cost more.
+  </p>
+  <p>
+    What makes this cheaper than custom code: no separate frontend and backend codebases to maintain, no DevOps configuration, no deployment pipeline to build from scratch. One environment handles the whole product.
+  </p>
+
+  <p><strong>Building with custom code</strong></p>
+  <p>
+    A Next.js + Supabase + Convex stack for the same product scope costs $40,000 to $100,000 and takes 12 to 20 weeks. You're paying for frontend development in React, backend logic in TypeScript, database design and migrations, deployment configuration, and the time to wire it all together.
+  </p>
+  <p>
+    The build cost gap is real. Bubble's speed advantage at the build stage is significant.
+  </p>
+
+  <h2>The running cost</h2>
+
+  <p><strong>What Bubble actually costs in production</strong></p>
+  <p>
+    The free plan is for development only. Real production apps run at minimum on Starter ($59/month, Web + Mobile, annual billing), but most apps with real users and active workflows are on Growth ($209/month) or Team ($549/month).
+  </p>
+  <p>
+    On top of the base plan, WU-heavy apps add consumption tiers: $29/month for an additional 200K WUs, $99/month for 750K, $299/month for 2.5M, and higher from there. A SaaS product with active users and regular automated workflows commonly spends $300 to $800/month total between the plan and add-ons.
+  </p>
+
+  <p><strong>What a custom code stack costs in production</strong></p>
+  <p>
+    Next.js on Vercel: free tier handles early-stage traffic, $20/month Pro for production. Supabase Pro: $25/month per project, handles most production databases up to moderate scale. Convex Professional: $25/month per developer.
+  </p>
+  <p>
+    Total infrastructure for a standard custom stack at early to middle scale: $70 to $100/month. At higher scale Vercel compute costs increase, but the ceiling before costs become significant is much higher than Bubble's workload unit model.
+  </p>
+  <p>
+    The infrastructure cost gap inverts as scale and compute volume grow.
+  </p>
+
+  <h2>The maintenance cost</h2>
+
+  <p>
+    Changes in Bubble are visual and fast. A developer can modify a booking flow, add a data type, or adjust conditional logic in hours. No deployment pipelines, no code reviews for visual changes. Products that change frequently benefit significantly from Bubble's iteration speed.
+  </p>
+  <p>
+    Every change in a custom code stack requires a developer who knows the codebase, a deployment, and ongoing dependency maintenance. For products that change a lot in their early years, this ongoing cost compounds.
+  </p>
+  <p>
+    The maintenance gap closes as the custom codebase matures and the team becomes familiar with it, but it's real in the first two to three years.
+  </p>
+
+  <h2>What the numbers mean in practice</h2>
+
+  <p>For a standard business application at typical operator scale (under 5,000 active users, standard CRUD operations, two to three integrations, and active iteration):</p>
+
+  <table style="width: 100%; border-collapse: collapse; font-size: 0.9em; margin: 1.5rem 0;">
+    <thead>
+      <tr>
+        <th style="text-align: left; padding: 10px 12px; border-bottom: 2px solid #e5e7eb;"></th>
+        <th style="text-align: left; padding: 10px 12px; border-bottom: 2px solid #e5e7eb;">Bubble</th>
+        <th style="text-align: left; padding: 10px 12px; border-bottom: 2px solid #e5e7eb;">Custom code</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px 12px; border-bottom: 1px solid #f3f4f6;"><strong>Build</strong></td>
+        <td style="padding: 10px 12px; border-bottom: 1px solid #f3f4f6;">$25,000 to $50,000</td>
+        <td style="padding: 10px 12px; border-bottom: 1px solid #f3f4f6;">$60,000 to $120,000</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px 12px; border-bottom: 1px solid #f3f4f6;"><strong>Infrastructure (2 years)</strong></td>
+        <td style="padding: 10px 12px; border-bottom: 1px solid #f3f4f6;">$5,000 to $20,000</td>
+        <td style="padding: 10px 12px; border-bottom: 1px solid #f3f4f6;">$2,000 to $3,000</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px 12px;"><strong>Ongoing iteration (2 years)</strong></td>
+        <td style="padding: 10px 12px;">Lower (fast visual changes)</td>
+        <td style="padding: 10px 12px;">Higher (developer time per change)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    Bubble has a lower total cost of ownership for most business applications at early and middle scale. The math reverses for products with very high compute volume, large engineering teams, or infrastructure requirements that Bubble's platform model doesn't support.
+  </p>
+
+  <h2>The part that matters most</h2>
+
+  <p>
+    The biggest cost variable in either path isn't the platform. It's the quality of the architecture decisions in the first six months.
+  </p>
+  <p>
+    A Bubble app with an unoptimized data model generates high WU consumption and slow page loads. A custom code app with poorly designed APIs and no test coverage is expensive to maintain. The platform is a smaller factor than the team building on it.
+  </p>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>Is Bubble free?</h3>
+  <p>
+    Bubble has a free plan for development and testing, but a production app requires a paid plan. The minimum for a real production app is Starter at $59/month (Web + Mobile, annual billing). Most apps with real users and active workflows run on Growth at $209/month minimum.
+  </p>
+
+  <h3>What is a workload unit in Bubble?</h3>
+  <p>
+    A workload unit (WU) is the measure of compute Bubble charges for server-side operations: database searches, backend workflows, API calls, and similar processing. Each plan includes a monthly WU allocation. When the app exceeds that allocation, you can purchase add-on tiers starting at $29/month for an additional 200K WUs.
+  </p>
+
+  <h3>At what scale does Bubble become more expensive than custom code?</h3>
+  <p>
+    There's no universal answer. It depends on WU consumption per user, which varies based on what the product does and how it's built. The clearest signal is when WU add-on costs are growing faster than revenue and can't be reduced through better architecture.
+  </p>
+
+  <h3>Can I start with Bubble and move to custom code later?</h3>
+  <p>
+    Yes, and this is often the right strategy. Build in Bubble to find product-market fit. When specific constraints appear and the business can support the investment, migrate with a proper Blueprint to scope and plan the rebuild.
+  </p>
+
+</BlogLayout>

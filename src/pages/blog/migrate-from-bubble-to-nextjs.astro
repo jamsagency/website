@@ -1,0 +1,130 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+---
+
+<BlogLayout
+  title="How to Migrate from Bubble to Next.js: What the Process Actually Looks Like"
+  description="Migrating from Bubble to Next.js means rebuilding the product, not porting it. Here's what the process looks like, what transfers, and what doesn't."
+  publishDate="2026-03-13"
+  slug="migrate-from-bubble-to-nextjs"
+>
+
+  <div style="border: 1px solid rgba(134,74,204,0.2); background: rgba(134,74,204,0.04); border-radius: 12px; padding: 20px 24px;">
+    <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #864ACC; margin: 0 0 8px 0;">Quick answer</p>
+    <p style="margin: 0;">Migrating from Bubble to Next.js requires rebuilding the product in a new stack, not converting Bubble to code. Bubble doesn't export code. What transfers: product knowledge, user flows, business logic, and user data (via CSV export, migrated into Supabase or another database). What doesn't transfer: any visual or workflow work product from Bubble. The standard migration stack is Next.js on Vercel, Supabase for the database ($25/month Pro), and Convex or Cloudflare Workers for backend logic. The process starts with a Blueprint to redesign the data model and scope the rebuild before development begins.</p>
+  </div>
+
+  <h2>What you're actually doing when you migrate</h2>
+
+  <p>
+    The most important thing to understand before starting: you are not converting Bubble to code. Bubble doesn't export code. The work product from your Bubble app doesn't transfer to the new stack.
+  </p>
+  <p>What transfers:</p>
+  <ul>
+    <li>The product knowledge earned from building and iterating in Bubble</li>
+    <li>The user flows and UX decisions</li>
+    <li>The business logic, documented and understood</li>
+    <li>User data, exported from Bubble and migrated to the new database</li>
+  </ul>
+  <p>What doesn't transfer:</p>
+  <ul>
+    <li>Any visual or workflow work built in Bubble's editor</li>
+    <li>Bubble-specific integrations (these rebuild against the same third-party APIs)</li>
+  </ul>
+  <p>
+    This sounds like a big loss. In practice, the rebuild goes faster than the original build because the product is already well-understood. You're not discovering what to build. You're building what you already know works.
+  </p>
+
+  <h2>Start with a Blueprint</h2>
+
+  <p>
+    A Bubble migration without a Blueprint is expensive and usually produces a worse result than staying in Bubble.
+  </p>
+  <p>
+    A Blueprint is a paid discovery engagement: mapping the existing product, redesigning the data model for a relational database, scoping the rebuild, identifying what to migrate first, and deciding whether a full migration or selective migration makes more sense.
+  </p>
+  <p>
+    Bubble's data structure doesn't map directly to SQL. The migration isn't an export and import. It requires intentional redesign. Cutting this step short is the most common cause of migrations that take twice as long and cost twice as much as expected.
+  </p>
+
+  <h2>The migration stack</h2>
+
+  <p>Our default migration stack:</p>
+  <ul>
+    <li><strong>Frontend:</strong> Next.js deployed on Vercel. React-based, fast builds, straightforward deployment pipeline.</li>
+    <li><strong>Database:</strong> Supabase (PostgreSQL). Starts at $25/month on Pro. Dedicated Postgres, authentication, storage, and realtime built in.</li>
+    <li><strong>Backend:</strong> Depends on the product — Next.js API routes for simpler server logic; Convex for products that need real-time reactive data or complex server-side logic ($25/month Professional); Cloudflare Workers for AI agent orchestration and edge compute.</li>
+  </ul>
+
+  <h2>The four workstreams</h2>
+
+  <p><strong>1. Data model redesign</strong></p>
+  <p>
+    Bubble stores data in a document-like structure with linked things. Supabase uses relational tables with foreign keys, indexes, and constraints. They're different paradigms.
+  </p>
+  <p>
+    Don't map Bubble data types directly to SQL tables. Use the migration as the opportunity to redesign the data model correctly for a relational database. Common patterns that need rethinking: Bubble's "list of things" fields often become junction tables, nested data structures need normalization, and implicit relationships need explicit foreign keys.
+  </p>
+  <p>
+    A good data model design takes a week of careful work. Cutting this short creates the same performance problems in the new stack that may have contributed to the migration.
+  </p>
+
+  <p><strong>2. Frontend rebuild in React</strong></p>
+  <p>
+    The Next.js frontend is built in React. Key decisions:
+  </p>
+  <ul>
+    <li>Styling: Tailwind CSS for most teams</li>
+    <li>State management: React Query or SWR for data fetching</li>
+    <li>Authentication: Supabase Auth or NextAuth</li>
+    <li>UI components: ShadCN/UI or Radix for accessible, customizable components</li>
+  </ul>
+  <p>
+    The frontend rebuild is the most visible part of the migration and often where teams underestimate complexity. Bubble's visual builder handles a lot of responsive behavior and state management implicitly. In React, this needs to be coded explicitly.
+  </p>
+
+  <p><strong>3. Backend logic rewrite</strong></p>
+  <p>
+    Bubble's backend workflows and API Connector integrations need equivalents in the new stack. Simple business logic moves to Next.js API routes. Complex server logic or real-time features move to Convex. AI agent logic and edge compute move to Cloudflare Workers.
+  </p>
+
+  <p><strong>4. Data migration and cutover</strong></p>
+  <p>
+    Bubble provides data export in CSV format. The migration from Bubble's data structure to the new relational schema requires a migration script. Plan for data cleaning (test data, legacy fields), schema transformation, validation of record counts and data integrity after migration, and a rollback plan.
+  </p>
+  <p>
+    For live products with active users, plan a maintenance window or parallel-run cutover. Cutting over without a plan creates data consistency problems.
+  </p>
+
+  <h2>What the migration won't fix</h2>
+
+  <p>
+    A migration to custom code won't fix an unclear product direction. If the product isn't performing in the market, a new stack won't change that. Migration is an infrastructure decision, not a product strategy decision.
+  </p>
+  <p>
+    It also won't fix a bad data model. If the Bubble data model was poorly designed and those patterns replicate in PostgreSQL, you get the same problems in a different environment. The Blueprint step exists to prevent this.
+  </p>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>How much does a Bubble to Next.js migration cost?</h3>
+  <p>
+    A moderate-complexity app (20 to 30 data types, 10 to 15 key user flows, 3 to 5 integrations) typically costs $30,000 to $80,000 to rebuild. Simpler products cost less. Complex products with many integrations and large data models cost more. The Blueprint adds to the total but is the most important investment in keeping the migration in scope.
+  </p>
+
+  <h3>Can I use Supabase as a drop-in replacement for Bubble's database?</h3>
+  <p>
+    Not directly. Supabase is PostgreSQL, which is a different paradigm from Bubble's document-like data model. You can migrate data from Bubble to Supabase, but the schema needs to be redesigned for relational structure.
+  </p>
+
+  <h3>What happens to my Bubble subscription during the migration?</h3>
+  <p>
+    Keep it active until the new stack is live in production and stable. Plan for one to two months of parallel operation and budget for the overlap.
+  </p>
+
+  <h3>Should I migrate all at once or in phases?</h3>
+  <p>
+    Depends on the product. Selective migration — moving the highest-constraint parts while keeping stable features in Bubble — reduces risk and keeps the team shipping. A big-bang cutover is simpler from a data consistency perspective. We make this call in the Blueprint.
+  </p>
+
+</BlogLayout>

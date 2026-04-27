@@ -47,47 +47,51 @@ const breadcrumbSchema = {
 ---
 
 <BaseLayout {title} {description} schema={articleSchema}>
-  <!-- Breadcrumb -->
-  <nav class="py-6" aria-label="Breadcrumb">
-    <div class="container">
-      <ol class="flex items-center gap-2 font-sans text-p-xs text-neutral-500">
-        <li><a href="/" class="hover:text-neutral-900 transition-colors duration-fast">Home</a></li>
-        <li aria-hidden="true">/</li>
-        <li><a href="/blog" class="hover:text-neutral-900 transition-colors duration-fast">Blog</a></li>
-        <li aria-hidden="true">/</li>
-        <li class="text-neutral-900 truncate max-w-[200px]" aria-current="page">{title}</li>
-      </ol>
-    </div>
-  </nav>
 
+  <!-- Hero -->
+  <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
+    <div class="rounded-[24px] overflow-hidden" style="background: var(--neutral-100);">
+      <div class="container pt-[120px] pb-[64px]">
+        <div class="max-w-2xl flex flex-col gap-6">
+          <!-- Breadcrumb -->
+          <nav aria-label="Breadcrumb">
+            <ol class="flex items-center gap-2 font-sans text-p-xs text-neutral-500">
+              <li><a href="/" class="hover:text-neutral-900 transition-colors duration-fast">Home</a></li>
+              <li aria-hidden="true">/</li>
+              <li><a href="/blog" class="hover:text-neutral-900 transition-colors duration-fast">Blog</a></li>
+              <li aria-hidden="true">/</li>
+              <li class="text-neutral-900 truncate max-w-[240px]" aria-current="page">{title}</li>
+            </ol>
+          </nav>
+          <!-- Title + meta -->
+          <div class="flex flex-col gap-3">
+            <h1 class="font-display text-h1 text-neutral-900">{title}</h1>
+            <div class="flex items-center gap-3 font-sans text-p-s text-neutral-500">
+              <time datetime={publishDate}>{formattedDate}</time>
+              <span aria-hidden="true">&middot;</span>
+              <span>{author}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Featured image: full width, flush to bottom edge -->
+      {image && (
+        <img
+          src={image}
+          alt={title}
+          width="1240"
+          height="700"
+          class="w-full h-auto block"
+          loading="eager"
+        />
+      )}
+    </div>
+  </section>
+
+  <!-- Body -->
   <article class="section">
     <div class="container">
-      <div class="max-w-2xl flex flex-col gap-12">
-        <!-- Header -->
-        <header class="flex flex-col gap-4">
-          <h1 class="font-display text-h1 text-neutral-900">{title}</h1>
-          <div class="flex items-center gap-4 font-sans text-p-s text-neutral-500">
-            <time datetime={publishDate}>{formattedDate}</time>
-            <span aria-hidden="true">&middot;</span>
-            <span>{author}</span>
-          </div>
-        </header>
-
-        <!-- Featured image -->
-        {image && (
-          <div class="rounded-2xl overflow-hidden">
-            <img
-              src={image}
-              alt={title}
-              width="800"
-              height="450"
-              class="w-full h-auto"
-              loading="eager"
-            />
-          </div>
-        )}
-
-        <!-- Body -->
+      <div class="max-w-2xl mx-auto flex flex-col gap-10">
         <div class="prose prose-neutral max-w-none font-sans">
           <slot />
         </div>
