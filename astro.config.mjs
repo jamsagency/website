@@ -7,6 +7,9 @@ export default defineConfig({
   site: 'https://jams.agency',
   output: 'hybrid',
   adapter: vercel(),
+  redirects: {
+    '/blog/high-fidelity-member-portal': '/blog/bubble-member-portal-elite-communities',
+  },
   integrations: [
     tailwind({ applyBaseStyles: false }),
     sitemap({

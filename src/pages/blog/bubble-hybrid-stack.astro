@@ -74,13 +74,10 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
     Cloudflare's Analytics Engine stores events at high volume and makes them queryable for charts. The Bubble frontend fires events to a Worker; the Worker writes to Analytics Engine; the dashboard queries it directly. The operational Bubble database stays clean and fast.
   </p>
 
-  <h2>This in practice: The Fold and client work</h2>
+  <h2>This in practice</h2>
 
   <p>
-    Alfred, the AI concierge we built for The Fold, uses Workers for the agent logic and Workers AI for the LLM layer. The Bubble portal handles everything members see and do. The Cloudflare layer handles everything that requires AI inference or complex processing. Two systems, cleanly separated by responsibility.
-  </p>
-  <p>
-    We've used the same architecture pattern across client products: Workers replacing Bubble backend workflows for complex logic, Vectorize enabling RAG-based AI assistants, KV caching external API data, and Analytics Engine handling event tracking that Bubble's database isn't suited for.
+    We've used this architecture pattern across client products: Workers replacing Bubble backend workflows for complex logic, Vectorize enabling RAG-based AI assistants, KV caching external API data, and Analytics Engine handling event tracking that Bubble's database isn't suited for.
   </p>
   <p>
     The pattern is the same regardless of product type. The specific Cloudflare services you use depend on which gaps your Bubble app has.
