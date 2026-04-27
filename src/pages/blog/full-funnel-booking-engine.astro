@@ -1,0 +1,99 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+---
+
+<BlogLayout
+  title="How to Build a Full-Funnel Booking Engine in Bubble"
+  description="How to build a full-funnel booking engine in Bubble covering lead capture, email nurturing, optimized booking flow, abandonment recovery, and a guest portal."
+  publishDate="2026-02-17"
+  slug="full-funnel-booking-engine"
+>
+
+  <div style="border: 1px solid rgba(134,74,204,0.2); background: rgba(134,74,204,0.04); border-radius: 12px; padding: 20px 24px;">
+    <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #864ACC; margin: 0 0 8px 0;">Quick answer</p>
+    <p style="margin: 0;">A full-funnel booking engine in Bubble covers all four stages of guest acquisition: content and lead capture at the awareness stage, personalized email sequences and interactive tools at the nurturing stage, an optimized booking flow with abandonment recovery at conversion, and a guest portal for post-booking retention. Bubble handles each stage natively or through integrations with SendGrid, HubSpot, and Stripe, giving hospitality businesses one cohesive platform instead of five disconnected tools.</p>
+  </div>
+
+  <h2>Why a booking form alone does not fill your calendar</h2>
+
+  <p>
+    Many hospitality businesses pour resources into stunning properties and impeccable service, only to fall short at the digital front door. They treat their booking system as a transactional endpoint rather than a strategic asset within a broader guest acquisition system.
+  </p>
+  <p>
+    Guests do not just arrive. They discover, research, dream, engage, and then decide to book. If your digital presence is not guiding them through that entire journey, you are losing guests at every stage before they even reach your booking form.
+  </p>
+  <p>
+    This is not just about a high-converting booking flow. It is about building an entire acquisition funnel in Bubble that attracts, nurtures, and ultimately converts more guests — then keeps them coming back.
+  </p>
+
+  <h2>Architecting the full-funnel booking engine in Bubble</h2>
+
+  <h3>Phase 1: attraction and awareness</h3>
+  <p>This is where potential guests discover you. The goal is to capture their interest and provide genuine value.</p>
+  <ul>
+    <li><strong>Content hub.</strong> Create content that answers guest questions and showcases your unique offerings. Managed directly in Bubble or through a platform like Webflow, with calls-to-action linking to your booking flow.</li>
+    <li><strong>Lead magnets.</strong> Offer valuable downloadable content (a destination guide, a packing list) in exchange for an email address. Build landing pages in Bubble with forms that feed your CRM automatically.</li>
+  </ul>
+
+  <h3>Phase 2: nurturing and engagement</h3>
+  <p>Once you have a prospect's interest, build on it with personalized communication.</p>
+  <ul>
+    <li><strong>Personalized email sequences.</strong> Send automated emails based on expressed interests. A ranch inquiry gets riding package content. A wellness inquiry gets spa content. Bubble triggers these via SendGrid or ActiveCampaign based on form submissions or behavior.</li>
+    <li><strong>Interactive planners.</strong> Allow guests to build their ideal stay or take a quiz to find the right package. Bubble's multi-step form builder makes this straightforward, and the data feeds directly into your personalization logic.</li>
+    <li><strong>Experience previews.</strong> High-quality video, image galleries, or interactive property maps that immerse guests before they commit.</li>
+  </ul>
+
+  <h3>Phase 3: conversion and booking</h3>
+  <p>This is where interest becomes a confirmed reservation.</p>
+  <ul>
+    <li><strong>Optimized booking flow.</strong> A multi-step, user-focused design integrated with real-time availability and secure payments.</li>
+    <li><strong>Abandonment recovery.</strong> Track incomplete bookings by saving partial form data to the Bubble database as guests move through the flow. If they drop off, a scheduled workflow triggers a follow-up email after a defined period.</li>
+    <li><strong>Live support.</strong> Integrate live chat widgets (Intercom, Tawk.to) directly into your booking pages for guests who have questions before committing.</li>
+  </ul>
+
+  <h3>Phase 4: post-booking and loyalty</h3>
+  <p>The funnel does not end at booking. It continues through the stay and beyond.</p>
+  <ul>
+    <li><strong>Pre-arrival communication.</strong> Send personalized welcome emails, pre-arrival guides, and itinerary details triggered automatically by booking confirmation.</li>
+    <li><strong>Guest portal.</strong> A personalized hub where guests can view their booking details, manage preferences, submit dietary requirements, and access exclusive content. This reduces inbound calls to your reservations team and builds anticipation before arrival.</li>
+  </ul>
+
+  <h2>Case study: Red Horse Mountain Ranch</h2>
+
+  <p>
+    While our primary focus at Red Horse was the booking flow itself, that custom front-end functions as the conversion engine for a broader funnel. By having a high-fidelity booking solution, Red Horse can confidently drive traffic from any top or middle-of-funnel channel, knowing their digital experience is ready to convert. The premium first impression carries through from ad to booking confirmation.
+  </p>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>What is the difference between a booking flow and a booking funnel?</h3>
+  <p>
+    A booking flow is the specific sequence of steps a guest takes to complete a reservation: selecting dates, entering details, and paying. A booking funnel is the broader system that attracts guests, nurtures their interest, and brings them to that flow. Most hospitality businesses optimize the flow but ignore the funnel, which is where most guests are actually lost.
+  </p>
+
+  <h3>Can Bubble handle email marketing and automation?</h3>
+  <p>
+    Bubble does not send marketing emails natively, but it integrates directly with email platforms like SendGrid, Mailchimp, and ActiveCampaign. You configure triggers in Bubble (a form submission, an incomplete booking, a confirmed reservation) that fire API calls to your email platform, which then sends the right message at the right time.
+  </p>
+
+  <h3>What is abandonment recovery and how does it work in Bubble?</h3>
+  <p>
+    Abandonment recovery follows up with guests who started a booking but did not complete it. In Bubble, you track incomplete bookings by saving partial form data to the database as guests move through the flow. If they drop off, a scheduled workflow triggers a follow-up email after a defined interval, reminding them to finish.
+  </p>
+
+  <h3>How long does it take to build a full-funnel system in Bubble?</h3>
+  <p>
+    The booking flow (conversion stage) typically takes 4 to 8 weeks. Building out the full funnel — including lead capture pages, email integrations, and a guest portal — adds 4 to 8 additional weeks depending on scope. Most hospitality businesses build the booking flow first and add funnel stages over time.
+  </p>
+
+  <h3>Do I need to replace my existing website to use Bubble for bookings?</h3>
+  <p>
+    No. The booking flow can live on its own Bubble subdomain or be embedded into your existing site. Many hospitality businesses keep their main site on Squarespace or Webflow and use Bubble specifically for the booking flow and guest portal.
+  </p>
+
+  <h3>What makes a Bubble-built funnel better than an all-in-one platform?</h3>
+  <p>
+    All-in-one platforms make trade-offs by design. They optimize for the median use case, which means a luxury ranch or niche experience operator will always hit limitations. Bubble lets you build the exact system your business needs, connected to the tools you already use, without being constrained by someone else's product roadmap.
+  </p>
+
+</BlogLayout>

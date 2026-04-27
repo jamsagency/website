@@ -15,6 +15,10 @@ const caseStudies = [
   { label: 'AI education app',          href: '/work/the-arena' },
   { label: 'Parking booking flow',      href: '/work/dropcar' },
 ];
+
+const industries = [
+  { label: 'Hospitality', href: '/hospitality' },
+];
 ---
 
 <footer style="background: var(--neutral-950); border-top: 1px solid rgba(255,255,255,0.08);">
@@ -44,7 +48,7 @@ const caseStudies = [
       </div>
 
       <!-- Nav columns -->
-      <div class="flex gap-12 md:gap-16">
+      <div class="flex flex-col gap-8 sm:flex-row sm:gap-12 md:gap-16">
 
         <!-- Pages -->
         <nav class="flex flex-col gap-3" aria-label="Site pages">
@@ -58,6 +62,14 @@ const caseStudies = [
         <nav class="flex flex-col gap-3" aria-label="Case studies">
           <span class="font-sans text-p-xs uppercase tracking-widest" style="color: #737373;">Work</span>
           {caseStudies.map(({ label, href }) => (
+            <a href={href} class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">{label}</a>
+          ))}
+        </nav>
+
+        <!-- Industries -->
+        <nav class="flex flex-col gap-3" aria-label="Industries">
+          <span class="font-sans text-p-xs uppercase tracking-widest" style="color: #737373;">Industries</span>
+          {industries.map(({ label, href }) => (
             <a href={href} class="font-sans text-p-s transition-colors duration-fast" style="color: #D4D4D4;" onmouseenter="this.style.color='#FEFEFE'" onmouseleave="this.style.color='#D4D4D4'">{label}</a>
           ))}
         </nav>

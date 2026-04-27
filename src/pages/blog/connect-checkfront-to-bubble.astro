@@ -1,0 +1,117 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+---
+
+<BlogLayout
+  title="How to Connect Checkfront to Bubble for Real-Time Hospitality Management"
+  description="How to connect Checkfront to Bubble via API. Keep Checkfront for operations, build a premium branded front-end for guests. Step-by-step integration guide."
+  publishDate="2026-02-17"
+  slug="connect-checkfront-to-bubble"
+>
+
+  <div style="border: 1px solid rgba(134,74,204,0.2); background: rgba(134,74,204,0.04); border-radius: 12px; padding: 20px 24px;">
+    <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #864ACC; margin: 0 0 8px 0;">Quick answer</p>
+    <p style="margin: 0;">Connecting Checkfront to Bubble requires enabling API access in your Checkfront account, configuring Bubble's API Connector with the correct authentication credentials and endpoints, and mapping Checkfront's availability and booking data to your Bubble front-end workflows. Once connected, your custom Bubble interface can display real-time availability, create bookings, and capture deposits through Stripe, while all reservation data syncs back to Checkfront for staff management.</p>
+  </div>
+
+  <h2>Why Checkfront's default front-end holds premium brands back</h2>
+
+  <p>
+    Checkfront is a widely used and powerful system for managing bookings, availability, and operational logistics in the hospitality sector. It is a workhorse for dude ranches, tour operators, and rental businesses. But its strength on the operational side often comes with a trade-off: a generic, white-label front-end that struggles to deliver a premium guest experience.
+  </p>
+  <p>
+    This creates a real disconnect. Your meticulously curated guest experience begins online. If your booking interface feels unbranded and impersonal, it undermines your service before a guest even arrives. The solution is not to abandon Checkfront. It is to give it a custom, high-fidelity front-end built in Bubble that speaks directly to its API.
+  </p>
+  <p>
+    This guide covers the essential steps to connect Checkfront to Bubble, giving you a bespoke booking experience without replacing the operational backend your team already knows.
+  </p>
+
+  <h2>Step-by-step: bridging Bubble and Checkfront</h2>
+
+  <p>The core of this integration is Bubble's API Connector and Checkfront's documented API.</p>
+
+  <h3>Phase 1: Checkfront API setup and authentication</h3>
+  <ol>
+    <li><strong>Generate API key and secret.</strong> Log into your Checkfront account. Navigate to Manage > Developer > API Access. Generate a new API Key and Secret. These are your credentials for Bubble.</li>
+    <li><strong>Understand Checkfront API endpoints.</strong> The key endpoints you will use:
+      <ul>
+        <li><code>/item</code> to retrieve information about bookable items (cabins, specialty weeks).</li>
+        <li><code>/booking</code> to check availability and create or modify reservations.</li>
+        <li><code>/booking/reserve</code> for the initial reservation process.</li>
+        <li><code>/availability</code> to query real-time availability for specific items and dates.</li>
+      </ul>
+    </li>
+    <li><strong>Authentication method.</strong> Checkfront supports OAuth2 and API Key/Secret authentication. For direct server-to-server calls from Bubble, the API Key/Secret is typically sufficient.</li>
+  </ol>
+
+  <h3>Phase 2: configuring Bubble's API Connector</h3>
+  <ol>
+    <li><strong>Install API Connector.</strong> In your Bubble editor, go to Plugins > Add Plugins and install the API Connector.</li>
+    <li><strong>Add a new API.</strong> Name it "Checkfront API."</li>
+    <li><strong>Set authentication.</strong> Input your API Key and Secret per Checkfront's documentation. For most setups, this is a private key in the header.</li>
+    <li><strong>Define API calls.</strong> For each Checkfront endpoint you need, add a new API call:
+      <ul>
+        <li>Method: GET for availability, POST for booking creation.</li>
+        <li>Mark parameters as dynamic so Bubble can pass values from your UI at runtime.</li>
+        <li>Run a test call with sample data to confirm Bubble maps the response fields correctly.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3>Phase 3: building your custom booking flow in Bubble</h3>
+  <ol>
+    <li><strong>Design your UI.</strong> Build your high-fidelity, multi-step booking interface. A pixel-perfect design that reflects your brand, not Checkfront's default template.</li>
+    <li><strong>Implement workflows.</strong>
+      <ul>
+        <li>Display real-time availability using the Get Item Availability API call.</li>
+        <li>Store user selections in custom states or the database.</li>
+        <li>Collect guest information through your branded forms.</li>
+        <li>On confirmation, trigger the Create Booking API call, passing all data from your Bubble UI to Checkfront.</li>
+        <li>Build error-handling workflows for API failures so guests receive clear feedback.</li>
+      </ul>
+    </li>
+    <li><strong>Payment integration via Stripe.</strong> Integrate Stripe separately for payment processing. On successful payment, update the booking status in Checkfront via a second API call. This keeps payment data in Stripe and booking records in Checkfront, exactly where each belongs.</li>
+  </ol>
+
+  <h2>Case study: Red Horse Mountain Ranch</h2>
+
+  <p>
+    Our work with Red Horse Mountain Ranch demonstrates what this integration makes possible. By building a custom Bubble front-end connected to their Checkfront backend, Red Horse moved from a generic white-label booking widget to a branded, premium experience. Guests select from specialty weeks, choose accommodations, and pay a 50% deposit through Stripe, all within a flow that looks and feels like the ranch.
+  </p>
+  <p>
+    Checkfront continues to run operations on the back end, unchanged. The reservation team's workflow stayed the same. The guest's experience changed completely.
+  </p>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>Does Checkfront have a public API?</h3>
+  <p>
+    Yes. Checkfront provides a documented REST API covering availability queries, booking creation, item management, and customer data. Access is available on most Checkfront plans through the Developer section of your account settings.
+  </p>
+
+  <h3>Do I need to replace Checkfront to build a custom front-end?</h3>
+  <p>
+    No. The most practical approach is to keep Checkfront managing the operational backend while building a custom Bubble interface for the guest-facing booking experience. The two communicate via API, so your team's workflow stays the same.
+  </p>
+
+  <h3>How difficult is the Bubble-Checkfront integration?</h3>
+  <p>
+    It requires familiarity with Bubble's API Connector and Checkfront's API documentation, particularly authentication and the key endpoints for availability and booking creation. For a developer experienced with Bubble integrations, the setup typically takes one to two days. The more complex work is designing the booking flow around the data Checkfront returns.
+  </p>
+
+  <h3>Can Stripe and Checkfront be used together in a Bubble booking flow?</h3>
+  <p>
+    Yes, and this is the recommended approach. Stripe handles payment processing directly in Bubble, capturing deposits or full payments at the point of booking. A separate API call then creates or updates the booking in Checkfront. This gives you control over the payment experience while keeping Checkfront's records accurate.
+  </p>
+
+  <h3>What happens if the Checkfront API is unavailable?</h3>
+  <p>
+    You can build error-handling workflows in Bubble that display a clear message to guests if the availability call fails, preventing bookings from being created on inaccurate data. This is standard practice in any production integration.
+  </p>
+
+  <h3>Is this integration worth it for smaller hospitality businesses?</h3>
+  <p>
+    It makes sense when you have enough booking volume that conversion rate improvements pay back the build cost, and when your brand positioning is premium enough that a generic booking interface is creating real friction. A good indicator: if guests are regularly calling or emailing to complete bookings instead of finishing online, the current system is losing you money.
+  </p>
+
+</BlogLayout>
