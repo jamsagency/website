@@ -10,51 +10,48 @@ The master content reference is a private file in the owner's Dropbox (path know
 
 ## Design system — read this first
 
-The design system is in `jams-agency-design-system/`. Before writing any CSS or component:
+**`design.md` in the repo root is the canonical design reference.** Read it before writing any CSS or component. It is derived directly from the live site code and screenshots — not from Figma or an earlier spec.
 
-1. Read `jams-agency-design-system/project/README.md` — full visual rules, content voice, layout conventions
-2. Import `jams-agency-design-system/project/colors_and_type.css` globally — all CSS custom properties live here
+CSS custom properties live in `src/styles/global.css`. Tailwind tokens are in `tailwind.config.mjs`.
 
-### Fonts (self-hosted)
-Source files: `jams-agency-design-system/project/fonts/`
-
-- **Instrument Serif** — all display headings (hero, H1–H3, section titles, case study titles). Regular weight only.
-- **Neue Haas Grotesk Display Pro** — body copy, nav, buttons, metadata, all UI text. Roman (400) and Medium (500/600).
-- **Geist** — web app template only. Not used on the marketing site.
-
-Load via `@font-face` only. Never use Google Fonts or a CDN for these typefaces.
+### Font
+**Geist only** across the entire marketing site — weights 400, 500, 600, 700. Loaded from Google Fonts via `@import` in `global.css`. Instrument Serif and Neue Haas Grotesk are present in the design system folder as assets but are not applied anywhere on the marketing site. Do not use them.
 
 ### Colors
-Violet primary + warm orange secondary + neutral chassis. Key values:
-- Primary gradient (CTA button): `linear-gradient(180deg, #864ACC 0%, #A85CFF 51%, #864ACC 100%)`
-- CTA inner highlight: `inset 2px 2px 4px 0 #CC9EFF`
-- Body text: `#404040` (`--fg-muted`)
-- Near-black hero/dark sections: `#0B0B0B` (`--neutral-950`)
-- Default background: `#FFFFFF`
+Two oranges — understand both before touching any component:
+- `#F55D11` — nav CTA button, list bullet points, hover states
+- `#F9AA43` — sticky notes, testimonial cards, sticky-style CTA buttons
 
-Dark sections use `.dark` class — not a site-wide toggle.
+Other key values:
+- Dark sections: `background: #111` (inline, not a class)
+- Section grey: `#F3F3F3` (alternating light sections)
+- Default background: `#FFFFFF`
+- Body text: `#1A1A1A` (hero/body), `#404040` (muted)
+- Violet gradient token: `linear-gradient(180deg, #864ACC 0%, #A85CFF 51%, #864ACC 100%)` — used on accent elements, not buttons
 
 ### Layout
-- Desktop: 1440px wide, 100px side padding, 1240px content max-width
-- Section vertical padding: 100px top and bottom
-- Mobile: 390px viewport, 24px side padding
-- Sticky nav: floating capsule, 40px tall, 48px from top, `backdrop-filter: blur(16px)`, `rgba(243,243,245,0.7)` fill on scroll
+- Container max-width: 1280px, 48px side padding desktop, 24px tablet, 16px mobile
+- Section vertical padding: 128px desktop / 64px tablet / 48px mobile
+- Mobile viewport: 390px
+
+### Nav
+Full-width fixed bar. `background: rgba(255,255,255,0.72)`, `backdrop-filter: blur(20px)`, `border-bottom: 1px solid rgba(0,0,0,0.06)`. Not a floating capsule.
 
 ### Radii
-4 / 8 / **12 (default)** / 16 / 24 / 32 / 999 (pill). Buttons and inputs: 12px. Hero/large cards: 32px. Pills/chips: 999px.
+4 / 8 / 12 / 16 / 24 / 32 / 999px (pill). Buttons and inputs: **8px**. Liquid glass cards: 24px. Large section cards: 16px. Sticky notes: 4px.
 
 ### Shadows
-- Cards: `0 2px 10px 0 rgba(0,0,0,0.06)` outer + `inset 0 2px 2px 0 rgb(254,254,254)` inset highlight
-- Primary CTA: `inset 2px 2px 4px 0 #CC9EFF`
+- Cards: `0 2px 10px 0 rgba(0,0,0,0.06)` outer + `inset 0 2px 2px 0 rgb(254,254,254)` inset highlight (always together)
+- Sticky notes: `2px 3px 8px rgba(0,0,0,0.1)`
 
 ### Animations
 120–200ms, `cubic-bezier(0.22, 1, 0.36, 1)`. Hover fades, no bounce. Card scroll-reveal only.
 
 ### Icons
-Phosphor Icons (line weight, regular, `currentColor`). Load via CDN: `https://unpkg.com/@phosphor-icons/web@2.1.1`. No emoji in UI. No unicode arrows.
+Phosphor Icons (line weight, regular, `currentColor`). CDN: `https://unpkg.com/@phosphor-icons/web@2.1.1`. Lucide also loaded as fallback. No emoji. No unicode arrows.
 
 ### UI kit references
-- `jams-agency-design-system/project/ui_kits/marketing_site/index.html` — desktop reference
+- `jams-agency-design-system/project/ui_kits/marketing_site/index.html` — desktop reference (visual reference only; tokens may differ from live code)
 - `jams-agency-design-system/project/ui_kits/marketing_site/mobile.html` — mobile reference
 - `jams-agency-design-system/project/ui_kits/web_app/index.html` — web app template (client builds only)
 
@@ -175,17 +172,18 @@ interface Props {
 
 ## Tailwind config
 
-- Extend colors with Jams brand tokens from `colors_and_type.css`
-- Dark mode: `class` strategy (`.dark` on sections, not site-wide)
+- Colors, font families, font sizes, radii, shadows, and transitions all extended in `tailwind.config.mjs`
+- Dark mode: `class` strategy — but dark sections on the marketing site use `background: #111` inline, not the `.dark` class
 - Typography plugin: yes
-- Primary CTA: define as custom utility class:
+- Primary CTA is defined in `global.css` as `.btn-primary`:
   ```css
   .btn-primary {
-    background: linear-gradient(180deg, #864ACC 0%, #A85CFF 51%, #864ACC 100%);
-    box-shadow: inset 2px 2px 4px 0 #CC9EFF;
+    background: #F55D11;
+    color: #fff;
+    border-radius: 8px;
   }
   .btn-primary:hover {
-    background: linear-gradient(180deg, #7C3AED 0%, #A85CFF 51%, #7C3AED 100%);
+    background: #D94D0A;
   }
   ```
 
@@ -203,14 +201,17 @@ PostHog snippet in `BaseLayout.astro` on every page. Track: page views, CTA clic
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
   site: 'https://jams.agency',
+  output: 'hybrid',
+  adapter: vercel(),
   integrations: [tailwind(), sitemap()],
 });
 ```
 
-All pages included in sitemap.
+`output: 'hybrid'` allows static pages alongside server-rendered API routes (e.g. `/api/subscribe`). All pages included in sitemap except `/start`.
 
 ---
 
@@ -243,7 +244,8 @@ When implementing pages, follow this priority:
 
 ## Key decisions
 
-- Self-host all fonts via `@font-face` — no CDN
+- Geist loaded from Google Fonts CDN (`global.css`); Instrument Serif self-hosted via `@font-face` as a fallback asset but not applied
 - `/start` is the canonical booking page — all CTAs site-wide link to it
-- Blog posts live as `.astro` files (or content collections if blog grows) — TBD at boilerplate stage
-- No dark mode toggle — `.dark` is a section-level class only
+- Blog posts live as `.astro` files
+- Dark sections use `background: #111` inline — there is no site-wide dark mode toggle
+- `design.md` in the repo root is the single source of truth for all visual decisions

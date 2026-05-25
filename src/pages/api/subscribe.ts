@@ -23,12 +23,26 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
-    await fetch(scriptUrl, {
+    const scriptRes = await fetch(scriptUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, timestamp: new Date().toISOString() }),
       redirect: 'follow',
     });
+
+    const text = await scriptRes.text();
+    console.log('Apps Script response:', scriptRes.status, text);
+
+    let scriptJson: { ok?: boolean } = {};
+    try { scriptJson = JSON.parse(text); } catch { /* non-JSON response */ }
+
+    if (!scriptRes.ok || scriptJson.ok === false) {
+      console.error('Apps Script error:', scriptRes.status, text);
+      return new Response(JSON.stringify({ ok: false, error: 'Upstream error' }), {
+        status: 502,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
 
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
