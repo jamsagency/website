@@ -15,7 +15,7 @@ The master content reference is a private file in the owner's Dropbox (path know
 CSS custom properties live in `src/styles/global.css`. Tailwind tokens are in `tailwind.config.mjs`.
 
 ### Font
-**Geist only** across the entire marketing site — weights 400, 500, 600, 700. Loaded from Google Fonts via `@import` in `global.css`. Instrument Serif and Neue Haas Grotesk are present in the design system folder as assets but are not applied anywhere on the marketing site. Do not use them.
+**Geist only** across the entire marketing site — weights 400, 500, 600, 700. Loaded from Google Fonts via `@import` in `global.css`. Do not use any other typeface.
 
 ### Colors
 Two oranges — understand both before touching any component:
@@ -49,11 +49,6 @@ Full-width fixed bar. `background: rgba(255,255,255,0.72)`, `backdrop-filter: bl
 
 ### Icons
 Phosphor Icons (line weight, regular, `currentColor`). CDN: `https://unpkg.com/@phosphor-icons/web@2.1.1`. Lucide also loaded as fallback. No emoji. No unicode arrows.
-
-### UI kit references
-- `jams-agency-design-system/project/ui_kits/marketing_site/index.html` — desktop reference (visual reference only; tokens may differ from live code)
-- `jams-agency-design-system/project/ui_kits/marketing_site/mobile.html` — mobile reference
-- `jams-agency-design-system/project/ui_kits/web_app/index.html` — web app template (client builds only)
 
 ---
 
@@ -104,7 +99,7 @@ public/
 ├── favicon.ico
 ├── favicon.svg
 ├── apple-touch-icon.png
-├── og-default.jpg             ← 1200×630, dark background, Jams wordmark
+├── og-default.jpg             ← 1200×630, dot-grid + gradient background, Jams logo + headline
 ├── robots.txt
 └── llm.txt
 ```
@@ -244,7 +239,7 @@ When implementing pages, follow this priority:
 
 ## Key decisions
 
-- Geist loaded from Google Fonts CDN (`global.css`); Instrument Serif self-hosted via `@font-face` as a fallback asset but not applied
+- Geist loaded from Google Fonts CDN (`global.css`); only font in use on the marketing site
 - `/start` is the canonical booking page — all CTAs site-wide link to it
 - Blog posts live as `.astro` files
 - Dark sections use `background: #111` inline — there is no site-wide dark mode toggle

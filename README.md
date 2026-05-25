@@ -10,14 +10,13 @@ Marketing website for [Jams](https://jams.agency) — a custom software and AI d
 - **Analytics:** PostHog
 - **Domain:** jams.agency
 
-## Design System
+## Design system
 
-The full design system lives in `jams-agency-design-system/`. Read `jams-agency-design-system/project/README.md` before touching any CSS. The `project/colors_and_type.css` file is the single source of truth for all CSS custom properties — import it globally.
+`design.md` in the repo root is the canonical design reference — read it before touching any CSS. It documents all confirmed values derived from the live site code: colors, typography, layout, shadows, animations, and component patterns.
 
-**Fonts** (self-hosted, in `jams-agency-design-system/project/fonts/`):
-- **Instrument Serif** — all display headings (H1–H3, hero, section titles)
-- **Neue Haas Grotesk Display Pro** — body copy, nav, buttons, UI text
-- **Geist** — web app template only (dashboards, data tables); not used on marketing site
+CSS custom properties live in `src/styles/global.css`. Tailwind tokens are in `tailwind.config.mjs`.
+
+**Font:** Geist only (weights 400, 500, 600, 700) — loaded from Google Fonts in `global.css`.
 
 ## Site Structure
 
