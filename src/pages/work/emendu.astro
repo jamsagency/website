@@ -33,7 +33,7 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
 
         <section>
           <h2 class="font-display text-h2 text-neutral-900 mb-6">Tech stack</h2>
-          <dl class="grid grid-cols-2 gap-x-8 gap-y-3">
+          <dl class="grid grid-cols-2 gap-x-8 gap-y-3 case-study-dl">
             {[['Core', 'Bubble (logic and database)'], ['Identity', 'Google Workspace API'], ['Payments', 'Stripe'], ['AI brain', 'OpenAI'], ['Device management', 'Atera (MDM and remote access)']].map(([label, value]) => (
               <div>
                 <dt class="font-sans text-p-xs text-neutral-500 uppercase tracking-widest mb-1">{label}</dt>
@@ -43,7 +43,7 @@ import CaseStudyLayout from '../../layouts/CaseStudyLayout.astro';
           </dl>
         </section>
 
-        <section class="dark bg-neutral-950 rounded-2xl p-10">
+        <section class="dark bg-neutral-950 rounded-2xl p-10 case-stat-box">
           <p class="font-display text-h3 text-white">Emendu doubled their paid onboarding rate after the spreadsheet system was replaced with a platform that runs itself.</p>
         </section>
 

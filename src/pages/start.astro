@@ -1,384 +1,424 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const processSteps = [
-  {
-    n: '1',
-    title: 'Apply',
-    body: 'Fill out the form below. It takes about 5 minutes. Tell us about the problem, the business, and where you are right now.',
-  },
-  {
-    n: '2',
-    title: 'Free shaping workshop',
-    body: 'We review your submission and reach out to schedule a free 60-minute session. We map your business problem together and figure out what to build and why. No pitch, no deck — just honest strategy. You leave with clarity whether or not we move forward.',
-  },
-  {
-    n: '3',
-    title: 'The Blueprint',
-    body: 'If we move forward, every engagement starts with a Blueprint: a two-week paid discovery process where we define exactly what to build, in what order, and why. That is where the real work begins.',
-  },
-];
-
-const faqs = [
-  {
-    q: 'What exactly do you build?',
-    a: 'Custom web and mobile applications. Not websites, not templates, not off-the-shelf SaaS tools with your logo on them. We build products from scratch: booking platforms, marketplaces, community platforms, internal ops tools, AI-powered apps. If your business has a specific workflow and no existing software handles it the way you need, that is what we build.',
-  },
-  {
-    q: 'Do you work with no-code? What does that mean for us?',
-    a: 'Yes. Our primary build tool is Bubble, the most powerful no-code platform available. In practice, it means we build faster and at a lower cost than traditional development, without compromising the end result. Bubble handles payments, AI integrations, real-time data, complex logic, and multi-role platforms. For performance-critical or backend-heavy work, we use a hybrid architecture with Cloudflare and Convex on top of Bubble.',
-  },
-  {
-    q: 'How do you scope a project and how is it priced?',
-    a: 'Every engagement starts with a Blueprint: a paid, two-week discovery process where we define exactly what gets built, in what order, and why. The Blueprint starts at $3,500. After the Blueprint, development runs as a monthly engagement: $8,000 per month for a full dedicated team, or $5,000 per month for a sprint-based model. ',
-  },
-  {
-    q: 'What happens if the scope changes?',
-    a: 'It gets acknowledged in writing and discussed before anything changes. We use a formal scope change process: if a feature grows or a new requirement surfaces mid-build, we stop and have a conversation. We decide together whether it fits the current budget and timeline, whether to defer it, or whether to price it separately.',
-  },
-  {
-    q: 'How long does a typical project take?',
-    a: 'The Blueprint takes two weeks. After that, most first-version products ship in 8 to 12 weeks depending on complexity. Booking flows and internal tools tend toward the shorter end. Marketplaces, community platforms, and AI-integrated products tend toward the longer end.',
-  },
-  {
-    q: 'Who owns the code and design at the end?',
-    a: 'You do. The Figma files, the Bubble application, all design assets, all documentation transfer to you at the end of the engagement. If you want to work with a different team after us, you can.',
-  },
-  {
-    q: 'What do we need to provide to get started?',
-    a: 'For the Blueprint: access to any existing systems or tools (if applicable), time from one or two decision-makers (two 90-minute sessions over two weeks), and a clear description of the problem you are trying to solve. You do not need a spec, a wireframe, or a technical brief.',
-  },
-  {
-    q: 'How involved do we need to be during the project?',
-    a: 'More than most clients expect, less than they fear. In the Blueprint, you are in two facilitated sessions. During the build, you review working product every Friday and give feedback within 48 hours.',
-  },
-  {
-    q: 'What happens after launch?',
-    a: 'Before you launch, we agree on what comes next. Three options: an ongoing retainer ($5,000 to $8,000 per month), a support agreement, or a clean handover. We do not disappear after delivery.',
-  },
-  {
-    q: 'Can we see something you have built that is similar to what we need?',
-    a: 'Probably yes. The portfolio is at jams.agency/work. If you want to see something specific to your use case before booking a call, email j@jams.agency with a one-line description of what you are building.',
-  },
-];
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(({ q, a }) => ({
-    '@type': 'Question',
-    name: q,
-    acceptedAnswer: { '@type': 'Answer', text: a },
-  })),
-};
 ---
 
 <BaseLayout
-  title="Book Your Free Shaping Workshop | Jams"
-  description="A free 60-minute session to map your business problem and figure out exactly what to build. No pitch, no jargon."
-  noindex={true}
-  schema={faqSchema}
+  title="Book a free shaping session with Jams"
+  description="We map your operation, find where software and AI move the needle, and give you a clear next step instead of a quote."
 >
 
-  <!-- Hero -->
-  <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
-    <div class="rounded-[24px] pt-[160px] pb-[80px]" style="background: var(--neutral-100);">
-      <div class="container">
-        <div class="max-w-2xl mx-auto flex flex-col items-center text-center gap-6">
-          <span class="eyebrow">Apply</span>
-          <h1 class="font-display text-h1 text-neutral-900">
-            Thinking about AI in your business, or have a specific workflow that software should be handling? Tell us what you are working with.
+<div id="start-wrapper" style="margin-top: 65px; --hero-h: 700px;">
+  <div class="start-outer">
+    <div class="hn-container">
+      <div class="start-layout">
+
+        <!-- ===== HERO PORTION (grid item 1) ===== -->
+        <div id="hero-portion" class="start-hero-portion">
+          <h1 style="font-size: clamp(36px, 4.5vw, 64px); font-weight: 500; line-height: 1.05; letter-spacing: -0.025em; color: #111; margin: 0 0 40px;">
+            Before you hire anyone to build anything, do this.
           </h1>
-          <p class="font-sans text-p-l text-neutral-700">
-            We build custom web and mobile applications for businesses that have outgrown what off-the-shelf tools can do. Not a dev team that executes tickets — a team that figures out what to build, designs it, builds it, and stays involved after launch. If you are not sure exactly what to build yet, that is fine. Figuring that out is part of what we do.
-          </p>
-          <p class="font-sans text-p text-neutral-700">
-            Fill out the form below. We review every submission and get back to you within 24 hours.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How it works -->
-  <section class="section hairline" aria-labelledby="next-steps-heading">
-    <div class="container flex flex-col gap-12">
-      <h2 id="next-steps-heading" class="eyebrow">What happens next</h2>
-      <ol class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {processSteps.map(({ n, title, body }) => (
-          <li class="flex flex-col gap-4">
-            <span class="font-display text-h3 text-violet-500">{n}</span>
-            <h3 class="font-display text-h4 text-neutral-900">{title}</h3>
-            <p class="font-sans text-p text-neutral-700">{body}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <!-- Multi-step form -->
-  <section class="section hairline" aria-labelledby="form-heading">
-    <div class="container">
-      <div class="max-w-2xl mx-auto flex flex-col gap-8">
-
-        <div class="flex flex-col gap-2">
-          <h2 id="form-heading" class="font-display text-h2 text-neutral-900">Apply to work with Jams</h2>
-          <p class="font-sans text-p-s text-neutral-500">No commitment on either side until after the discovery call. This takes about 5 minutes.</p>
-        </div>
-
-        <!-- Form card -->
-        <div id="form-card" class="rounded-2xl overflow-hidden" style="border: 1px solid #E5E5E5; background: #fff; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.06), inset 0 2px 2px 0 #FEFEFE;">
-
-          <!-- Progress -->
-          <div class="px-8 md:px-10 pt-8 pb-0 flex flex-col gap-3">
-            <span id="step-label" class="font-sans uppercase tracking-widest" style="font-size: 11px; color: #A3A3A3;">Step 1 of 4</span>
-            <div class="h-px w-full rounded-full" style="background: #F3F3F5;">
-              <div id="progress-fill" style="height: 1px; width: 25%; border-radius: 999px; background: #7C3AED; transition: width 300ms ease;"></div>
-            </div>
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <p style="margin: 0; font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #1A1A1A;">The biggest mistake in custom software isn't bad code. It's building the wrong thing.</p>
+            <p style="margin: 0; font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #1A1A1A;">Most businesses hire a dev team before they know exactly what to build. They write a brief, the team builds what's in the brief, and months later the product doesn't move anything because the brief missed the real problem.</p>
+            <p style="margin: 0; font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #1A1A1A;">The free shaping session exists to fix that before it costs you money.</p>
           </div>
+        </div>
 
-          <!-- Form -->
-          <form id="apply-form" novalidate>
+        <!-- ===== FORM (grid item 2 — col 2 desktop, row 2 mobile) ===== -->
+        <div class="start-form-col">
 
-            <!-- ── Step 1: Who you are + the problem ── -->
-            <div class="apply-step" data-step="1">
-              <div class="p-8 md:p-10 flex flex-col gap-7">
+          <!-- Form card -->
+          <div id="form-card" class="liquid-glass">
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div class="flex flex-col gap-2">
-                    <label class="field-label" for="f-name">Your name</label>
-                    <input id="f-name" name="name" type="text" required class="form-input" placeholder="Juan Germano" autocomplete="name" />
-                  </div>
-                  <div class="flex flex-col gap-2">
-                    <label class="field-label" for="f-email">Email address</label>
-                    <input id="f-email" name="email" type="email" required class="form-input" placeholder="you@company.com" autocomplete="email" />
-                  </div>
-                </div>
-
-                <div class="flex flex-col gap-2">
-                  <label class="field-label" for="f-problem">What problem are you trying to solve?</label>
-                  <p class="field-hint">Tell us what is broken, missing, or taking too long. Not the solution you have in mind — the problem itself.</p>
-                  <textarea id="f-problem" name="problem" required rows="5" class="form-textarea" placeholder="Describe the problem in plain terms..."></textarea>
-                </div>
-
+            <!-- Progress -->
+            <div style="padding: 24px 28px 0;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 16px; font-weight: 500; letter-spacing: -0.01em; color: #262626;">Book your free shaping session</span>
+                <span id="step-label" style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #A3A3A3;">Step 1 of 4</span>
+              </div>
+              <div style="height: 2px; width: 100%; border-radius: 999px; background: #F3F3F5;">
+                <div id="progress-fill" style="height: 2px; width: 25%; border-radius: 999px; background: #A85DFF; transition: width 300ms cubic-bezier(0.22,1,0.36,1);"></div>
               </div>
             </div>
 
-            <!-- ── Step 2: Users + existing work + success ── -->
-            <div class="apply-step" data-step="2" style="display:none;">
-              <div class="p-8 md:p-10 flex flex-col gap-7">
+            <!-- Form -->
+            <form id="apply-form" novalidate>
 
-                <div class="flex flex-col gap-2">
-                  <label class="field-label" for="f-users">Who uses this product?</label>
-                  <p class="field-hint">Describe the main person this is built for. Customer, employee, member — and if there are multiple user types, list them all.</p>
-                  <textarea id="f-users" name="users" required rows="4" class="form-textarea" placeholder="e.g. Ranch guests booking stays, and an admin managing reservations..."></textarea>
+              <!-- Step 1 -->
+              <div class="apply-step" data-step="1">
+                <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 20px;">
+                  <div class="start-name-grid" style="gap: 12px;">
+                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                      <label class="field-label" for="f-name">Your name</label>
+                      <input id="f-name" name="name" type="text" required class="form-input" placeholder="Juan Germano" autocomplete="name" />
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                      <label class="field-label" for="f-email">Email</label>
+                      <input id="f-email" name="email" type="email" required class="form-input" placeholder="you@company.com" autocomplete="email" />
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <label class="field-label" for="f-problem">What problem are you trying to solve?</label>
+                    <textarea id="f-problem" name="problem" required rows="4" class="form-textarea" placeholder="Describe the problem in plain terms..."></textarea>
+                  </div>
                 </div>
+              </div>
 
-                <div class="flex flex-col gap-3">
-                  <span class="field-label">Have you built anything for this yet?</span>
-                  <div class="flex flex-col gap-2">
+              <!-- Step 2 -->
+              <div class="apply-step" data-step="2" style="display:none;">
+                <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 20px;">
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <label class="field-label" for="f-users">Who will use this product?</label>
+                    <textarea id="f-users" name="users" required rows="3" class="form-textarea" placeholder="e.g. Ranch guests and an admin managing reservations..."></textarea>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <span class="field-label">Have you built anything for this yet?</span>
                     <label class="radio-card"><input type="radio" name="existing" value="no" /><span>No, starting from scratch</span></label>
                     <label class="radio-card"><input type="radio" name="existing" value="yes-app" /><span>Yes, we have an existing app or tool</span></label>
-                    <label class="radio-card"><input type="radio" name="existing" value="yes-mockups" /><span>Yes, we have mockups or a spec</span></label>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <label class="field-label" for="f-success">What does success look like in 6 months?</label>
+                    <textarea id="f-success" name="success" required rows="3" class="form-textarea" placeholder="In 6 months we will have..."></textarea>
                   </div>
                 </div>
-
-                <div id="existing-detail" class="flex flex-col gap-2" style="display:none;">
-                  <label class="field-hint block" for="f-existing-detail">Describe what exists and what is working or broken about it.</label>
-                  <textarea id="f-existing-detail" name="existing_detail" rows="3" class="form-textarea" placeholder="What exists, and what is working or broken..."></textarea>
-                </div>
-
-                <div class="flex flex-col gap-2">
-                  <label class="field-label" for="f-success">What does success look like in 6 months?</label>
-                  <p class="field-hint">Be specific. A number, a behavior, an outcome. Not "a great product."</p>
-                  <textarea id="f-success" name="success" required rows="3" class="form-textarea" placeholder="In 6 months we will have..."></textarea>
-                </div>
-
               </div>
-            </div>
 
-            <!-- ── Step 3: Timeline + revenue + team ── -->
-            <div class="apply-step" data-step="3" style="display:none;">
-              <div class="p-8 md:p-10 flex flex-col gap-7">
-
-                <div class="flex flex-col gap-3">
-                  <span class="field-label">What is your timeline?</span>
-                  <div class="flex flex-col gap-2">
-                    <label class="radio-card"><input type="radio" name="timeline" value="asap" /><span>As soon as possible</span></label>
-                    <label class="radio-card"><input type="radio" name="timeline" value="3months" /><span>Within 3 months</span></label>
-                    <label class="radio-card"><input type="radio" name="timeline" value="6months" /><span>Within 6 months</span></label>
-                    <label class="radio-card"><input type="radio" name="timeline" value="no-deadline" /><span>No hard deadline yet</span></label>
+              <!-- Step 3 -->
+              <div class="apply-step" data-step="3" style="display:none;">
+                <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 20px;">
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <span class="field-label">What is your timeline?</span>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                      <label class="radio-card"><input type="radio" name="timeline" value="asap" /><span>As soon as possible</span></label>
+                      <label class="radio-card"><input type="radio" name="timeline" value="3months" /><span>Within 3 months</span></label>
+                      <label class="radio-card"><input type="radio" name="timeline" value="6months" /><span>Within 6 months</span></label>
+                      <label class="radio-card"><input type="radio" name="timeline" value="no-deadline" /><span>No hard deadline yet</span></label>
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <span class="field-label">Annual revenue?</span>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                      <label class="radio-card"><input type="radio" name="revenue" value="pre-revenue" /><span>Pre-revenue</span></label>
+                      <label class="radio-card"><input type="radio" name="revenue" value="under-500k" /><span>Under $500k</span></label>
+                      <label class="radio-card"><input type="radio" name="revenue" value="500k-2m" /><span>$500k – $2M</span></label>
+                      <label class="radio-card"><input type="radio" name="revenue" value="2m-10m" /><span>$2M – $10M</span></label>
+                      <label class="radio-card"><input type="radio" name="revenue" value="over-10m" /><span>Over $10M</span></label>
+                      <label class="radio-card"><input type="radio" name="revenue" value="prefer-not" /><span>Prefer not to say</span></label>
+                    </div>
                   </div>
                 </div>
-
-                <div id="deadline-detail" class="flex flex-col gap-2" style="display:none;">
-                  <label class="field-hint block" for="f-deadline">Is there a fixed event, launch date, or deadline driving this?</label>
-                  <input id="f-deadline" name="deadline" type="text" class="form-input" placeholder="e.g. Product launch on June 1st" />
-                </div>
-
-                <div class="flex flex-col gap-3">
-                  <span class="field-label">What is your company's annual revenue?</span>
-                  <p class="field-hint">This helps us understand scale and scope early.</p>
-                  <div class="grid grid-cols-2 gap-2">
-                    <label class="radio-card"><input type="radio" name="revenue" value="pre-revenue" /><span>Pre-revenue</span></label>
-                    <label class="radio-card"><input type="radio" name="revenue" value="under-500k" /><span>Under $500k</span></label>
-                    <label class="radio-card"><input type="radio" name="revenue" value="500k-2m" /><span>$500k – $2M</span></label>
-                    <label class="radio-card"><input type="radio" name="revenue" value="2m-10m" /><span>$2M – $10M</span></label>
-                    <label class="radio-card"><input type="radio" name="revenue" value="over-10m" /><span>Over $10M</span></label>
-                    <label class="radio-card"><input type="radio" name="revenue" value="prefer-not" /><span>Prefer not to say</span></label>
-                  </div>
-                </div>
-
-                <div class="flex flex-col gap-3">
-                  <span class="field-label">How many people are on your team?</span>
-                  <div class="grid grid-cols-2 gap-2">
-                    <label class="radio-card"><input type="radio" name="team" value="solo" /><span>Just me</span></label>
-                    <label class="radio-card"><input type="radio" name="team" value="2-5" /><span>2 to 5</span></label>
-                    <label class="radio-card"><input type="radio" name="team" value="6-20" /><span>6 to 20</span></label>
-                    <label class="radio-card"><input type="radio" name="team" value="21-100" /><span>21 to 100</span></label>
-                    <label class="radio-card col-span-2"><input type="radio" name="team" value="over-100" /><span>Over 100</span></label>
-                  </div>
-                </div>
-
               </div>
-            </div>
 
-            <!-- ── Step 4: Budget + source ── -->
-            <div class="apply-step" data-step="4" style="display:none;">
-              <div class="p-8 md:p-10 flex flex-col gap-7">
-
-                <div class="flex flex-col gap-3">
-                  <span class="field-label">What is your budget for the build?</span>
-                  <p class="field-hint">The Blueprint starts at $3,500. Development starts at $5,000 per month. Where do you see yourself?</p>
-                  <div class="flex flex-col gap-2">
-                    <label class="radio-card"><input type="radio" name="budget" value="under-10k" /><span>Under $10k</span></label>
-                    <label class="radio-card"><input type="radio" name="budget" value="10k-20k" /><span>$10k to $20k</span></label>
-                    <label class="radio-card"><input type="radio" name="budget" value="20k-50k" /><span>$20k to $50k</span></label>
-                    <label class="radio-card"><input type="radio" name="budget" value="over-50k" /><span>Over $50k</span></label>
-                    <label class="radio-card"><input type="radio" name="budget" value="not-sure" /><span>Not sure yet</span></label>
+              <!-- Step 4 -->
+              <div class="apply-step" data-step="4" style="display:none;">
+                <div style="padding: 24px 28px; display: flex; flex-direction: column; gap: 20px;">
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <span class="field-label">Budget for the build?</span>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                      <label class="radio-card"><input type="radio" name="budget" value="under-10k" /><span>Under $10k</span></label>
+                      <label class="radio-card"><input type="radio" name="budget" value="10k-20k" /><span>$10k to $20k</span></label>
+                      <label class="radio-card"><input type="radio" name="budget" value="20k-50k" /><span>$20k to $50k</span></label>
+                      <label class="radio-card"><input type="radio" name="budget" value="over-50k" /><span>Over $50k</span></label>
+                      <label class="radio-card"><input type="radio" name="budget" value="not-sure" /><span>Not sure yet</span></label>
+                    </div>
+                  </div>
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <span class="field-label">How did you find us?</span>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                      <label class="radio-card"><input type="radio" name="source" value="referral" /><span>Referral</span></label>
+                      <label class="radio-card"><input type="radio" name="source" value="linkedin" /><span>LinkedIn</span></label>
+                      <label class="radio-card"><input type="radio" name="source" value="search" /><span>Search</span></label>
+                      <label class="radio-card"><input type="radio" name="source" value="content" /><span>Content</span></label>
+                      <label class="radio-card"><input type="radio" name="source" value="ai" /><span>AI</span></label>
+                      <label class="radio-card"><input type="radio" name="source" value="other" /><span>Other</span></label>
+                    </div>
+                  </div>
+                  <div id="referral-detail" style="display:none; flex-direction: column; gap: 6px;">
+                    <input id="f-referral" name="referral" type="text" class="form-input" placeholder="Name of the person who referred you" />
                   </div>
                 </div>
-
-                <div class="flex flex-col gap-3">
-                  <span class="field-label">How did you find us?</span>
-                  <div class="grid grid-cols-2 gap-2">
-                    <label class="radio-card"><input type="radio" name="source" value="referral" /><span>Referral</span></label>
-                    <label class="radio-card"><input type="radio" name="source" value="linkedin" /><span>LinkedIn</span></label>
-                    <label class="radio-card"><input type="radio" name="source" value="search" /><span>Search</span></label>
-                    <label class="radio-card"><input type="radio" name="source" value="content" /><span>Content</span></label>
-                    <label class="radio-card col-span-2"><input type="radio" name="source" value="other" /><span>Other</span></label>
-                  </div>
-                </div>
-
-                <div id="referral-detail" class="flex flex-col gap-2" style="display:none;">
-                  <label class="field-hint block" for="f-referral">Who referred you?</label>
-                  <input id="f-referral" name="referral" type="text" class="form-input" placeholder="Name of the person who referred you" />
-                </div>
-
               </div>
-            </div>
 
-            <!-- Navigation -->
-            <div class="flex items-center px-8 md:px-10 py-6" style="border-top: 1px solid #F3F3F5;">
-              <button type="button" id="back-btn" class="font-sans text-p-s text-neutral-400 hover:text-neutral-700 transition-colors duration-fast" style="display:none;">← Back</button>
-              <div class="ml-auto">
-                <button type="button" id="next-btn" class="btn-primary rounded-pill py-3 px-6 font-sans text-p-s">Continue →</button>
-                <button type="submit" id="submit-btn" class="btn-primary rounded-pill py-3 px-6 font-sans text-p-s" style="display:none;">Submit application</button>
+              <!-- Navigation -->
+              <div style="display: flex; align-items: center; padding: 16px 28px; border-top: 1px solid rgba(0,0,0,0.06);">
+                <button type="button" id="back-btn" style="display:none; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; letter-spacing: -0.01em; color: #A3A3A3; background: none; border: none; cursor: pointer; padding: 0; font-family: inherit; transition: color 0.12s;"><i data-lucide="arrow-left" style="width: 14px; height: 14px; stroke: currentColor; flex-shrink: 0;"></i> Back</button>
+                <div style="margin-left: auto;">
+                  <button type="button" id="next-btn" class="jams-footer-submit">
+                    <i data-lucide="arrow-right" class="btn-arrow" style="stroke:#111;"></i>
+                    <span>Continue</span>
+                  </button>
+                  <button type="submit" id="submit-btn" class="jams-footer-submit" style="display:none;">
+                    <i data-lucide="arrow-right" class="btn-arrow" style="stroke:#111;"></i>
+                    <span>Submit</span>
+                  </button>
+                </div>
               </div>
-            </div>
 
-          </form>
+            </form>
+          </div>
+
+          <!-- Success state -->
+          <div id="success-card" style="display:none; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; background: #fff; box-shadow: 0 4px 24px rgba(0,0,0,0.07); padding: 48px 28px; flex-direction: column; align-items: center; gap: 20px; text-align: center;">
+            <div style="width: 52px; height: 52px; border-radius: 50%; background: rgba(168,93,255,0.08); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+              <i class="ph ph-check-circle" style="font-size: 26px; color: #A85DFF;"></i>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <h3 style="font-size: 28px; font-weight: 500; letter-spacing: -0.02em; color: #111; margin: 0;">We got it.</h3>
+              <p style="font-size: 16px; line-height: 1.65; letter-spacing: -0.01em; color: #555; margin: 0;">Someone from Jams will review your submission and reach out within 24 hours.</p>
+            </div>
+            <a href="https://cal.com/jjams/discovery" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size: 15px; padding: 12px 28px; border-radius: 10px; margin-top: 8px; display: inline-block;">Book a call now</a>
+          </div>
+
         </div>
 
-        <!-- Success state -->
-        <div id="success-card" class="rounded-2xl p-10 md:p-14 flex-col items-center gap-6 text-center" style="display:none; border: 1px solid #E5E5E5; background: #fff; box-shadow: 0 2px 10px 0 rgba(0,0,0,0.06);">
-          <div class="w-14 h-14 rounded-full flex items-center justify-center shrink-0 mx-auto" style="background: rgba(124,58,237,0.07);">
-            <i class="ph ph-check-circle" style="font-size: 28px; color: #7C3AED;"></i>
+        <!-- ===== REST OF CONTENT (grid item 3 — col 1 row 2 on desktop, row 3 on mobile) ===== -->
+        <div class="start-content-rest">
+
+          <!-- What happens in the session -->
+          <div class="start-section" style="padding: 64px 0; border-bottom: 1px solid rgba(0,0,0,0.08);">
+            <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin: 0 0 20px;">What happens in the session</p>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <p style="margin: 0; font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #1A1A1A;">One hour. We map your operation, identify the exact problem worth solving, challenge your assumptions, and figure out what needs to be built and in what order.</p>
+              <p style="margin: 0; font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #1A1A1A;">You bring your ideas and your pain points. We ask the hard questions. By the end you have a clear direction: not a quote, not a pitch deck, not a sales call dressed up as strategy.</p>
+            </div>
           </div>
-          <div class="flex flex-col gap-3 max-w-sm mx-auto">
-            <h3 class="font-display text-h2 text-neutral-900">We got it.</h3>
-            <p class="font-sans text-p text-neutral-600">Someone from Jams will review your submission and reach out within 24 hours. If you want to get ahead of it, you can book a call directly.</p>
+
+          <!-- What you walk away with -->
+          <div class="start-section" style="padding: 64px 0; border-bottom: 1px solid rgba(0,0,0,0.08);">
+            <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin: 0 0 20px;">What you walk away with</p>
+            <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px;">
+              {[
+                'A clear definition of the real problem.',
+                'A recommendation for where AI and software actually make a difference for your specific operation.',
+                'A sense of what a realistic product scope looks like.',
+                'A next step: whether that\'s the Blueprint, a different path, or an honest "not yet."',
+              ].map(item => (
+                <li style="display: flex; align-items: baseline; gap: 12px; font-size: 20px; line-height: 1.55; letter-spacing: -0.01em; color: #1A1A1A;">
+                  <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-          <a href="https://cal.com/jjams/discovery" class="btn-primary rounded-pill py-3 px-7 font-sans text-p-s inline-block mt-2">Book a call now</a>
+
+          <!-- Who this is for / not for -->
+          <div class="start-section start-who-grid" style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+            <div>
+              <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin: 0 0 16px;">Who this is for</p>
+              <p style="margin: 0; font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #404040;">Founders and operators with a real business: established revenue, a real team, and a process that's breaking under growth. People who have software or AI on their mind but don't know where to start, or who have been burned by a dev shop that built the wrong thing.</p>
+            </div>
+            <div>
+              <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin: 0 0 16px;">Who this is not for</p>
+              <p style="margin: 0; font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #404040;">Founders with no revenue and no validation yet. Businesses that just need a developer to hand a spec to. Anyone who already knows exactly what they want built and just needs a quote.</p>
+            </div>
+          </div>
+
+          <!-- It's actually free -->
+          <div class="start-section" style="padding: 64px 0; border-bottom: 1px solid rgba(0,0,0,0.08);">
+            <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin: 0 0 20px;">It's actually free</p>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <p style="margin: 0; font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #1A1A1A;">No credit card. No obligation. No pitch at the end.</p>
+              <p style="margin: 0; font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #1A1A1A;">We offer this because figuring out the right thing to build together is the only way to know if we're the right team to build it. The hour pays for itself regardless of what comes next.</p>
+            </div>
+          </div>
+
+          <!-- What happens after -->
+          <div class="start-section start-last-section" style="padding: 64px 0 0;">
+            <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin: 0 0 20px;">What happens after</p>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <p style="margin: 0; font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #1A1A1A;">If there's a fit, the next step is the Blueprint: two weeks, starting at $3,500. Every flow defined, a design prototype, and a fixed price for the full build. Everything decided before a line of code is written.</p>
+              <p style="margin: 0; font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #1A1A1A;">If the session makes clear the timing isn't right, we'll tell you that too.</p>
+            </div>
+          </div>
+
         </div>
-
       </div>
     </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section hairline" aria-labelledby="faq-start-heading">
-    <div class="container">
-      <div class="max-w-2xl mx-auto flex flex-col gap-10">
-        <h2 id="faq-start-heading" class="font-display text-h2 text-neutral-900">Common questions</h2>
-        <dl class="flex flex-col divide-y divide-neutral-150">
-          {faqs.map(({ q, a }) => (
-            <details class="group py-6">
-              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-h4 text-neutral-900">
-                {q}
-                <span class="shrink-0 text-violet-500 transition-transform duration-fast group-open:rotate-45" aria-hidden="true">+</span>
-              </summary>
-              <p class="font-sans text-p text-neutral-700 mt-4 leading-relaxed">{a}</p>
-            </details>
-          ))}
-        </dl>
-      </div>
-    </div>
-  </section>
+  </div>
+</div>
 
 </BaseLayout>
 
 <style>
+  /* ===== Desktop layout (≥991px) ===== */
+  .start-outer {
+    padding: 0 24px 128px;
+  }
+  .start-layout {
+    display: grid;
+    grid-template-columns: 1fr 460px;
+    grid-template-rows: auto 1fr;
+    column-gap: 80px;
+    row-gap: 0;
+    align-items: start;
+  }
+  /* Hero: col 1, row 1 */
+  .start-hero-portion {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 128px 0 80px;
+  }
+  /* Form: col 2, spans both rows — sticky */
+  .start-form-col {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    position: sticky;
+    top: 0;
+    align-self: start;
+    padding-top: 128px;
+  }
+  /* Rest of content: col 1, row 2 */
+  .start-content-rest {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .start-section {
+    padding: 64px 0;
+  }
+  .start-last-section {
+    padding: 64px 0 0;
+  }
+  .start-who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 64px 0;
+  }
+  .start-name-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* ≤990px: single column — hero → form → rest */
+  @media (max-width: 990px) {
+    .start-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+    .start-hero-portion {
+      grid-column: 1;
+      grid-row: 1;
+      padding-top: 64px;
+      padding-bottom: 48px;
+    }
+    .start-form-col {
+      grid-column: 1;
+      grid-row: 2;
+      position: static;
+      padding-top: 40px;
+    }
+    .start-content-rest {
+      grid-column: 1;
+      grid-row: 3;
+    }
+    .start-outer {
+      padding-bottom: 80px;
+    }
+  }
+
+  /* ≤768px: tighten vertical padding, collapse who-grid */
+  @media (max-width: 768px) {
+    .start-hero-portion {
+      padding-top: 48px;
+      padding-bottom: 36px;
+    }
+    .start-section {
+      padding: 48px 0;
+    }
+    .start-last-section {
+      padding: 48px 0 0;
+    }
+    .start-who-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 48px 0;
+    }
+    .start-outer {
+      padding-bottom: 64px;
+    }
+  }
+
+  /* ≤480px: stack name/email, stack radio grids, tighten further */
+  @media (max-width: 480px) {
+    .start-name-grid {
+      grid-template-columns: 1fr;
+    }
+    .start-hero-portion {
+      padding-top: 36px;
+      padding-bottom: 28px;
+    }
+    .start-section {
+      padding: 36px 0;
+    }
+    .start-last-section {
+      padding: 36px 0 0;
+    }
+    .start-who-grid {
+      padding: 36px 0;
+    }
+    .start-outer {
+      padding-bottom: 48px;
+    }
+  }
+
+  #start-wrapper {
+    background:
+      linear-gradient(to bottom, transparent var(--hero-h), #fff var(--hero-h)),
+      radial-gradient(circle, #C8C8CC 1.5px, transparent 1.5px) 0 0 / 24px 24px,
+      linear-gradient(in oklab 180deg, oklab(100% 0 0) 14%, oklab(84.3% 0.005 -0.016) 120%);
+  }
+
   .field-label {
     font-family: inherit;
     font-size: 14px;
     font-weight: 500;
+    letter-spacing: -0.01em;
     color: #262626;
     line-height: 1.4;
   }
   .field-hint {
     font-family: inherit;
     font-size: 13px;
+    letter-spacing: -0.01em;
     color: #A3A3A3;
-    line-height: 1.6;
-    margin-top: -4px;
+    line-height: 1.55;
+    margin: 0;
   }
   .form-input,
   .form-textarea {
     width: 100%;
-    border: 1px solid #E5E5E5;
-    border-radius: 12px;
-    padding: 12px 16px;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 10px;
+    padding: 10px 14px;
     font-family: inherit;
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
     color: #171717;
     background: #fff;
     outline: none;
-    transition: border-color 150ms ease;
+    box-sizing: border-box;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
   }
   .form-input:focus,
   .form-textarea:focus {
-    border-color: #A78BFA;
+    border-color: #A85DFF;
+    box-shadow: 0 0 0 3px rgba(168,93,255,0.1);
   }
   .form-input.error,
-  .form-textarea.error {
-    border-color: #F87171;
-  }
-  .form-textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
+  .form-textarea.error { border-color: #F87171; }
+  .form-textarea { resize: vertical; min-height: 88px; }
   .radio-card {
     display: flex;
     align-items: center;
     gap: 10px;
-    border: 1px solid #E5E5E5;
-    border-radius: 12px;
-    padding: 12px 16px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 10px 14px;
     cursor: pointer;
     font-family: inherit;
     font-size: 14px;
+    letter-spacing: -0.01em;
     color: #525252;
     line-height: 1.4;
     transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
@@ -391,121 +431,116 @@ const faqSchema = {
     width: 0;
     height: 0;
   }
-  .radio-card:hover {
-    border-color: #C4B5FD;
-  }
+  .radio-card:hover { border-color: #C4B5FD; }
   .radio-card:has(input:checked) {
-    border-color: #7C3AED;
-    background-color: rgba(124, 58, 237, 0.04);
+    border-color: #A85DFF;
+    background-color: rgba(168,93,255,0.05);
     color: #171717;
     font-weight: 500;
   }
-  .apply-step {
-    animation: stepIn 200ms ease;
-  }
+  .apply-step { animation: stepIn 200ms ease; }
   @keyframes stepIn {
-    from { opacity: 0; transform: translateY(6px); }
+    from { opacity: 0; transform: translateY(5px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  ::placeholder {
-    color: #A3A3A3;
+  /* Radio grids stack at 480px */
+  @media (max-width: 480px) {
+    .apply-step div[style*="grid-template-columns: 1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  ::placeholder { color: #A3A3A3; }
+  #apply-form .jams-footer-submit .btn-arrow {
+    top: 50%;
+    transform: translateY(-50%) translateX(-6px);
+  }
+  #apply-form .jams-footer-submit:hover .btn-arrow {
+    transform: translateY(-50%) translateX(0);
   }
 </style>
 
 <script>
+  // Measure hero portion height and set background cut-off point
+  function syncHeroHeight() {
+    const wrapper = document.getElementById('start-wrapper');
+    const heroPortion = document.getElementById('hero-portion');
+    if (!wrapper || !heroPortion) return;
+    const h = heroPortion.getBoundingClientRect().bottom - wrapper.getBoundingClientRect().top;
+    wrapper.style.setProperty('--hero-h', Math.round(h) + 'px');
+  }
+  syncHeroHeight();
+  window.addEventListener('resize', syncHeroHeight);
+
+  // Form logic
   const TOTAL = 4;
   let current = 1;
 
-  const formCard = document.getElementById('form-card');
-  const successCard = document.getElementById('success-card');
-  const stepLabel = document.getElementById('step-label');
-  const progressFill = document.getElementById('progress-fill');
-  const backBtn = document.getElementById('back-btn');
-  const nextBtn = document.getElementById('next-btn');
-  const submitBtn = document.getElementById('submit-btn');
-  const form = document.getElementById('apply-form');
+  const formCard     = document.getElementById('form-card');
+  const successCard  = document.getElementById('success-card');
+  const stepLabel    = document.getElementById('step-label');
+  const progressFill = document.getElementById('progress-fill') as HTMLElement;
+  const backBtn      = document.getElementById('back-btn') as HTMLButtonElement;
+  const nextBtn      = document.getElementById('next-btn') as HTMLButtonElement;
+  const submitBtn    = document.getElementById('submit-btn') as HTMLButtonElement;
+  const form         = document.getElementById('apply-form') as HTMLFormElement;
 
-  function getStep(n) {
-    return document.querySelector('.apply-step[data-step="' + n + '"]');
+  function getStep(n: number) {
+    return document.querySelector<HTMLElement>('.apply-step[data-step="' + n + '"]');
   }
 
-  function goto(n) {
-    document.querySelectorAll('.apply-step').forEach(el => el.style.display = 'none');
+  function goto(n: number) {
+    document.querySelectorAll<HTMLElement>('.apply-step').forEach(el => el.style.display = 'none');
     const step = getStep(n);
     if (step) step.style.display = 'block';
     current = n;
 
-    stepLabel.textContent = 'Step ' + n + ' of ' + TOTAL;
-    progressFill.style.width = ((n / TOTAL) * 100) + '%';
-
-    backBtn.style.display = n > 1 ? 'block' : 'none';
-    nextBtn.style.display = n === TOTAL ? 'none' : 'block';
-    submitBtn.style.display = n === TOTAL ? 'block' : 'none';
-
-    const top = formCard.getBoundingClientRect().top + window.scrollY - 120;
-    window.scrollTo({ top, behavior: 'smooth' });
+    stepLabel!.textContent    = 'Step ' + n + ' of ' + TOTAL;
+    progressFill.style.width  = ((n / TOTAL) * 100) + '%';
+    backBtn.style.display     = n > 1 ? 'inline-flex' : 'none';
+    nextBtn.style.display     = n === TOTAL ? 'none' : 'block';
+    submitBtn.style.display   = n === TOTAL ? 'block' : 'none';
   }
 
-  function validate(n) {
+  function validate(n: number) {
     const step = getStep(n);
     if (!step) return true;
     let ok = true;
-    step.querySelectorAll('[required]').forEach(el => {
-      if (!el.value.trim()) {
-        el.classList.add('error');
-        ok = false;
-      } else {
-        el.classList.remove('error');
-      }
+    step.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]').forEach(el => {
+      if (!el.value.trim()) { el.classList.add('error'); ok = false; }
+      else el.classList.remove('error');
     });
     return ok;
   }
 
-  // Conditional fields
   document.addEventListener('change', e => {
-    const t = e.target;
+    const t = e.target as HTMLInputElement;
     if (t.type !== 'radio') return;
-    if (t.name === 'existing') {
-      document.getElementById('existing-detail').style.display = t.value !== 'no' ? 'flex' : 'none';
-    }
-    if (t.name === 'timeline') {
-      document.getElementById('deadline-detail').style.display = t.value !== 'no-deadline' ? 'flex' : 'none';
-    }
-    if (t.name === 'source') {
-      document.getElementById('referral-detail').style.display = t.value === 'referral' ? 'flex' : 'none';
-    }
+    if (t.name === 'source')
+      (document.getElementById('referral-detail') as HTMLElement).style.display = t.value === 'referral' ? 'flex' : 'none';
   });
 
-  // Clear error on input
-  document.addEventListener('input', e => e.target.classList.remove('error'));
-
+  document.addEventListener('input', e => (e.target as HTMLElement).classList.remove('error'));
   backBtn.addEventListener('click', () => goto(current - 1));
   nextBtn.addEventListener('click', () => { if (validate(current)) goto(current + 1); });
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!validate(current)) return;
-
     submitBtn.textContent = 'Submitting...';
     submitBtn.disabled = true;
-
     try {
-      const res = await fetch('/api/apply', {
-        method: 'POST',
-        body: new FormData(form),
-      });
+      const res  = await fetch('/api/apply', { method: 'POST', body: new FormData(form) });
       const json = await res.json();
-
       if (json.ok) {
-        formCard.style.display = 'none';
-        successCard.style.display = 'flex';
-        successCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        formCard!.style.display   = 'none';
+        successCard!.style.display = 'flex';
       } else {
-        submitBtn.textContent = 'Submit application';
+        submitBtn.textContent = 'Submit';
         submitBtn.disabled = false;
       }
     } catch {
-      submitBtn.textContent = 'Submit application';
+      submitBtn.textContent = 'Submit';
       submitBtn.disabled = false;
     }
   });

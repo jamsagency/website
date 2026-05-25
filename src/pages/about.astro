@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="About Jams: the AI and software team for founders"
+  description="The product team for businesses that don't have one. Based in Buenos Aires, working with founders and operators across the US and Canada."
+>
+<style>
+  /* Team grid: 2-col → 1-col at 768px */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+  }
+  @media (max-width: 768px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+    /* Make the photo appear above the cards on mobile */
+    .team-photo {
+      order: -1;
+      transform: none !important;
+    }
+  }
+
+  /* How we work: 3-col grid → 1-col at 768px, fix right borders */
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: 768px) {
+    .how-grid {
+      grid-template-columns: 1fr;
+    }
+    .how-grid > div[style*="border-right"] {
+      border-right: none !important;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .how-grid > div:last-child {
+      border-bottom: none;
+    }
+  }
+
+  /* About hero liquid glass card */
+  @media (max-width: 768px) {
+    .about-hero-card {
+      padding: 24px 20px 32px !important;
+    }
+  }
+
+  /* Section heading: remove white-space nowrap on mobile */
+  @media (max-width: 768px) {
+    .section-heading-nowrap {
+      white-space: normal !important;
+    }
+  }
+
+  /* About body text */
+  @media (max-width: 480px) {
+    .about-body-text {
+      font-size: 18px !important;
+    }
+  }
+</style>
+
+<!-- ===== HERO ===== -->
+<section class="hero-bg hero-no-bottom-pad" style="padding: 128px 24px 0; margin-top: 65px;">
+  <div class="hn-container">
+    <h1 style="font-size: clamp(40px, 5.5vw, 80px); font-weight: 500; line-height: 1.0; letter-spacing: -0.025em; color: #111; text-align: center; margin: 0 auto 40px;">
+      We're the product team your business doesn't have yet
+    </h1>
+    <div class="hero-grid">
+      <!-- Left: body copy -->
+      <div style="display: flex; flex-direction: column; gap: 20px; padding-top: 8px;">
+        <p class="about-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">There are plenty of dev firms, agencies, and freelancers you could hire.</p>
+        <p class="about-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">Most of them will build what you ask for. The problem is that what you ask for and what your business actually needs are rarely the same thing.</p>
+      </div>
+      <!-- Right: liquid glass -->
+      <div class="liquid-glass about-hero-card" style="padding: 32px 40px 44px; display: flex; flex-direction: column; gap: 16px;">
+        <p class="about-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">At Jams we close that gap. We figure out what to build, design it, build it, and stay accountable to what happens after it ships.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT WE DO ===== -->
+<section style="background: #111; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #fff; margin: 0 0 48px;">
+      What we do
+    </h2>
+    <div style="display: flex; flex-direction: column; max-width: 680px;">
+      <p style="font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #EBEBED; margin: 0 0 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        We take a business problem and turn it into a working product.
+      </p>
+      <p style="font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #EBEBED; margin: 0 0 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        That means understanding the operation first. Identifying where software and AI actually move the numbers. Designing something people will use. Building it. And owning what happens after launch alongside the client.
+      </p>
+      <p style="font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #EBEBED; margin: 0;">
+        We don't quote based on requirements. We don't do time-and-materials. We always start with the whiteboard, and run iteration cycles afterwards.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE TEAM ===== -->
+<section style="background: #F3F3F3; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #111; margin: 0 0 48px;">
+      The team
+    </h2>
+    <div class="team-grid">
+
+      <!-- Left: stacked cards -->
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="background: #fff; border-radius: 16px; padding: 32px 28px; display: flex; flex-direction: column;">
+          <div style="font-size: 40px; font-weight: 500; color: #A85DFF; line-height: 1; margin-bottom: 12px;">01</div>
+          <h3 style="font-size: 28px; font-weight: 500; color: #0F1112; margin: 0 0 12px; letter-spacing: -0.01em;">Shapers</h3>
+          <p style="font-size: 16px; line-height: 1.65; color: #555; margin: 0;">
+            The people who figure out what to build. They map the operation, run the whiteboard sessions, challenge the assumptions, and define the scope before anyone writes a line of code. This is the role most agencies don't have — and the main reason most software projects go wrong.
+          </p>
+        </div>
+
+        <div style="background: #fff; border-radius: 16px; padding: 32px 28px; display: flex; flex-direction: column;">
+          <div style="font-size: 40px; font-weight: 500; color: #A85DFF; line-height: 1; margin-bottom: 12px;">02</div>
+          <h3 style="font-size: 28px; font-weight: 500; color: #0F1112; margin: 0 0 12px; letter-spacing: -0.01em;">Designers</h3>
+          <p style="font-size: 16px; line-height: 1.65; color: #555; margin: 0;">
+            Product designers who work from the problem outward, not from the aesthetic inward. Every flow is designed around how the end user actually works.
+          </p>
+        </div>
+
+        <div style="background: #fff; border-radius: 16px; padding: 32px 28px; display: flex; flex-direction: column;">
+          <div style="font-size: 40px; font-weight: 500; color: #A85DFF; line-height: 1; margin-bottom: 12px;">03</div>
+          <h3 style="font-size: 28px; font-weight: 500; color: #0F1112; margin: 0 0 12px; letter-spacing: -0.01em;">Builders</h3>
+          <p style="font-size: 16px; line-height: 1.65; color: #555; margin: 0;">
+            Senior developers who have shipped across hospitality, logistics, edtech, fintech, and community platforms. They work against shaped, scoped work.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: team photo -->
+      <div class="team-photo" style="border-radius: 8px; overflow: hidden; align-self: start; border: 1px solid rgba(0,0,0,0.15); box-shadow: 0 8px 32px rgba(0,0,0,0.16); transform: rotate(1.5deg);">
+        <img
+          src="/team-allhands-jams-agency.png"
+          alt="Jams team all-hands"
+          style="width: 100%; height: auto; display: block;"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW WE WORK ===== -->
+<section style="background: #fff; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 class="section-heading-nowrap" style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #111; margin: 0 0 48px; white-space: nowrap;">
+      What working with us looks like
+    </h2>
+    <div style="border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; overflow: hidden;">
+      <div class="how-grid" style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+        <div style="padding: 40px; border-right: 1px solid rgba(0,0,0,0.08);">
+          <h3 style="font-size: 18px; font-weight: 600; color: #0F1112; margin: 0 0 12px;">Shared Slack channel</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: #555; margin: 0;">Daily updates and fast responses.</p>
+        </div>
+        <div style="padding: 40px; border-right: 1px solid rgba(0,0,0,0.08);">
+          <h3 style="font-size: 18px; font-weight: 600; color: #0F1112; margin: 0 0 12px;">Weekly sync</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: #555; margin: 0;">Every week we meet to demo new things and shape what's next.</p>
+        </div>
+        <div style="padding: 40px;">
+          <h3 style="font-size: 18px; font-weight: 600; color: #0F1112; margin: 0 0 12px;">Monthly cycle</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: #555; margin: 0;">We commit to a 4-week cycle by betting what we can ship by the end.</p>
+        </div>
+      </div>
+      <div class="how-grid">
+        <div style="padding: 40px; border-right: 1px solid rgba(0,0,0,0.08);">
+          <h3 style="font-size: 18px; font-weight: 600; color: #0F1112; margin: 0 0 12px;">Need help? Just reach out</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: #555; margin: 0;">We're active daily, ready to help on any software issue, and available for a call if needed.</p>
+        </div>
+        <div style="padding: 40px; border-right: 1px solid rgba(0,0,0,0.08);">
+          <h3 style="font-size: 18px; font-weight: 600; color: #0F1112; margin: 0 0 12px;">On-going shaping</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: #555; margin: 0;">We hop on calls and open the whiteboard regularly to figure things out together.</p>
+        </div>
+        <div style="padding: 40px;">
+          <h3 style="font-size: 18px; font-weight: 600; color: #0F1112; margin: 0 0 12px;">Awesome vibes</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: #555; margin: 0;">We love our jobs. On every call and message, we make our best to make it fun and exciting.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<CTASection />
+
+</BaseLayout>

@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+---
+
+<BaseLayout
+  title="How to shape custom AI and software | Jams"
+  description="How we figure out what to build before we build it, and why we do it throughout every engagement."
+>
+<style>
+  /* Shaping section: 2-col sticky layout → 1-col at 768px */
+  .shaping-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .shaping-layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  /* 3-col → 1-col at 768px */
+  .shaping-3col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .shaping-3col {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* 4-col → 2-col at 768px → 1-col at 480px, fix border-rights */
+  .shaping-4col {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  @media (max-width: 768px) {
+    .shaping-4col {
+      grid-template-columns: 1fr 1fr;
+    }
+    .shaping-4col > div[style*="border-right"] {
+      border-right: none !important;
+    }
+    .shaping-4col > div:nth-child(1),
+    .shaping-4col > div:nth-child(2) {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .shaping-4col > div:nth-child(1) {
+      border-right: 1px solid rgba(255,255,255,0.1) !important;
+    }
+    .shaping-4col > div:nth-child(3) {
+      border-right: 1px solid rgba(255,255,255,0.1) !important;
+    }
+  }
+  @media (max-width: 480px) {
+    .shaping-4col {
+      grid-template-columns: 1fr;
+    }
+    .shaping-4col > div {
+      border-right: none !important;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .shaping-4col > div:last-child {
+      border-bottom: none;
+    }
+  }
+</style>
+
+<!-- Hero -->
+<section class="hero-bg" style="margin-top: 65px; padding: 128px 24px;">
+  <div class="hn-container">
+    <div style="max-width: 820px; margin: 0 auto; text-align: center;">
+      <h1 style="font-size: clamp(36px, 5vw, 68px); font-weight: 500; line-height: 1.05; letter-spacing: -0.025em; color: #111; margin: 0 0 48px;">Most software teams build first and figure out what it should have been later.</h1>
+    </div>
+    <div style="max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+      <p style="margin: 0; font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #404040;">There is a discipline that sits between "we have a problem" and "let's build something." Most agencies skip it. They take the brief, build what's in it, and deliver something that technically works but doesn't move anything.</p>
+      <p style="margin: 0; font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #404040;">We call it shaping. We do it before and during every project. It is the reason our clients don't end up with software that nobody uses.</p>
+    </div>
+  </div>
+</section>
+
+<!-- What shaping looks like at Jams -->
+<section style="background: #111; padding: 128px 24px;">
+  <div class="hn-container">
+    <div class="shaping-layout">
+
+      <div class="shaping-sticky-col">
+        <h2 style="font-size: clamp(32px, 3.5vw, 52px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.05; color: #fff; margin: 0 0 40px;">We shape all the time.</h2>
+        <img src="/jams-agency-whiteboard-shaping.jpeg" alt="Jams team at the whiteboard during a shaping session" style="width: 100%; border-radius: 12px; display: block; transform: rotate(-1.5deg); box-shadow: 0 8px 32px rgba(0,0,0,0.32);" />
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 32px;">
+        <p style="margin: 0; font-size: 18px; line-height: 1.7; letter-spacing: -0.01em; color: #CCCCCC;">We adopted shaping after reading 37signals' Shape Up.</p>
+        <p style="margin: 0; font-size: 18px; line-height: 1.7; letter-spacing: -0.01em; color: #CCCCCC;">When we start a new project, we run longer shaping sessions. We sit with you, map the operation, identify what actually needs to exist, and define the first scope.</p>
+        <p style="margin: 0; font-size: 18px; line-height: 1.7; letter-spacing: -0.01em; color: #CCCCCC;">During the build: every cycle starts with a shaping session. What are we building next? What's the real problem we're solving this cycle? What are the rabbit holes we're explicitly not going down? We whiteboard it, challenge it, and then build it.</p>
+        <p style="margin: 0; font-size: 18px; line-height: 1.7; letter-spacing: -0.01em; color: #CCCCCC;">Sometimes we're in the middle of a cycle and a new idea comes up. We take it to the whiteboard immediately.</p>
+        <p style="margin: 0; font-size: 18px; line-height: 1.7; letter-spacing: -0.01em; color: rgba(255,255,255,0.45); font-style: italic;">Whiteboard outputs aren't documents. The output is clarity for everyone, an updated product spec, and a prototype to make sure we're aligned.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- What happens in a shaping session -->
+<section style="background: #F3F3F3; padding: 128px 24px;">
+  <div class="hn-container">
+    <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #999; margin: 0 0 20px; text-align: center;">What happens in a shaping session</p>
+    <h2 style="font-size: clamp(28px, 3.5vw, 48px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: #111; margin: 0 auto 72px; text-align: center; max-width: 600px;">Simple: we open up a whiteboard and start discussing an idea.</h2>
+
+    <div class="shaping-3col">
+
+      <div style="background: #fff; border-radius: 16px; padding: 40px 36px; box-shadow: 0 2px 10px rgba(0,0,0,0.06), inset 0 2px 2px 0 rgb(254,254,254);">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A85DFF; margin: 0 0 20px;">Start with the problem</p>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #404040;">Not "we need a feature." What is the user actually trying to do, where does the current experience break, and what does success look like in concrete terms?</p>
+      </div>
+
+      <div style="background: #fff; border-radius: 16px; padding: 40px 36px; box-shadow: 0 2px 10px rgba(0,0,0,0.06), inset 0 2px 2px 0 rgb(254,254,254);">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A85DFF; margin: 0 0 20px;">Draw it out</p>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #404040;">We poke holes in it. We identify what's already clear and what's an assumption being treated as a fact. And we push back a lot.</p>
+      </div>
+
+      <div style="background: #fff; border-radius: 16px; padding: 40px 36px; box-shadow: 0 2px 10px rgba(0,0,0,0.06), inset 0 2px 2px 0 rgb(254,254,254);">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A85DFF; margin: 0 0 20px;">The output</p>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #404040;">A rough concept, the main elements of the solution, and a short list of what we're explicitly not building. That's enough to make a decision.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Why the whiteboard matters -->
+<section style="background: #fff; padding: 128px 24px;">
+  <div class="hn-container">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <img src="/jams-agency-shaping-team.jpeg" alt="The Jams shaping team" style="width: 100%; border-radius: 12px; display: block; margin-bottom: 64px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);" />
+      <h2 style="font-size: clamp(28px, 3.5vw, 48px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: #111; margin: 0 0 48px;">A lot of product work happens in Slack threads and documents.</h2>
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <p style="margin: 0; font-size: 20px; line-height: 1.7; letter-spacing: -0.01em; color: #404040;">That works for keeping records but not for deep thinking.</p>
+        <p style="margin: 0; font-size: 20px; line-height: 1.7; letter-spacing: -0.01em; color: #404040;">The whiteboard forces something different. It enables collaboration, group discussion, and coming up with the right thing together.</p>
+        <p style="margin: 0; font-size: 20px; line-height: 1.7; letter-spacing: -0.01em; color: #404040;">Every client we've worked with long-term has had that moment: something that looked clear in writing that turned into a completely different decision once we shaped it together.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Shaping is an ongoing practice -->
+<section style="background: #111; padding: 128px 24px;">
+  <div class="hn-container">
+    <div style="max-width: 680px; margin: 0 auto 80px; text-align: center;">
+      <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #555; margin: 0 0 20px;">An ongoing practice, not a phase</p>
+      <h2 style="font-size: clamp(28px, 3.5vw, 48px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; color: #fff; margin: 0 0 24px;">Most teams treat discovery as a checkbox at the start of a project.</h2>
+      <p style="font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">We treat shaping as a rhythm. The team builds what was shaped. We review what shipped, look at what the data says, and shape the next cycle based on what we learned.</p>
+    </div>
+
+    <div class="shaping-4col">
+      <div style="padding: 40px 32px; border-right: 1px solid rgba(255,255,255,0.1);">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A85DFF; margin: 0 0 20px;">01</p>
+        <h3 style="font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; color: #fff; margin: 0 0 14px;">Shape</h3>
+        <p style="font-size: 15px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">Define the problem. Identify what to build. Decide what we're explicitly not building.</p>
+      </div>
+      <div style="padding: 40px 32px; border-right: 1px solid rgba(255,255,255,0.1);">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A85DFF; margin: 0 0 20px;">02</p>
+        <h3 style="font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; color: #fff; margin: 0 0 14px;">Build</h3>
+        <p style="font-size: 15px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">The team builds against the shaped scope. No scope creep. No rabbit holes.</p>
+      </div>
+      <div style="padding: 40px 32px; border-right: 1px solid rgba(255,255,255,0.1);">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A85DFF; margin: 0 0 20px;">03</p>
+        <h3 style="font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; color: #fff; margin: 0 0 14px;">Ship</h3>
+        <p style="font-size: 15px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">Every cycle ends with something in production. Real users, real feedback, real data.</p>
+      </div>
+      <div style="padding: 40px 32px;">
+        <p style="font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #A85DFF; margin: 0 0 20px;">04</p>
+        <h3 style="font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; color: #fff; margin: 0 0 14px;">Learn</h3>
+        <p style="font-size: 15px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">What did the data say? What do we shape differently next cycle? The loop starts again.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<CTASection />
+
+</BaseLayout>

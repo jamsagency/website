@@ -1,0 +1,44 @@
+import type { APIRoute } from 'astro';
+
+export const prerender = false;
+
+export const POST: APIRoute = async ({ request }) => {
+  const data = await request.formData();
+  const email = data.get('email')?.toString().trim() ?? '';
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return new Response(JSON.stringify({ ok: false, error: 'Invalid email' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const scriptUrl = import.meta.env.GOOGLE_SCRIPT_URL;
+
+  if (!scriptUrl) {
+    return new Response(JSON.stringify({ ok: false, error: 'Not configured' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  try {
+    await fetch(scriptUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, timestamp: new Date().toISOString() }),
+      redirect: 'follow',
+    });
+
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (err) {
+    console.error('Subscribe error:', err);
+    return new Response(JSON.stringify({ ok: false }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+};

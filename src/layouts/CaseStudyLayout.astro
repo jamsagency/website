@@ -28,46 +28,61 @@ const breadcrumbSchema = {
 ---
 
 <BaseLayout {title} {description} schema={schema ?? breadcrumbSchema}>
-  <!-- Internal hero container -->
-  <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
-    <div class="rounded-[24px] overflow-hidden" style="background: var(--neutral-100);">
-      <!-- Content: keeps all internal padding -->
-      <div class="container pt-[120px] pb-[64px]">
-        <div class="flex flex-col gap-6">
-          <!-- Breadcrumb as eyebrow navigation -->
-          <nav aria-label="Breadcrumb">
-            <ol class="flex items-center gap-2 font-sans text-p-xs text-neutral-500">
-              <li><a href="/" class="hover:text-neutral-900 transition-colors duration-fast">Home</a></li>
-              <li aria-hidden="true">/</li>
-              <li><a href="/work" class="hover:text-neutral-900 transition-colors duration-fast">Work</a></li>
-              <li aria-hidden="true">/</li>
-              <li class="text-neutral-900" aria-current="page">{projectName}</li>
-            </ol>
-          </nav>
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2">
-            {tags.map((tag) => <span class="chip">{tag}</span>)}
-          </div>
-          {headline && (
-            <div class="flex flex-col gap-4 pt-2">
-              <h1 class="font-display text-h1 text-neutral-900 max-w-3xl">{headline}</h1>
-              {intro && <p class="font-sans text-p-l text-neutral-600 max-w-2xl">{intro}</p>}
-            </div>
-          )}
+<style is:global>
+  /* Case study hero: reduce padding on mobile */
+  .case-hero-inner {
+    padding-top: 120px;
+    padding-bottom: 64px;
+  }
+  @media (max-width: 768px) {
+    .case-hero-inner {
+      padding-top: 80px;
+      padding-bottom: 40px;
+    }
+  }
+
+  /* Tech stack dl grid: 2-col → 1-col on mobile */
+  @media (max-width: 480px) {
+    .case-study-dl {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* Dark stat box: reduce padding on mobile */
+  @media (max-width: 480px) {
+    .case-stat-box {
+      padding: 32px 24px !important;
+    }
+  }
+</style>
+
+  <!-- Internal hero -->
+  <section class="hero-bg overflow-hidden">
+    <div class="container case-hero-inner">
+      <div class="flex flex-col gap-6">
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2">
+          {tags.map((tag) => <span class="chip">{tag}</span>)}
         </div>
+        {headline && (
+          <div class="flex flex-col gap-4 pt-2">
+            <h1 class="font-display text-h1 text-neutral-900 max-w-3xl">{headline}</h1>
+            {intro && <p class="font-sans text-p-l text-neutral-600 max-w-2xl">{intro}</p>}
+          </div>
+        )}
       </div>
-      <!-- Hero image: full width, flush to bottom edge -->
-      {heroImage && (
-        <img
-          src={heroImage}
-          alt={heroImageAlt ?? projectName}
-          width="1240"
-          height="700"
-          class="w-full h-auto block"
-          loading="eager"
-        />
-      )}
     </div>
+    <!-- Hero image: full width, flush to bottom edge -->
+    {heroImage && (
+      <img
+        src={heroImage}
+        alt={heroImageAlt ?? projectName}
+        width="1240"
+        height="700"
+        class="w-full h-auto block"
+        loading="eager"
+      />
+    )}
   </section>
 
   <!-- Page content -->

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import CTASection from '../../components/CTASection.astro';
 
 const posts = [
   {
@@ -79,26 +80,43 @@ const posts = [
 ---
 
 <BaseLayout
-  title="Blog — Custom Software, AI, and Digital Operations | Jams"
-  description="Practical writing on custom software, AI implementation, and digital operations for business owners and operators."
+  title="Software, AI and product insights by Jams"
+  description="What we've learned building software and AI products for operators. Practical takes on Bubble, code, AI, and building products that move the business."
 >
   <!-- Hero -->
-  <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
-    <div class="rounded-[24px] pt-[160px] pb-[80px]" style="background: var(--neutral-100);">
-      <div class="container">
-        <div class="flex flex-col items-center text-center gap-4">
-          <span class="eyebrow">Blog</span>
-          <h1 class="font-display text-h1 text-neutral-900">What we've learned building products for operators</h1>
-        </div>
-      </div>
+  <section class="hero-bg" style="padding: 128px 24px; margin-top: 65px;">
+    <div class="hn-container" style="text-align: center;">
+      <h1 style="font-size: clamp(40px, 5.5vw, 80px); font-weight: 500; line-height: 1.0; letter-spacing: -0.025em; color: #111; margin: 0 auto 24px;">What we've learned building products for operators</h1>
+      <p style="font-size: 20px; line-height: 1.6; letter-spacing: -0.01em; color: #555; margin: 0 auto; max-width: 560px;">Practical takes on software, AI, and building products that actually move the business. Written by the team at Jams.</p>
     </div>
   </section>
 
-  <section class="section hairline">
-    <div class="container flex flex-col gap-12">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <section style="background: #F3F3F3; padding: 128px 24px;">
+    <div class="hn-container">
+      <div class="blog-posts-grid">
         {posts.map((p) => <BlogCard {...p} />)}
       </div>
     </div>
   </section>
+
+  <style>
+    .blog-posts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+    @media (max-width: 992px) {
+      .blog-posts-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 600px) {
+      .blog-posts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <CTASection />
 </BaseLayout>

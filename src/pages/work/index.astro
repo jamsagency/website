@@ -4,40 +4,120 @@ import CaseStudyCard from '../../components/CaseStudyCard.astro';
 import CTASection from '../../components/CTASection.astro';
 
 const projects = [
-  { title: 'The Fold',                slug: 'the-fold',                tags: ['Mobile app', 'AI agent', 'Community platform'],        oneliner: 'WhatsApp deal flow, replaced by Alfred — an AI concierge for private equity.',                                        image: '/thefold-cover.png',  imageAlt: 'The Fold app interface' },
-  { title: 'DropCar',                 slug: 'dropcar',                 tags: ['Web app', 'Booking flow'],   oneliner: 'A two-sided logistics business, unified into one digital story.',                                                      image: '/dropcar-cover.png',  imageAlt: 'DropCar web app' },
-  { title: 'The Arena',               slug: 'the-arena',               tags: ['Web app', 'AI automation', 'EdTech'],  oneliner: 'Manual Notion pages and one-by-one ChatGPT reports, replaced by an automated student platform.',                       image: '/thearena-cover.png', imageAlt: 'The Arena student platform' },
-  { title: 'Red Horse Mountain Ranch',slug: 'red-horse-mountain-ranch',tags: ['Web app', 'Booking platform', 'Hospitality'],          oneliner: 'A luxury dude ranch with no direct bookings, replaced by a branded booking flow with Stripe deposits.',                 image: '/redhorse-cover.png', imageAlt: 'Red Horse Mountain Ranch booking platform' },
-  { title: 'Qmius',                   slug: 'qmius',                   tags: ['Web app', 'B2B marketplace'],                          oneliner: '', image: '/qmius-cover.png',       imageAlt: 'Qmius marketplace',           comingSoon: true },
-  { title: 'The 93% Club',            slug: '93-percent-club',         tags: ['Web app', 'Community platform'],                       oneliner: '', image: '/93percent-cover.png',   imageAlt: 'The 93% Club platform',       comingSoon: true },
-  { title: 'Fletech',                 slug: 'fletech',                 tags: ['Web app'],                                             oneliner: '', image: '/fletech-cover.png',     imageAlt: 'Fletech web app',             comingSoon: true },
-  { title: 'Buyer Match',             slug: 'buyer-match',             tags: ['Web app', 'AI agent'],                                 oneliner: '', image: '/buyermatch-cover.png',  imageAlt: 'Buyer Match app',             comingSoon: true },
+  {
+    title: 'The Fold',
+    slug: 'the-fold',
+    headline: 'An AI concierge that replaced WhatsApp for a private equity deal community.',
+    bullets: [
+      'From manual group chats to a platform that handles deal flow, introductions, and group coordination automatically.',
+    ],
+    image: '/thefold-cover.png',
+    imageAlt: 'The Fold app interface',
+  },
+  {
+    title: 'DropCar',
+    slug: 'dropcar',
+    headline: 'A unified digital platform for a two-sided parking and transport business.',
+    bullets: [
+      'From disconnected products to one cohesive brand and high-converting booking flow.',
+    ],
+    image: '/dropcar-cover.png',
+    imageAlt: 'DropCar web app',
+  },
+  {
+    title: 'The Arena',
+    slug: 'the-arena',
+    headline: 'A custom student management tool with built-in AI.',
+    bullets: [
+      'From hundreds of manual Notion pages to thousands of automated student reports.',
+    ],
+    image: '/thearena-cover.png',
+    imageAlt: 'The Arena student platform',
+  },
+  {
+    title: 'Red Horse Mountain Ranch',
+    slug: 'red-horse-mountain-ranch',
+    headline: 'A custom booking engine for an all-inclusive dude ranch experience.',
+    bullets: [
+      'From zero direct bookings to 5% conversion rate in 8 weeks.',
+      '20 hours saved on lead and booking management every month.',
+    ],
+    image: '/redhorse-cover.png',
+    imageAlt: 'Red Horse Mountain Ranch booking platform',
+  },
+  {
+    title: 'Qmius',
+    slug: 'qmius',
+    image: '/qmius-cover.png',
+    imageAlt: 'Qmius marketplace',
+    comingSoon: true,
+  },
+  {
+    title: 'The 93% Club',
+    slug: '93-percent-club',
+    image: '/93percent-cover.png',
+    imageAlt: 'The 93% Club platform',
+    comingSoon: true,
+  },
+  {
+    title: 'Fletech',
+    slug: 'fletech',
+    image: '/fletech-cover.png',
+    imageAlt: 'Fletech web app',
+    comingSoon: true,
+  },
+  {
+    title: 'Buyer Match',
+    slug: 'buyer-match',
+    image: '/buyermatch-cover.png',
+    imageAlt: 'Buyer Match app',
+    comingSoon: true,
+  },
 ];
+
+const active = projects.filter(p => !p.comingSoon);
+const soon   = projects.filter(p =>  p.comingSoon);
 ---
 
 <BaseLayout
-  title="Client Work — Custom Software and AI Products | Jams"
-  description="Case studies across hospitality, B2B SaaS, community platforms, marketplaces, and AI agents."
+  title="Work: Custom AI and software we built | Jams"
+  description="Case studies from operators who needed the right product built. Booking engines, AI tools, ops platforms, and membership products."
 >
-  <!-- Internal hero -->
-  <section class="px-3 pt-4 pb-10 md:px-4 md:pb-12">
-    <div class="rounded-[24px] pt-[160px] pb-[80px]" style="background: var(--neutral-100);">
-      <div class="container">
-        <div class="flex flex-col items-center text-center gap-4">
-          <span class="eyebrow">Work</span>
-          <h1 class="font-display text-h1 text-neutral-900">For businesses that needed a product team.<br />Here's what happened.</h1>
-        </div>
+  <!-- Hero -->
+  <section class="hero-bg work-hero" style="padding: 128px 24px; margin-top: 65px;">
+    <div class="hn-container">
+      <h1 style="font-size: clamp(40px, 5.5vw, 80px); font-weight: 500; line-height: 1.0; letter-spacing: -0.025em; color: #111; text-align: center; margin: 0 auto;">How we helped our customers figure out the right custom AI and software</h1>
+    </div>
+  </section>
+
+  <!-- Active projects -->
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {active.map((p) => <CaseStudyCard {...p} />)}
       </div>
     </div>
   </section>
 
-  <!-- Project grid -->
-  <section class="section hairline">
+  <!-- Coming soon -->
+  <section class="work-coming-soon">
     <div class="container">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        {projects.map((p) => <CaseStudyCard {...p} />)}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {soon.map((p) => <CaseStudyCard {...p} />)}
       </div>
     </div>
   </section>
+
+  <style>
+    .work-coming-soon {
+      padding-bottom: 100px;
+    }
+    @media (max-width: 480px) {
+      .work-coming-soon {
+        padding-bottom: 60px;
+      }
+    }
+  </style>
+
   <CTASection />
 </BaseLayout>

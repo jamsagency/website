@@ -1,125 +1,254 @@
 ---
 const links = [
-  { label: 'Work',  href: '/work' },
-  { label: 'FAQs',  href: '/faqs' },
-  { label: 'Blog',  href: '/blog' },
+  { label: 'Work',     href: '/work' },
+  { label: 'About',   href: '/about' },
+  { label: 'AI',      href: '/ai' },
+  { label: 'Thoughts', href: '/blog' },
+  { label: 'FAQs',    href: '/faqs' },
 ];
+
+const pathname = Astro.url.pathname;
 ---
 
-<!-- Desktop: floating capsule nav -->
-<header class="fixed top-0 inset-x-0 z-50 hidden md:block pt-10 pointer-events-none">
-  <div class="w-full max-w-[850px] mx-auto px-4 pointer-events-auto">
-    <nav
-      class="relative flex items-center px-4 py-2 rounded-pill"
-      style="border: 0.5px solid var(--border-soft); background: rgba(243,243,245,0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow-card), var(--shadow-inset-top);"
-    >
-      <a href="/" class="flex items-center shrink-0" aria-label="Jams home">
-        <img src="/jams-logo-black.svg" alt="Jams" width="150" height="54" class="h-14 w-auto" />
+<header class="jams-nav">
+  <div class="jams-nav-inner">
+    <a href="/" class="jams-nav-logo" aria-label="Jams home">
+      <img src="/jams-logo-black.svg" alt="Jams" width="142" height="51" style="width:142px; height:auto;" />
+      <span class="jams-nav-tagline">is the AI and software team for founders who need the right thing built</span>
+    </a>
+    <nav class="jams-nav-links" aria-label="Main navigation">
+      {links.map(({ label, href }) => (
+        <a href={href} class={pathname.startsWith(href) ? 'nav-active' : ''}>{label}</a>
+      ))}
+      <a href="/start" class="btn-primary jams-nav-cta">
+        <i data-lucide="arrow-right" class="btn-arrow"></i>
+        <span>Book a call</span>
       </a>
-
-      <div class="ml-auto flex items-center gap-1">
-        {links.map(({ label, href }) => (
-          <a
-            href={href}
-            class="px-3 py-1.5 rounded-pill font-sans text-p-s font-medium text-neutral-850 transition-colors duration-fast hover:text-neutral-950"
-          >
-            {label}
-          </a>
-        ))}
-        <a href="/start" class="btn-primary rounded-pill py-2 px-4 text-p-s ml-2">
-          Book a workshop
-        </a>
-      </div>
     </nav>
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-menu-open"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="jams-hamburger"
+    >
+      <i class="ph ph-list" style="font-size:20px;"></i>
+    </button>
   </div>
 </header>
 
-<!-- Mobile: topbar -->
-<header
-  class="fixed top-0 inset-x-0 z-50 flex md:hidden items-center justify-between px-6 py-3"
-  style="background: rgba(243,243,245,0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 0.5px solid var(--border-soft);"
->
-  <a href="/" aria-label="Jams home">
-    <img src="/jams-logo-black.svg" alt="Jams" width="120" height="44" class="h-10 w-auto" />
-  </a>
-  <button
-    id="mobile-menu-open"
-    aria-label="Open menu"
-    aria-expanded="false"
-    aria-controls="mobile-menu"
-    style="width:40px; height:40px; border-radius:999px; border:0.5px solid var(--border-soft); background:#F3F3F5; box-shadow: var(--shadow-card), var(--shadow-inset-top); display:flex; align-items:center; justify-content:center; color:#404040;"
-  >
-    <i class="ph ph-list" style="font-size:18px;"></i>
-  </button>
-</header>
-
-<!-- Mobile: full-screen overlay menu -->
+<!-- Mobile: full-screen overlay -->
 <div
   id="mobile-menu"
   aria-hidden="true"
-  class="fixed inset-0 z-[200] flex flex-col transition-all duration-200"
-  style="background:#0B0B0B; opacity:0; pointer-events:none; transform:translateY(8px);"
+  class="jams-mobile-menu"
 >
-  <!-- Overlay header -->
-  <div class="flex items-center justify-between px-6 py-3" style="border-bottom: 0.5px solid rgba(255,255,255,0.08);">
+  <div class="jams-mobile-header">
     <a href="/" aria-label="Jams home" class="mobile-menu-link">
-      <img src="/jams-logo-white.svg" alt="Jams" width="120" height="44" class="h-10 w-auto" />
+      <img src="/jams-logo-white.svg" alt="Jams" width="120" height="44" style="height:40px; width:auto;" />
     </a>
-    <button
-      id="mobile-menu-close"
-      aria-label="Close menu"
-      style="width:40px; height:40px; border-radius:999px; border:0.5px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; color:#fff;"
-    >
+    <button id="mobile-menu-close" aria-label="Close menu" class="jams-mobile-close">
       <i class="ph ph-x" style="font-size:18px;"></i>
     </button>
   </div>
-
-  <!-- Nav links -->
-  <nav class="flex flex-col px-6 pt-10 gap-1 flex-1">
+  <nav class="jams-mobile-links">
     {links.map(({ label, href }) => (
-      <a
-        href={href}
-        class="mobile-menu-link font-display text-white py-4 flex items-center justify-between"
-        style="font-size:52px; line-height:1; letter-spacing:-0.01em; border-bottom: 0.5px solid rgba(255,255,255,0.08);"
-      >
+      <a href={href} class="mobile-menu-link jams-mobile-link">
         {label}
-        <i class="ph ph-arrow-right" style="font-size:24px; color:rgba(255,255,255,0.3);"></i>
+        <i class="ph ph-arrow-right" style="font-size:20px; color:rgba(255,255,255,0.3);"></i>
       </a>
     ))}
   </nav>
-
-  <!-- CTA -->
-  <div class="px-6 pb-12 pt-8">
-    <a
-      href="/start"
-      class="mobile-menu-link btn-primary flex items-center justify-center gap-2 py-4 px-6 text-base font-semibold"
-      style="border-radius:12px; width:100%;"
-    >
-      Book a workshop
-      <i class="ph ph-arrow-right" style="font-size:16px;"></i>
+  <div class="jams-mobile-cta">
+    <a href="/start" class="mobile-menu-link btn-primary" style="width:100%; justify-content:center; font-size:16px; border-radius:12px; padding:16px 24px;">
+      <i data-lucide="arrow-right" class="btn-arrow"></i>
+      <span>Book a call</span>
     </a>
   </div>
 </div>
 
+<style is:global>
+  .jams-nav {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 8px 24px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+  }
+  .jams-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 24px;
+  }
+  .jams-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    text-decoration: none;
+    color: inherit;
+    min-width: 0;
+  }
+  .jams-nav-tagline {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: #0F1112;
+    line-height: 1.25;
+    margin-left: -3px;
+    position: relative;
+    top: 0;
+  }
+  .jams-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+  .jams-nav-links a:not(.btn-primary) {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: #0F1112;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.12s;
+  }
+  .jams-nav-links a:not(.btn-primary)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #0F1112;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1), transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .jams-nav-links a:not(.btn-primary):hover::after,
+  .jams-nav-links a.nav-active::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .jams-nav-links a:not(.btn-primary):hover { color: #0F1112; }
+  .jams-nav-cta {
+    width: 130px;
+    font-size: 16px !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  /* Hamburger — hidden on desktop */
+  .jams-hamburger {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 0.5px solid var(--border-soft);
+    background: #F3F3F5;
+    box-shadow: var(--shadow-card), var(--shadow-inset-top);
+    align-items: center;
+    justify-content: center;
+    color: #404040;
+    cursor: pointer;
+  }
+  @media (max-width: 992px) {
+    .jams-nav-links { display: none; }
+    .jams-hamburger { display: flex; }
+    .jams-nav-tagline { display: none; }
+  }
+  @media (max-width: 768px) {
+    .jams-nav-inner { padding-left: 0; padding-right: 0; }
+  }
+  @media (max-width: 480px) {
+    .jams-nav { padding-left: 16px; padding-right: 16px; }
+  }
+
+  /* Mobile overlay */
+  .jams-mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    background: #0B0B0B;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 200ms cubic-bezier(0.22,1,0.36,1), transform 200ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .jams-mobile-menu.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .jams-mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .jams-mobile-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 0.5px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+  }
+  .jams-mobile-links {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 24px 0;
+    gap: 4px;
+    flex: 1;
+  }
+  .jams-mobile-link {
+    font-family: var(--font-sans);
+    color: #fff;
+    padding: 16px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    text-decoration: none;
+  }
+  .jams-mobile-cta {
+    padding: 32px 24px 48px;
+  }
+</style>
+
 <script>
   const openBtn = document.getElementById('mobile-menu-open');
   const closeBtn = document.getElementById('mobile-menu-close');
-  const menu = document.getElementById('mobile-menu') as HTMLElement;
+  const menu = document.getElementById('mobile-menu');
 
   function openMenu() {
-    menu.style.opacity = '1';
-    menu.style.pointerEvents = 'auto';
-    menu.style.transform = 'translateY(0)';
-    menu.setAttribute('aria-hidden', 'false');
+    menu?.classList.add('is-open');
+    menu?.setAttribute('aria-hidden', 'false');
     openBtn?.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   }
 
   function closeMenu() {
-    menu.style.opacity = '0';
-    menu.style.pointerEvents = 'none';
-    menu.style.transform = 'translateY(8px)';
-    menu.setAttribute('aria-hidden', 'true');
+    menu?.classList.remove('is-open');
+    menu?.setAttribute('aria-hidden', 'true');
     openBtn?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }

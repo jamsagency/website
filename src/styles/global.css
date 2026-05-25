@@ -1,5 +1,155 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
 
+/* Hero 2-column grid — shared across homepage, about, ai */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  padding-bottom: 128px;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-bottom: 64px;
+  }
+}
+
+/* Responsive container + section padding — outside @layer so !important beats inline styles */
+@media (max-width: 768px) {
+  .container,
+  .hn-container {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  /* Sections that carry their own inline padding delegate horizontal space to the container */
+  section[style*="padding"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  /* Sections with 128px vertical padding — reduce to mobile-friendly value */
+  section[style*="128px"]:not(.hero-no-bottom-pad) {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+  }
+  /* Hero sections with padding-bottom: 0 — only reduce top padding */
+  section.hero-no-bottom-pad[style*="128px"] {
+    padding-top: 64px !important;
+    padding-bottom: 0 !important;
+  }
+  /* Hero sections: full-bleed (no side padding) and centered text on mobile */
+  section.hero-bg {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-align: center;
+  }
+}
+@media (max-width: 480px) {
+  .container,
+  .hn-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  section[style*="128px"]:not(.hero-no-bottom-pad) {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  section.hero-no-bottom-pad[style*="128px"] {
+    padding-top: 48px !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+/* ---- Shared responsive grid classes ---- */
+
+/* 2-col grid collapses to 1 at 768px */
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 768px) {
+  .grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 3-col grid collapses to 1 at 768px */
+.grid-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+@media (max-width: 768px) {
+  .grid-3col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 3-col grid for "how we work" bordered cells */
+.grid-3col-bordered {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+@media (max-width: 768px) {
+  .grid-3col-bordered {
+    grid-template-columns: 1fr;
+  }
+  .grid-3col-bordered > div[style*="border-right"] {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .grid-3col-bordered-dark > div[style*="border-right"] {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+}
+
+/* 4-col grid: 2-col at 768px, 1-col at 480px */
+.grid-4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+@media (max-width: 768px) {
+  .grid-4col {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid-4col > div[style*="border-right"] {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+}
+@media (max-width: 480px) {
+  .grid-4col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sticky board: cap height on mobile — show top portion of the board */
+@media (max-width: 768px) {
+  .sticky-board {
+    height: 340px !important;
+    overflow: hidden;
+  }
+}
+@media (max-width: 480px) {
+  .sticky-board {
+    height: 280px !important;
+  }
+}
+
+/* CTA card inner padding on mobile */
+@media (max-width: 480px) {
+  .hn-cta-card,
+  .jams-cta-card {
+    padding: 36px 24px !important;
+    border-radius: 16px !important;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,6 +167,14 @@
 :root {
   --font-display: "Instrument Serif", "Times New Roman", ui-serif, Georgia, serif;
   --font-sans:    "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Brand palette */
+  --orange:        #F55D11;
+  --orange-hover:  #D94D0A;
+  --light-orange:  #F9AA43;
+  --light-violet:  #A85DFF;
+  --skyline:       #C3E8DA;
+  --jams-black:    #0F1112;
 
   --violet-50:  #F5F3FF;
   --violet-100: #EDE9FE;
@@ -94,38 +252,99 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
 }
 
 /* ---------- Components -------------------------------------------------- */
 @layer components {
-  /* Primary CTA button — violet gradient */
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded font-sans font-semibold text-sm text-white tracking-wide transition-all duration-fast;
-    background: var(--primary-gradient);
-    box-shadow: var(--shadow-primary);
-    transition-timing-function: var(--ease-out);
-  }
-  .btn-primary:hover {
-    background: linear-gradient(180deg, #7C3AED 0%, #A85CFF 51%, #7C3AED 100%);
-  }
-  .btn-primary:active {
-    transform: scale(0.98);
-    box-shadow: none;
+
+  /* Universal horizontal container */
+  .container,
+  .hn-container {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 48px;
+    padding-right: 48px;
   }
 
-  /* Ghost / secondary button */
+  /* Vertical rhythm */
+  .section {
+    @apply py-[100px];
+  }
+
+  /* Primary CTA button — orange with slide-in arrow */
+  .btn-primary {
+    background: var(--orange);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: var(--font-sans);
+    transition: background 120ms var(--ease-out);
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary:hover {
+    background: var(--orange-hover);
+  }
+  .btn-primary .btn-arrow {
+    position: absolute;
+    left: 10px;
+    width: 16px;
+    height: 16px;
+    opacity: 0;
+    transform: translateX(-6px);
+    stroke: #fff;
+    transition: opacity var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+  }
+  .btn-primary span {
+    display: inline-block;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .btn-primary:hover .btn-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .btn-primary:hover span {
+    transform: translateX(6px);
+  }
+
+  /* Ghost / outline button */
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded font-sans font-medium text-sm transition-all duration-fast;
-    color: var(--fg);
-    border: 0.5px solid var(--border-soft);
-    box-shadow: var(--shadow-inset-top);
-    transition-timing-function: var(--ease-out);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    color: #111;
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.18);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 120ms var(--ease-out), border-color 120ms var(--ease-out);
   }
   .btn-ghost:hover {
-    background: rgba(234, 234, 234, 0.75);
-  }
-  .btn-ghost:active {
-    transform: scale(0.98);
+    background: rgba(0,0,0,0.05);
+    border-color: rgba(0,0,0,0.28);
   }
 
   /* Pill chip */
@@ -135,17 +354,6 @@
     box-shadow: var(--shadow-inset-top), var(--shadow-card);
     color: var(--fg-subtle);
     background: var(--bg);
-  }
-
-  /* Vertical rhythm — no horizontal padding here */
-  .section {
-    @apply py-[100px];
-  }
-
-  /* Universal horizontal container — used inside every section, never overridden */
-  .container {
-    @apply mx-auto w-full px-6 md:px-[100px];
-    max-width: 1440px;
   }
 
   /* Eyebrow label */
@@ -167,5 +375,102 @@
   /* Hairline divider */
   .hairline {
     border-top: 0.5px solid var(--border-soft);
+  }
+
+  /* Underline link with slide-in arrow on hover */
+  .read-link {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: #0F1112;
+    text-decoration: none;
+  }
+  .read-link::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #0F1112;
+  }
+  .read-link-arrow {
+    width: 0;
+    height: 14px;
+    opacity: 0;
+    overflow: hidden;
+    flex-shrink: 0;
+    stroke: #0F1112;
+    margin-right: 0;
+    transition: width var(--dur-base) var(--ease-out), opacity var(--dur-base) var(--ease-out), margin-right var(--dur-base) var(--ease-out);
+  }
+  .read-link > span {
+    display: inline-block;
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .read-link:hover .read-link-arrow { width: 14px; opacity: 1; margin-right: 1px; }
+  .read-link:hover > span { transform: translateX(4px); }
+
+  /* Inline text link — underline, turns orange on hover */
+  .contact-link {
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--dur-base) var(--ease-out);
+  }
+  .contact-link:hover { color: var(--orange); }
+
+  /* Internal page hero background — dot grid */
+  .hero-bg {
+    background:
+      radial-gradient(circle, #C8C8CC 1.5px, transparent 1.5px) 0 0 / 24px 24px,
+      linear-gradient(in oklab 180deg, oklab(100% 0 0) 14%, oklab(84.3% 0.005 -0.016) 120%);
+  }
+
+  /* Liquid glass card */
+  .liquid-glass {
+    position: relative;
+    background: rgba(255, 255, 255, 0.38);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      inset 0 1.5px 0 rgba(255, 255, 255, 0.9),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.25),
+      inset 1px 0 0 rgba(255, 255, 255, 0.5),
+      inset -1px 0 0 rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+  }
+  .liquid-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.28) 0%,
+      rgba(255, 255, 255, 0.06) 50%,
+      rgba(180, 160, 255, 0.06) 100%
+    );
+    pointer-events: none;
+  }
+}
+
+/* ---- Section vertical rhythm: responsive overrides (after @tailwind to win specificity) ---- */
+@media (max-width: 768px) {
+  .section {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+  }
+}
+@media (max-width: 480px) {
+  .section {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
   }
 }

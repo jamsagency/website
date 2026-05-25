@@ -5,23 +5,54 @@ interface Props {
 }
 
 const {
-  headline = 'Everyone is talking about AI. Most businesses do not know where to start.',
-  body = 'The free shaping workshop is 60 minutes where we map your operation, figure out exactly where AI moves the needle, and give you a clear next step. Whether you are starting from scratch or already have something built — come in and we will figure it out together. You leave with a direction. No pitch. No jargon.',
+  headline = 'Stop requesting quotes from dev firms and let\'s actually start shaping your idea',
+  body = 'Book a call and come with your ideas and pains. We map your business and figure out where AI moves the needle. You leave with a clear roadmap instead of a quote.',
 } = Astro.props;
 ---
 
-<section class="section" style="background: var(--neutral-950); border-top: 1px solid rgba(255,255,255,0.08);">
-  <div class="container">
-    <div class="flex flex-col items-center text-center gap-8" style="max-width: 640px; margin: 0 auto;">
-      <h2 class="font-display text-h1" style="color: #FEFEFE;">
-        {headline}
-      </h2>
-      <p class="font-sans text-p-l" style="color: #D4D4D4;">
-        {body}
-      </p>
-      <a href="/start" class="btn-primary rounded-pill py-4 px-9">
-        Book your free shaping workshop
-      </a>
-    </div>
+<section class="jams-cta-section">
+  <div class="jams-cta-card">
+    <h2 style="font-size: clamp(26px, 2.8vw, 48px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #0F1112; margin: 0 0 24px;">
+      {headline}
+    </h2>
+    <p style="font-size: 20px; line-height: 1.55; letter-spacing: -0.01em; color: #1A1A1A; margin: 0 auto 44px; max-width: 540px;">
+      {body}
+    </p>
+    <a href="/start" class="btn-primary" style="padding: 12px 28px; width: auto;">
+      <i data-lucide="arrow-right" class="btn-arrow"></i>
+      <span>Book your free shaping session</span>
+    </a>
   </div>
 </section>
+
+<style is:global>
+  .jams-cta-section {
+    padding: 128px 24px;
+    background: url('/cta-bg.jpg') center center / cover no-repeat;
+  }
+  .jams-cta-card {
+    max-width: 820px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(32px) saturate(160%);
+    -webkit-backdrop-filter: blur(32px) saturate(160%);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow:
+      0 8px 40px rgba(0, 0, 0, 0.25),
+      inset 0 1.5px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    padding: 72px 56px;
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .jams-cta-section {
+      padding-top: 64px;
+      padding-bottom: 64px;
+    }
+    .jams-cta-card {
+      padding: 36px 24px;
+      border-radius: 16px;
+    }
+  }
+</style>

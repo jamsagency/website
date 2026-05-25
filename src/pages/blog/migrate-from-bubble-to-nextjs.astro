@@ -9,8 +9,8 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
   slug="migrate-from-bubble-to-nextjs"
 >
 
-  <div style="border: 1px solid rgba(134,74,204,0.2); background: rgba(134,74,204,0.04); border-radius: 12px; padding: 20px 24px;">
-    <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #864ACC; margin: 0 0 8px 0;">Quick answer</p>
+  <div class="qa-box">
+    <p style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 8px 0;">Quick answer</p>
     <p style="margin: 0;">Migrating from Bubble to Next.js requires rebuilding the product in a new stack, not converting Bubble to code. Bubble doesn't export code. What transfers: product knowledge, user flows, business logic, and user data (via CSV export, migrated into Supabase or another database). What doesn't transfer: any visual or workflow work product from Bubble. The standard migration stack is Next.js on Vercel, Supabase for the database ($25/month Pro), and Convex or Cloudflare Workers for backend logic. The process starts with a Blueprint to redesign the data model and scope the rebuild before development begins.</p>
   </div>
 

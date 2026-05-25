@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+const integrations = [
+  'Automated reporting',
+  'Intelligent intake flows',
+  'AI-assisted operations',
+  'Smart booking logic',
+  'Conversational agents',
+];
+
+const built = [
+  {
+    title: 'The Arena',
+    slug: 'the-arena',
+    image: '/thearena-cover.png',
+    description: 'An AI-powered student analytics platform for an ed-tech. What used to take hours of manual Notion pages and one-by-one ChatGPT outputs now runs automatically: personalized reports for every student, generated at scale.',
+  },
+  {
+    title: 'The Fold',
+    slug: 'the-fold',
+    image: '/thefold-cover.png',
+    description: 'An AI concierge named Alfred that handles deal flow and coordination for a private equity community. Group chats and WhatsApp threads replaced by a platform that routes opportunities, manages introductions, and keeps conversations where they belong.',
+  },
+  {
+    title: 'Qmius',
+    slug: null,
+    image: '/qmius-cover.png',
+    description: 'A marketplace for US-only made products. We built an AI Assistant that helps the shopper buy the right product, the seller publish easier and faster, and the admin handle payouts and customers.',
+  },
+];
+---
+
+<BaseLayout
+  title="Custom AI and software for your business"
+  description="We figure out where AI actually moves the numbers for your operation, then build it in from day one."
+>
+<style>
+  /* AI section: 2-col with 80px gap → 1-col at 768px */
+  .ai-build-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .ai-build-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  /* What we've built: 3-col → 1-col at 768px */
+  .ai-built-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .ai-built-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* AI hero body text smaller on mobile */
+  @media (max-width: 480px) {
+    .ai-body-text {
+      font-size: 18px !important;
+    }
+  }
+
+  /* AI hero liquid glass card */
+  @media (max-width: 768px) {
+    .ai-hero-card {
+      padding: 24px 20px 32px !important;
+    }
+  }
+</style>
+
+<!-- ===== HERO ===== -->
+<section class="hero-bg hero-no-bottom-pad" style="padding: 128px 24px 0; margin-top: 65px;">
+  <div class="hn-container">
+    <h1 style="font-size: clamp(40px, 5.5vw, 80px); font-weight: 500; line-height: 1.0; letter-spacing: -0.025em; color: #111; text-align: center; margin: 0 auto 40px;">
+      Everyone is "adding AI" but most of it doesn't actually do anything
+    </h1>
+    <div class="hero-grid">
+      <div style="display: flex; flex-direction: column; gap: 20px; padding-top: 8px;">
+        <p class="ai-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">Teams are building dashboards nobody opens. Automations that save two clicks. AI features that look impressive in a demo and don't survive contact with a real customer.</p>
+        <p class="ai-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">The tools keep multiplying. The actual results don't follow.</p>
+        <p class="ai-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">And if you haven't jumped into any of it yet, watching this from the outside feels like you're already behind. You're not. Most of what's being shipped right now isn't moving anyone's numbers.</p>
+      </div>
+      <div class="liquid-glass ai-hero-card" style="padding: 32px 40px 44px; display: flex; flex-direction: column; gap: 16px;">
+        <p class="ai-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">At Jams we start with a different question. Not "what AI tool should we use" but "where does AI actually change an outcome that matters for this business." Then we build that, properly, from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI IN SHAPING ===== -->
+<section style="background: #111; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #fff; margin: 0 0 48px; max-width: 760px;">
+      First, we figure out where AI actually fits.
+    </h2>
+    <div style="display: flex; flex-direction: column; max-width: 680px;">
+      <p style="font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #EBEBED; margin: 0 0 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        During the free shaping session, we map your full operation and identify where AI changes a metric you care about. Not where it's technically possible. Where it moves bookings, reduces manual work, or improves the customer experience in a way that shows up in the numbers.
+      </p>
+      <p style="font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #A85DFF; margin: 0; font-weight: 500;">
+        Most teams skip this step. That's why most AI features go unused.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI IN THE BUILD ===== -->
+<section style="background: #F3F3F3; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #111; margin: 0 0 48px; max-width: 800px;">
+      Then we build it as part of the product, not on top of it.
+    </h2>
+    <div class="ai-build-grid">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <p style="font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #404040; margin: 0;">
+          We integrate AI at the product level: automated reporting, intelligent intake flows, AI-assisted operations, smart booking logic and conversational agents.
+        </p>
+        <p style="font-size: 20px; line-height: 1.65; letter-spacing: -0.01em; color: #404040; margin: 0;">
+          The tools change depending on the problem. The approach doesn't. We define the use case before we pick the technology, and we test it in production before we call it done.
+        </p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; align-content: start; padding-top: 6px;">
+        {integrations.map(tag => (
+          <span style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; background: #fff; border: 1px solid rgba(0,0,0,0.1); border-radius: 999px; font-size: 15px; font-weight: 500; letter-spacing: -0.01em; color: #0F1112; box-shadow: 0 1px 4px rgba(0,0,0,0.05);">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: #A85DFF; flex-shrink: 0;"></span>
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT WE DON'T DO ===== -->
+<section style="background: #fff; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #111; margin: 0 0 8px;">
+      What we don't do
+    </h2>
+    <div style="display: flex; flex-direction: column; max-width: 720px; margin-top: 40px;">
+      <p style="font-size: 24px; line-height: 1.45; letter-spacing: -0.015em; color: #404040; margin: 0; padding: 36px 0; border-top: 1px solid rgba(0,0,0,0.08);">
+        We don't add AI features to justify a higher price.
+      </p>
+      <p style="font-size: 24px; line-height: 1.45; letter-spacing: -0.015em; color: #404040; margin: 0; padding: 36px 0; border-top: 1px solid rgba(0,0,0,0.08);">
+        We don't recommend AI for a problem a simple automation would solve.
+      </p>
+      <p style="font-size: 24px; line-height: 1.45; letter-spacing: -0.015em; color: #404040; margin: 0; padding: 36px 0; border-top: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08);">
+        We don't build demos that don't survive contact with real users.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT WE'VE BUILT ===== -->
+<section style="background: #F3F3F3; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #111; margin: 0 0 48px;">
+      What we've built
+    </h2>
+    <div class="ai-built-grid">
+      {built.map(({ title, slug, image, description }) => (
+        <div style="background: #fff; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;">
+          <div style="height: 220px; overflow: hidden;">
+            <img src={image} alt={title} style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          </div>
+          <div style="padding: 28px 28px 36px; display: flex; flex-direction: column; flex: 1;">
+            <span style="display: block; font-size: 16px; font-weight: 400; color: #555; margin-bottom: 14px; letter-spacing: -0.01em;">{title}</span>
+            <p style="font-size: 15px; line-height: 1.7; letter-spacing: -0.01em; color: #1A1A1A; margin: 0 0 28px; flex: 1;">{description}</p>
+            {slug ? (
+              <a href={`/work/${slug}`} class="read-link" style="align-self: start;">
+                <i data-lucide="arrow-right" class="read-link-arrow"></i>
+                <span>Read case</span>
+              </a>
+            ) : (
+              <span style="display: block; font-size: 14px; font-weight: 500; color: #A3A3A3; letter-spacing: -0.01em;">Coming soon</span>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<CTASection />
+
+</BaseLayout>

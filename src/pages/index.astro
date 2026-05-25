@@ -1,269 +1,843 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import CaseStudyCard from '../components/CaseStudyCard.astro';
-import TestimonialCard from '../components/TestimonialCard.astro';
-import CTASection from '../components/CTASection.astro';
-
-const projects = [
-  { title: 'The Fold',                slug: 'the-fold',                tags: ['Mobile app', 'AI agent'],      oneliner: 'WhatsApp deal flow, replaced by Alfred — an AI concierge for private equity.',                                        image: '/thefold-cover.png',  imageAlt: 'The Fold app interface' },
-  { title: 'The Arena',               slug: 'the-arena',               tags: ['Web app', 'AI automation'],    oneliner: 'Manual Notion pages and one-by-one ChatGPT reports, replaced by an automated student platform.',                       image: '/thearena-cover.png', imageAlt: 'The Arena student platform' },
-  { title: 'Red Horse Mountain Ranch',slug: 'red-horse-mountain-ranch',tags: ['Web app', 'Booking platform'], oneliner: 'A luxury dude ranch with no direct bookings, replaced by a branded booking flow with Stripe deposits.',                image: '/redhorse-cover.png', imageAlt: 'Red Horse Mountain Ranch booking platform' },
-];
-
-const faqs = [
-  { q: 'What do you actually build?', a: 'Custom web and mobile applications. Not websites or templates — products built around the specific workflow your business depends on. Booking platforms, internal ops tools, marketplaces, AI agents, membership platforms. If no existing software does exactly what you need, that is what we build.' },
-  { q: 'How does the process start?', a: 'With a free 60-minute shaping workshop. We map your business problem together and translate it into a clear product direction. You leave with real clarity on what to build and why. After that, if there is a fit, we move into the Blueprint — a paid two-week process that defines exactly what to build and produces a fixed price for the build.' },
-  { q: 'What does it cost?', a: 'The shaping workshop is free. The Blueprint — the two-week discovery and planning process — starts at $3,500. Development runs as a monthly engagement starting at $5,000 per month after that. .' },
-  { q: 'How fast do you ship?', a: 'The Blueprint takes two weeks. Most first-version products ship in 8 to 12 weeks depending on complexity. You get a timeline estimate at the end of the Blueprint before committing to the build.' },
-  { q: 'What is Bubble, and does it matter?', a: 'Bubble is the most powerful no-code development platform available. We build on it because it lets us ship five times faster than traditional development without sacrificing capability. The products we deliver handle millions in transactions, sensitive data, and complex logic. Your users cannot tell the difference.' },
-  { q: 'Do I own everything at the end?', a: 'Yes. The Bubble application, Figma files, all assets, and all documentation transfer to you at the end of the engagement. If you want to work with a different team after us, you can. We have never held a client\'s product hostage.' },
-  { q: 'Do you work with AI?', a: 'Yes, from the start — not bolted on at the end. Every product we build today has AI considered in the design phase. Whether that is an agent that automates a workflow, a recommendation layer, a document reader, or a matching system, we figure out where AI actually moves the needle and build it in.' },
-  { q: 'What if I already have a product that needs a team?', a: 'We work with that too. Several of our longest-running clients came to us with an existing product that had outgrown their previous team. We take over, stabilize it, and become the embedded product team — roadmap ownership, regular shipping, and data-driven decisions about what to build next.' },
-];
-
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map(({ q, a }) => ({
-    '@type': 'Question',
-    name: q,
-    acceptedAnswer: { '@type': 'Answer', text: a },
-  })),
-};
+import SEOHead from '@components/SEOHead.astro';
+import Nav from '@components/Nav.astro';
+import Footer from '@components/Footer.astro';
+import CTASection from '@components/CTASection.astro';
+import '@styles/global.css';
 ---
 
-<BaseLayout
-  title="Jams — Custom Software and AI for Operators and Founders"
-  description="We work with operators and founders who know AI should be changing how they run their business. We figure out exactly what to build, then build it."
-  schema={faqSchema}
->
+<!doctype html>
+<html lang="en">
+<head>
+  <SEOHead
+    title="Jams: Custom AI and software for founders"
+    description="We figure out what your business actually needs first. Then we build it. The product team for businesses that don't have one."
+  />
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1" is:inline></script>
+  <script src="https://unpkg.com/lucide@latest" is:inline></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: var(--font-sans); color: #111; background: #fff; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-sans); }
+    @media (max-width: 768px) { .desktop-br { display: none; } }
 
-  <!-- ===== HERO ===== -->
-  <section class="px-3 pt-4 pb-0 md:px-4" style="background: var(--neutral-75);">
-    <div class="rounded-[24px] pt-[160px] pb-[80px] dark" style="background: var(--neutral-950);">
-      <div class="container flex flex-col items-center text-center">
-        <div class="flex flex-wrap justify-center gap-3 mb-6">
-          <a href="https://bubble.io/expert/jamsagency" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 rounded-lg border border-white/10 hover:border-white/30 transition-colors duration-150" style="padding: 10px 20px;">
-            <img src="/bubble-logo.svg" alt=".bubble" width="80" height="18" />
-            <span class="font-sans" style="color: #737373; font-size: 11px;">Silver Agency Partner</span>
-          </a>
-          <a href="https://clutch.co/profile/jams-agency" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-2 rounded-lg border border-white/10 hover:border-white/30 transition-colors duration-150" style="padding: 10px 20px;">
-            <img src="/clutch-logo.svg" alt="Clutch" width="64" height="18" />
-            <span class="flex items-center gap-1 font-sans" style="color: #737373; font-size: 11px;">5.0 <i class="ph-fill ph-star" style="font-size: 11px; color: #A3A3A3;"></i></span>
+    /* Liquid glass hero card — prevent overflow on mobile */
+    @media (max-width: 768px) {
+      .hero-liquid-card {
+        padding: 24px 20px 32px !important;
+      }
+    }
+
+    /* Hero body text — slightly smaller on mobile */
+    @media (max-width: 480px) {
+      .hero-body-text {
+        font-size: 18px !important;
+      }
+    }
+
+    .client-logos {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 480px) {
+      .client-logos {
+        gap: 28px;
+      }
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 0 24px;
+    }
+    @media (max-width: 768px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 0;
+      }
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 768px) {
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+      .why-grid > div[style*="border-right"] {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+    @media (max-width: 768px) {
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cases-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      gap: 40px;
+    }
+    @media (max-width: 768px) {
+      .cases-header {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+
+    .cases-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 768px) {
+      .cases-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+.credentials-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .trusted-by-group {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+    @media (max-width: 768px) {
+      .credentials-bar {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        gap: 24px;
+      }
+      .trusted-by-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      .trusted-by-label {
+        width: auto !important;
+        text-align: center;
+      }
+      .client-logos {
+        justify-content: center;
+        gap: 28px;
+      }
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: #111;
+      padding: 14px 36px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 120ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 120ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .cta-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+    .link-btn {
+      display: inline-block;
+      color: #F55D11;
+      border: 1.5px solid rgba(245,93,17,0.35);
+      background: transparent;
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: border-color 120ms cubic-bezier(0.22, 1, 0.36, 1), background 120ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .link-btn:hover {
+      border-color: #F55D11;
+      background: rgba(245,93,17,0.06);
+    }
+
+    .hn-container {
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+
+    /* --- Sticky notes --- */
+    .sticky-board {
+      position: relative;
+      height: 500px;
+      background:
+        radial-gradient(circle, #C8C8C8 1.5px, transparent 1.5px),
+        #fff;
+      background-size: 24px 24px, 100% 100%;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .sticky {
+      position: absolute;
+      background: #F9AA43;
+      padding: 14px 16px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.45;
+      color: #111;
+      box-shadow: 2px 3px 8px rgba(0,0,0,0.1);
+      max-width: 210px;
+    }
+
+    /* --- CTA image section --- */
+    .hn-cta-section {
+      padding: 128px 24px;
+      background: url('/cta-bg.jpg') center center / cover no-repeat;
+    }
+    .hn-cta-card {
+      max-width: 820px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.10);
+      backdrop-filter: blur(32px) saturate(160%);
+      -webkit-backdrop-filter: blur(32px) saturate(160%);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow:
+        0 8px 40px rgba(0, 0, 0, 0.25),
+        inset 0 1.5px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+      padding: 72px 56px;
+      text-align: center;
+    }
+
+    /* --- Testimonial sticky --- */
+    .testimonial-sticky {
+      background: #F9AA43;
+      padding: 32px;
+      border-radius: 4px;
+      box-shadow: 3px 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* --- Sticky CTA button --- */
+    .sticky-cta {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: -18px;
+      display: block;
+      background: #F9AA43;
+      color: #111;
+      padding: 11px 16px;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      transform: rotate(-2.5deg);
+      box-shadow: 2px 4px 12px rgba(0,0,0,0.13), 0 1px 3px rgba(0,0,0,0.07);
+      transition: transform 120ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 120ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .sticky-cta:hover {
+      transform: rotate(-2.5deg) scale(1.04);
+      box-shadow: 3px 6px 18px rgba(0,0,0,0.16), 0 2px 5px rgba(0,0,0,0.09);
+    }
+
+    /* --- Nav --- */
+    .hn-nav {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      padding: 8px 24px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+    }
+    .hn-nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .hn-nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      text-decoration: none;
+      color: inherit;
+      flex-shrink: 0;
+    }
+    .hn-nav-tagline {
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: #0F1112;
+      line-height: 1;
+      white-space: nowrap;
+      margin-left: -3px;
+      position: relative;
+      top: 1px;
+    }
+    .hn-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-shrink: 0;
+    }
+    .hn-nav-links a {
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: #0F1112;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.12s;
+    }
+    .hn-nav-links a:not(.hn-btn-orange)::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #0F1112;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1), transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hn-nav-links a:not(.hn-btn-orange):hover::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hn-nav-links a:hover { color: #0F1112; }
+    .hn-btn-orange {
+      background: #F55D11;
+      color: #fff !important;
+      padding: 12px 20px;
+      width: 130px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 500 !important;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.12s !important;
+    }
+    .hn-btn-arrow {
+      position: absolute;
+      left: 10px;
+      width: 16px;
+      height: 16px;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1), transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+      stroke: #fff;
+    }
+    .hn-btn-orange span {
+      display: inline-block;
+      transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hn-btn-orange:hover { background: #D94D0A !important; color: #fff !important; }
+    .hn-btn-orange:hover .hn-btn-arrow { opacity: 1; transform: translateX(0); }
+    .hn-btn-orange:hover span { transform: translateX(6px); }
+
+    /* --- Sticky note CTA button --- */
+    .sticky-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      align-self: stretch;
+      background: #F9AA43;
+      color: #111;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      transform: rotate(-1deg);
+      box-shadow: 2px 5px 14px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06);
+      transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 200ms cubic-bezier(0.22, 1, 0.36, 1);
+      margin-top: 8px;
+    }
+    .sticky-btn:hover {
+      transform: rotate(-1deg) scale(1.01);
+      box-shadow: 3px 10px 24px rgba(0,0,0,0.16), 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .sticky-btn-arrow {
+      width: 0;
+      height: 16px;
+      opacity: 0;
+      overflow: hidden;
+      flex-shrink: 0;
+      stroke: #111;
+      margin-right: 0;
+      transition: width 200ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms cubic-bezier(0.22, 1, 0.36, 1), margin-right 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .sticky-btn > span {
+      display: inline-block;
+    }
+    .sticky-btn:hover .sticky-btn-arrow { width: 16px; opacity: 1; margin-right: 6px; }
+
+    /* --- Read link (underline style with hover arrow) --- */
+    .read-link {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: #0F1112;
+      text-decoration: none;
+    }
+    .read-link::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #0F1112;
+    }
+    .read-link-arrow {
+      width: 0;
+      height: 14px;
+      opacity: 0;
+      overflow: hidden;
+      flex-shrink: 0;
+      stroke: #0F1112;
+      margin-right: 0;
+      transition: width 200ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms cubic-bezier(0.22, 1, 0.36, 1), margin-right 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .read-link > span {
+      display: inline-block;
+      transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .read-link:hover .read-link-arrow { width: 14px; opacity: 1; margin-right: 1px; }
+    .read-link:hover > span { transform: translateX(4px); }
+
+    /* --- Footer links --- */
+    .hn-footer-link {
+      font-size: 15px;
+      font-weight: 400;
+      color: #111;
+      text-decoration: none;
+      position: relative;
+      width: fit-content;
+      transition: color 0.12s;
+    }
+    .hn-footer-link::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #111;
+      opacity: 0;
+      transform: translateY(3px);
+      transition: opacity 200ms cubic-bezier(0.22,1,0.36,1), transform 200ms cubic-bezier(0.22,1,0.36,1);
+    }
+    .hn-footer-link:hover::after { opacity: 1; transform: translateY(0); }
+
+    .hn-footer-submit {
+      background: transparent;
+      color: #111;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      border: 1px solid rgba(0,0,0,0.18);
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.12s cubic-bezier(0.22,1,0.36,1), border-color 0.12s cubic-bezier(0.22,1,0.36,1);
+    }
+    .hn-footer-submit .hn-btn-arrow { stroke: #111; }
+    .hn-footer-submit span {
+      display: inline-block;
+      transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hn-footer-submit:hover { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.28); }
+    .hn-footer-submit:hover .hn-btn-arrow { opacity: 1; transform: translateX(0); }
+    .hn-footer-submit:hover span { transform: translateX(8px); }
+
+    .hn-email-input {
+      flex: 1;
+      max-width: 280px;
+      padding: 12px 16px;
+      border: 1px solid #DDDDD8;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      color: #111;
+      background: #fff;
+      outline: none;
+      transition: border-color 200ms cubic-bezier(0.22,1,0.36,1), box-shadow 200ms cubic-bezier(0.22,1,0.36,1);
+    }
+    .hn-email-input:hover,
+    .hn-email-input:focus {
+      border-color: #888;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .hn-contact-link {
+      color: #111;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 200ms cubic-bezier(0.22,1,0.36,1);
+    }
+    .hn-contact-link:hover { color: #F55D11; }
+
+    /* --- Liquid glass card --- */
+    .liquid-glass {
+      position: relative;
+      background: rgba(255, 255, 255, 0.38);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.08),
+        inset 0 1.5px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.25),
+        inset 1px 0 0 rgba(255, 255, 255, 0.5),
+        inset -1px 0 0 rgba(255, 255, 255, 0.5);
+      overflow: hidden;
+    }
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.28) 0%,
+        rgba(255, 255, 255, 0.06) 50%,
+        rgba(180, 160, 255, 0.06) 100%
+      );
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<Nav />
+
+<!-- ===== HERO ===== -->
+<section class="hero-no-bottom-pad" style="background: radial-gradient(circle, #C8C8CC 1.5px, transparent 1.5px) 0 0 / 24px 24px, linear-gradient(in oklab 180deg, oklab(100% 0 0) 14%, oklab(84.3% 0.005 -0.016) 120%); padding: 128px 24px 0; margin-top: 65px;">
+  <div class="hn-container">
+    <h1 style="font-size: clamp(40px, 5.5vw, 80px); font-weight: 500; line-height: 1.0; letter-spacing: -0.025em; color: #111; text-align: center; margin: 0 auto 40px;">
+      Stop spending money on the<br class="desktop-br"> wrong custom software and AI
+    </h1>
+    <div class="hero-grid">
+      <!-- Left: editorial body copy -->
+      <div style="display: flex; flex-direction: column; gap: 20px; padding-top: 8px;">
+        <p class="hero-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">There are plenty of software teams you could hire.</p>
+        <p class="hero-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">But most dev firms build exactly what you ask for, skip the hard questions, and leave you with something that doesn't move the numbers.</p>
+        <p class="hero-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">At Jams we figure out what your business actually needs first. Then we build it.</p>
+      </div>
+      <!-- Right: CTA card -->
+      <div class="liquid-glass hero-liquid-card" style="padding: 32px 40px 44px; display: flex; flex-direction: column; gap: 16px;">
+        <p class="hero-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">If you're sitting on ideas and don't know where to start:</p>
+        <p class="hero-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">Book a call. Show up with your ideas and pains. Leave with a clear roadmap instead of a quote.</p>
+        <a href="/start" class="sticky-btn">
+          <i data-lucide="arrow-right" class="sticky-btn-arrow"></i>
+          <span>Book your free shaping session</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CUSTOMER BADGES ===== -->
+<section style="background: #fff; padding: 32px 24px;">
+  <div class="hn-container credentials-bar">
+    <!-- Left: platform badges -->
+    <div style="display: flex; align-items: center; gap: 16px; flex-shrink: 0;">
+      <a href="https://bubble.io/expert/jamsagency" target="_blank" rel="noopener noreferrer" style="text-decoration: none; flex-shrink: 0; display: block; opacity: 1; transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);" onmouseenter="this.style.opacity='0.7'" onmouseleave="this.style.opacity='1'">
+        <img src="/bubble-badge.svg" alt=".bubble Silver Agency Partner" height="72" style="height: 72px; width: auto; display: block;" />
+      </a>
+      <a href="https://clutch.co/profile/jams-agency" target="_blank" rel="noopener noreferrer" style="text-decoration: none; flex-shrink: 0; display: block; opacity: 1; transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);" onmouseenter="this.style.opacity='0.7'" onmouseleave="this.style.opacity='1'">
+        <img src="/clutch-badge.svg" alt="Clutch 5.0" height="72" style="height: 72px; width: auto; display: block;" />
+      </a>
+    </div>
+    <!-- Right: label + client logos grouped together -->
+    <div class="trusted-by-group">
+      <span class="trusted-by-label" style="font-size: 15px; font-weight: 400; color: #6B6B75; width: 224px; line-height: 1.3; letter-spacing: -0.01em;">
+        Trusted by +30 founders and operators from teams like
+      </span>
+      <div class="client-logos">
+        <img src="/logo-dropcar.png" alt="DropCar" height="32" style="height: 32px; width: auto; object-fit: contain;" />
+        <img src="/redhorse-logo-2x.png" alt="Red Horse Mountain Ranch" height="65" style="height: 65px; width: auto; object-fit: contain;" />
+        <img src="/logo-93percent.png" alt="93 Percent Club" height="32" style="height: 32px; width: auto; object-fit: contain;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEELS ===== -->
+<section style="background: #F3F3F3; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; text-align: center; margin: 0 0 48px; color: #111;">
+      It probably feels like this...
+    </h2>
+    <div class="sticky-board">
+      <div class="sticky" style="left: 2%; top: 7%; transform: rotate(-3.5deg);">We have twenty ideas. Which one do we start with?</div>
+      <div class="sticky" style="left: 25%; top: 3%; transform: rotate(2.5deg);">What if we look up in Upwork?</div>
+      <div class="sticky" style="left: 53%; top: 9%; transform: rotate(-1.5deg); max-width: 220px;">US software firms are so expensive, but could we trust a team from abroad?</div>
+      <div class="sticky" style="right: 1%; top: 4%; transform: rotate(5deg);">9 months for custom software??!</div>
+      <div class="sticky" style="left: 9%; top: 44%; transform: rotate(-6deg);">What should we actually build?</div>
+      <div class="sticky" style="left: 40%; top: 37%; transform: rotate(3.5deg);">Dev firms don't really get us</div>
+      <div class="sticky" style="right: 3%; top: 41%; transform: rotate(-2.5deg); max-width: 200px;">Where does AI actually move the needle for our business?</div>
+      <div class="sticky" style="left: 2%; top: 65%; transform: rotate(3deg); max-width: 210px;">Who do we trust to deliver and not disappear halfway through?</div>
+      <div class="sticky" style="left: 29%; top: 71%; transform: rotate(-5deg);">Dev firms just come back with quotes</div>
+      <div class="sticky" style="left: 55%; top: 62%; transform: rotate(2deg);">Should we just hire our own dev?</div>
+      <div class="sticky" style="right: 2%; top: 68%; transform: rotate(-3.5deg);">How much is this going to cost?</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASES ===== -->
+<section style="background: #fff; padding: 128px 24px;">
+  <div class="hn-container">
+    <div class="cases-header">
+      <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #111; margin: 0; max-width: 760px;">
+        It all changes when the right product gets built.
+      </h2>
+
+      <a href="/work" class="read-link" style="white-space: nowrap; margin-top: 6px; flex-shrink: 0;">
+        <i data-lucide="arrow-right" class="read-link-arrow"></i>
+        <span>Read more stories here</span>
+      </a>
+    </div>
+    <div class="cases-grid">
+      <!-- Case 1: RHMR -->
+      <div style="background: #F6F6F6; border-radius: 16px; overflow: hidden;">
+        <img src="/case-redhorse.png" alt="Red Horse Mountain Ranch custom booking platform" width="538" height="360"
+          style="width: 100%; height: 360px; object-fit: cover; display: block;" />
+        <div style="padding: 28px 28px 36px;">
+          <span style="display: block; font-size: 16px; font-weight: 400; color: #555; margin-bottom: 14px; letter-spacing: -0.01em;">
+            Red Horse Mountain Ranch
+          </span>
+          <h3 style="font-size: 28px; font-weight: 500; line-height: 1.3; letter-spacing: -0.01em; color: #111; margin: 0 0 18px;">
+            A custom booking engine for an all-inclusive experience
+          </h3>
+          <ul style="margin: 0 0 28px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+            <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #1A1A1A;">
+              <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
+              From 0 to 5% conversion rate in 8 weeks
+            </li>
+            <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #1A1A1A;">
+              <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
+              20 hours saved on lead &amp; booking management
+            </li>
+          </ul>
+          <a href="/work/red-horse-mountain-ranch" class="read-link">
+            <i data-lucide="arrow-right" class="read-link-arrow"></i>
+            <span>Read case</span>
           </a>
         </div>
-        <h1 class="font-display max-w-5xl mb-6 text-[40px] md:text-[72px]" style="color: var(--fg); line-height: 1.05; letter-spacing: -0.01em;">
-          Everyone is telling you to use AI.<br class="hidden md:inline" />Nobody is telling you what to actually do.
-        </h1>
-        <div class="flex flex-col items-center gap-12">
-          <p class="font-sans text-p-l max-w-2xl" style="color: var(--fg-muted);">
-            We work with operators and founders who know AI should be changing how they run their business but cannot get a straight answer on where to start. We figure out exactly what to implement and build it.
+      </div>
+      <!-- Case 2: The Arena -->
+      <div style="background: #F6F6F6; border-radius: 16px; overflow: hidden;">
+        <img src="/case-thearena.png" alt="The Arena student management platform with AI" width="538" height="360"
+          style="width: 100%; height: 360px; object-fit: cover; display: block;" />
+        <div style="padding: 28px 28px 36px;">
+          <span style="display: block; font-size: 16px; font-weight: 400; color: #555; margin-bottom: 14px; letter-spacing: -0.01em;">
+            The Arena
+          </span>
+          <h3 style="font-size: 28px; font-weight: 500; line-height: 1.3; letter-spacing: -0.01em; color: #111; margin: 0 0 18px;">
+            A custom student management tool with built-in AI
+          </h3>
+          <ul style="margin: 0 0 28px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
+            <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #1A1A1A;">
+              <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
+              From hundreds of manual Notion pages to thousands of automated student reports
+            </li>
+          </ul>
+          <a href="/work/the-arena" class="read-link">
+            <i data-lucide="arrow-right" class="read-link-arrow"></i>
+            <span>Read case</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section style="background: #F3F3F3; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #111; margin: 0 0 48px; max-width: 960px;">
+      A process crafted for operators who don't have time to waste.
+    </h2>
+    <div class="process-grid">
+      <!-- 01 -->
+      <div style="background: #fff; border-radius: 16px; padding: 32px 28px; position: relative; display: flex; flex-direction: column;">
+        <div style="font-size: 40px; font-weight: 500; color: #A85DFF; line-height: 1; margin-bottom: 12px;">01</div>
+        <div style="font-size: 28px; font-weight: 500; color: #0F1112; margin-bottom: 10px; letter-spacing: -0.01em;">
+          Free Shaping Session
+        </div>
+        <p style="font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A; margin: 0 0 24px;">
+          One hour. We map your idea, identify where the real problem is, and figure out what to build. No pitch, no deck. You leave with a plan instead of a quote.
+        </p>
+        <a href="/start" class="sticky-btn">
+          <i data-lucide="arrow-right" class="sticky-btn-arrow"></i>
+          <span>Book your free session</span>
+        </a>
+      </div>
+      <!-- 02 -->
+      <div style="background: #fff; border-radius: 16px; padding: 32px 28px; position: relative;">
+        <div style="font-size: 40px; font-weight: 500; color: #A85DFF; line-height: 1; margin-bottom: 12px;">02</div>
+        <div style="font-size: 28px; font-weight: 500; color: #0F1112; margin-bottom: 10px; letter-spacing: -0.01em;">
+          Blueprint
+        </div>
+        <p style="font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A; margin: 0;">
+          Two weeks. Flows, AI opportunity mapping, technical architecture, a design prototype, and a fixed price for the build. Everything defined before a single line of code is written. No surprises later.
+        </p>
+      </div>
+      <!-- 03 -->
+      <div style="background: #fff; border-radius: 16px; padding: 32px 28px; position: relative;">
+        <div style="font-size: 40px; font-weight: 500; color: #A85DFF; line-height: 1; margin-bottom: 12px;">03</div>
+        <div style="font-size: 28px; font-weight: 500; color: #0F1112; margin-bottom: 10px; letter-spacing: -0.01em;">
+          Build
+        </div>
+        <p style="font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A; margin: 0;">
+          We build what we scoped, on time, on budget. Then we ship every cycle, watch the data, run quarterly reviews, and where it makes sense, tie part of our fee to your actual results.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY JAMS ===== -->
+<section style="background: #111; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #fff; margin: 0 0 48px;">
+      Why Jams
+    </h2>
+    <div style="border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden;">
+      <div class="why-grid" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div style="padding: 40px; border-right: 1px solid rgba(255,255,255,0.1);">
+          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">AI makes it faster, not better</h3>
+          <p style="font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">
+            Figuring out what to build and what impact it will create still takes time. Combining AI and our expertise, we can launch earlier, run more iteration cycles, learn faster and move the right metrics.
           </p>
-          <a href="/start" class="btn-primary rounded-pill py-4 px-9">Book your free shaping workshop</a>
+        </div>
+        <div style="padding: 40px;">
+          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">We speak in plain english</h3>
+          <p style="font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">
+            We're obsessed with making things as simple as possible for our clients. We avoid the technical jargon at all times, and we always look for ways to make software feel easier.
+          </p>
+        </div>
+      </div>
+      <div class="why-grid">
+        <div style="padding: 40px; border-right: 1px solid rgba(255,255,255,0.1);">
+          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">We're in for the long term</h3>
+          <p style="font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">
+            From day one, we'll put your business first and work towards a long term relationship. We do this through our skin in the game pricing.
+          </p>
+        </div>
+        <div style="padding: 40px;">
+          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">We're a great non-US alternative</h3>
+          <p style="font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">
+            Based in LATAM, we're timezone friendly with you and reasonably priced to provide your business with great talent.
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== YOU FEEL SEEN ===== -->
-  <section class="section hairline" style="background: var(--neutral-75);">
-    <div class="container">
-      <div class="max-w-2xl flex flex-col gap-6 leading-relaxed">
-        <p class="font-sans text-p-l" style="color: var(--fg-muted);">You have a real business. Revenue, clients, a team. But at some point you hit a ceiling — not because of the market or your effort. Because the software your operation needs does not exist yet.</p>
-        <p class="font-sans text-p-l" style="color: var(--fg-muted);">And every time you tried to fix it, something went wrong. A freelancer who disappeared. An agency that delivered something that did not work. A tool that was almost right but not quite.</p>
-        <p class="font-sans text-p-l font-medium" style="color: var(--fg);">You are probably sitting with questions nobody has answered properly yet:</p>
-        <ul class="flex flex-col pl-0 list-none">
-          <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">What should I actually build.</li>
-          <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">We have twenty ideas — which one do we start with.</li>
-          <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">How much is this going to cost me.</li>
-          <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">Who do I trust to deliver it and not disappear halfway through.</li>
-          <li class="font-sans text-h4 font-medium mt-6" style="color: var(--fg);">Will it work the way my business actually works.</li>
-        </ul>
-        <p class="font-sans text-p-l mt-6" style="color: var(--fg-muted);">If any of that sounds right, you are in the right place.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== WORK SHOWCASE ===== -->
-  <section class="section hairline" aria-labelledby="work-heading">
-    <div class="container flex flex-col gap-12">
-      <div class="flex items-end justify-between">
-        <h2 id="work-heading" class="eyebrow">Work</h2>
-        <a href="/work" class="font-sans text-p-s font-medium text-violet-600 hover:text-violet-700 transition-colors duration-fast">View all work &rarr;</a>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        {projects.map((p) => <CaseStudyCard {...p} />)}
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== RESULTS ===== -->
-  <section class="section hairline dark bg-neutral-950" aria-labelledby="results-heading">
-    <div class="container flex flex-col gap-12">
-      <h2 id="results-heading" class="font-display text-h2" style="color: #FEFEFE;">What changes when the right product gets built</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
-          <p class="font-sans text-p-l" style="color: #D4D4D4;">The Arena shipped in 8 weeks. The team went from duplicating Notion pages by hand to a platform serving hundreds of students across multiple cohorts.</p>
+<!-- ===== TESTIMONIALS ===== -->
+<section style="background: #fff; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #111; margin: 0 0 60px;">
+      What our customers say
+    </h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-sticky" style="transform: rotate(-1.8deg);">
+        <p style="font-size: 18px; line-height: 1.65; color: #111; margin: 0 0 36px;">
+          "Their communication and follow-up were a pleasure to work with."
+        </p>
+        <hr style="border: none; border-top: 1px solid rgba(0,0,0,0.12); margin: 0 0 20px;" />
+        <div>
+          <div style="font-size: 15px; font-weight: 600; color: #111; margin-bottom: 3px;">Don Britton</div>
+          <div style="font-size: 15px; color: #111; letter-spacing: -0.01em;">Owner at Red Horse Mountain Ranch</div>
         </div>
-        <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
-          <p class="font-sans text-p-l" style="color: #D4D4D4;">Red Horse Mountain Ranch went from zero online bookings to 1,600 users on a custom platform in eight weeks. Direct bookings became the default channel.</p>
-        </div>
-        <div class="rounded-[16px] p-8" style="border: 0.5px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03);">
-          <p class="font-sans text-p-l" style="color: #D4D4D4;">The Fold went from 25% to 67% member engagement after Alfred replaced WhatsApp and started curating personalized deal feeds for every member.</p>
+      </div>
+      <div class="testimonial-sticky" style="transform: rotate(2.2deg);">
+        <p style="font-size: 18px; line-height: 1.65; color: #111; margin: 0 0 36px;">
+          "They took the time to really understand our business."
+        </p>
+        <hr style="border: none; border-top: 1px solid rgba(0,0,0,0.12); margin: 0 0 20px;" />
+        <div>
+          <div style="font-size: 15px; font-weight: 600; color: #111; margin-bottom: 3px;">Spencer Richardson</div>
+          <div style="font-size: 15px; color: #111; letter-spacing: -0.01em;">CEO at DropCar</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="section hairline" style="background: radial-gradient(ellipse at 50% 50%, rgba(204,158,255,0.3) 0%, rgba(251,251,251,0.3) 60%, rgba(235,236,238,0.3) 100%);">
-    <div class="container">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <TestimonialCard
-          quote="They took the time to really understand our business. Jams didn't just make it look good — they translated our complex dual-strategy into a clear digital experience."
-          author="Spencer Richardson"
-          role="Founder and CEO at DropCar"
-        />
-        <TestimonialCard
-          quote="I was drowning in manual work. Jams transformed our unique methodology into a scalable product. Now the students love the app and we can generate hundreds of reports in the time it used to take to do one."
-          author="Julieta Lombroni"
-          role="Founder at The Arena"
-        />
-        <TestimonialCard
-          quote="Their communication and follow-up were a pleasure to work with."
-          author="Don Britton"
-          role="Owner at Red Horse Mountain Ranch"
-        />
-      </div>
+<!-- ===== PRICING ===== -->
+<section style="background: #111; padding: 128px 24px;">
+  <div class="hn-container">
+    <h2 style="font-size: clamp(36px, 4vw, 60px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #fff; margin: 0 0 48px;">
+      Our pricing's different
+    </h2>
+    <div style="display: flex; flex-direction: column; max-width: 680px;">
+        <p style="font-size: 20px; line-height: 1.55; letter-spacing: -0.01em; color: #EBEBED; margin: 0 0 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          Doing great work takes a long term relationship. We're in for that.
+        </p>
+        <p style="font-size: 20px; line-height: 1.55; letter-spacing: -0.01em; color: #EBEBED; margin: 0 0 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          We don't bill by the hour. We don't do staffing. We don't do time-and-materials.
+        </p>
+        <p style="font-size: 20px; line-height: 1.55; letter-spacing: -0.01em; color: #EBEBED; margin: 0 0 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          Every engagement has a monthly floor and a ceiling based on output and results. You pay less when we miss the bar. You pay the top-up when we exceed it.
+        </p>
+        <p style="font-size: 20px; line-height: 1.55; letter-spacing: -0.01em; color: #EBEBED; margin: 0;">
+          For clients where we own a metric like bookings, conversions or member engagement, we tie part of our fee to that metric. Skin in the game, both ways.
+        </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== CORE MESSAGING ===== -->
-  <section class="section hairline">
-    <div class="container">
-      <div class="max-w-2xl flex flex-col gap-6">
-        <h2 class="font-display text-h2 text-neutral-900">Most agencies build what you ask for. We figure out what you actually need.</h2>
-        <p class="font-sans text-p-l text-neutral-700">There is a difference between a team that executes requirements and a team that owns the outcome. We sit with you before anything is designed or built, map the business problem, and define exactly what to build. Then we design it, build it, and stay involved after launch. You get a product that works — not a deliverable that checks the box.</p>
-      </div>
-    </div>
-  </section>
+<CTASection />
 
-  <!-- ===== PHILOSOPHY ===== -->
-  <section class="section hairline" aria-labelledby="philosophy-heading">
-    <div class="container flex flex-col gap-12">
-      <h2 id="philosophy-heading" class="eyebrow">What you get working with Jams</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
-        {[
-          { title: 'We figure out what to build before we touch anything', body: 'Most projects fail because the wrong thing gets built. We spend the first two weeks mapping your business problem and defining the right solution before design or development starts. For new builds that means a clear MVP. For existing products it means cutting through the backlog noise and deciding what actually moves the business. You know exactly what you are getting before committing to it.' },
-          { title: 'Design built around how your business actually works', body: 'Not a template with your colors. A product designed around your operation, your users, and the specific workflow that needs to change. Built to feel premium and hold up under real pressure.' },
-          { title: 'Shipped in weeks, not months', body: 'We build on Bubble and the most capable no-code infrastructure available. It ships five times faster than traditional development. The products we deliver handle real transaction volume, sensitive data, and complex business logic. Your users will not be able to tell the difference.' },
-          { title: 'A team that stays after launch', body: 'We do not disappear after delivery. We watch the data, fix bugs, and run regular shaping sessions to decide what to build next. Decisions are based on how real users interact with the product, not on whoever shouted loudest in the last meeting.' },
-        ].map(({ title, body }) => (
-          <div class="flex flex-col gap-4">
-            <h3 class="font-display text-h4 text-neutral-900">{title}</h3>
-            <p class="font-sans text-p text-neutral-700">{body}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+<Footer />
 
-  <!-- ===== FOUNDER'S MESSAGE ===== -->
-  <section class="section hairline dark bg-neutral-950 overflow-hidden">
-    <div class="container">
-      <div class="max-w-2xl mx-auto flex flex-col gap-10">
-
-        <!-- Section header -->
-        <div class="flex flex-col items-center text-center gap-4">
-          <span class="font-sans text-p-xs uppercase tracking-widest" style="color: var(--violet-400);">From the founder</span>
-          <h2 class="font-display text-h1 text-white">We speak Founder.</h2>
-        </div>
-
-        <!-- Stacked paper effect -->
-        <div class="relative pb-[24px]">
-
-          <!-- Paper 3 — furthest back, peeks lowest -->
-          <div class="absolute inset-x-[10px] top-[12px] bottom-0 rounded-2xl" style="z-index:1; background: #1c1c1c; border: 1px solid #2e2e2e; transform: rotate(-2deg); transform-origin: center top; margin-top: -20px;"></div>
-          <!-- Paper 2 — middle layer -->
-          <div class="absolute inset-x-[5px] top-[6px] bottom-[12px] rounded-2xl" style="z-index:2; background: #242424; border: 1px solid #383838; transform: rotate(1.2deg); transform-origin: center top; margin-top: -20px;"></div>
-
-          <!-- Main card — front -->
-          <div class="relative flex flex-col rounded-2xl overflow-hidden" style="z-index:3; background: #2e2e2e; border: 1px solid #444444;">
-
-            <!-- Letter body -->
-            <div class="flex flex-col gap-6 p-10">
-              <p class="font-sans text-p-l text-neutral-300">Hey,</p>
-              <p class="font-sans text-p-l text-neutral-300">I cannot walk past a bad restaurant without seeing the million ways I would fix it. Bad menu. Slow service. No hospitality. It drives me crazy. That is how I feel about bad software.</p>
-              <p class="font-sans text-p-l text-neutral-300">I started Jams because too many founders are drowning in the same questions: what should we build? How much will it cost? Will this actually work?</p>
-              <p class="font-sans text-p-l text-neutral-300">So they hire agencies that speak in jargon to hide the fact that they do not understand the business.</p>
-              <p class="font-sans text-p-l text-neutral-300">We do not care about the code as much as we care about your operation. We are obsessed with building products that fit the way your business actually runs — because we took the time to understand it first.</p>
-              <p class="font-sans text-p-l text-neutral-300">If you are tired of guessing what to build, let us figure it out together.</p>
-            </div>
-
-            <!-- Signature block -->
-            <div class="flex flex-col gap-5 px-10 py-8" style="border-top: 1px solid #3a3a3a; background: #272727;">
-              <img src="/signature.svg" alt="Juan Germano signature" width="342" height="200" class="h-24 w-auto self-start" style="transform: rotate(-6deg);" />
-              <div class="flex items-center gap-4">
-                <img src="/jmg-avatar.jpg" alt="Juan Germano" width="56" height="56" class="w-14 h-14 rounded-full object-cover shrink-0" />
-                <div class="flex flex-col gap-0">
-                  <p class="font-sans text-p-l font-medium text-white">Juan Germano</p>
-                  <p class="font-sans text-p-s" style="color: #737373;">Founder and CEO, Jams</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== HOW IT WORKS ===== -->
-  <section class="section hairline" aria-labelledby="how-it-works-heading">
-    <div class="container flex flex-col gap-12">
-      <h2 id="how-it-works-heading" class="font-display text-h2 text-neutral-900">How it works</h2>
-      <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {[
-          { n: '1', title: 'Workshop', body: 'We run a free 60-minute shaping session where we map your business problem together and translate it into a clear product direction. You leave knowing what to build and why. No pitch, no jargon — just honest strategy.' },
-          { n: '2', title: 'Blueprint', body: 'If we move forward, we spend two weeks going deep — user journeys, technical architecture, a design prototype, and a fixed price for the build. Everything defined before a single line of code is written.' },
-          { n: '3', title: 'Build', body: 'Our team designs and builds on the most capable no-code stack available. Mobile-first, AI-ready, connected to the systems you already use. Shipped in weeks.' },
-          { n: '4', title: 'Own it', body: 'We launch, monitor the data, and keep building. We become your product team — not a vendor you call when something breaks.' },
-        ].map(({ n, title, body }) => (
-          <li class="flex flex-col gap-4">
-            <span class="font-display text-h3 text-violet-500">{n}</span>
-            <h3 class="font-display text-h4 text-neutral-900">{title}</h3>
-            <p class="font-sans text-p text-neutral-700">{body}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-
-  <!-- ===== FAQ ===== -->
-  <section
-    class="section hairline"
-    style="background: radial-gradient(ellipse at 50% 50%, rgba(204,158,255,0.15) 0%, rgba(251,251,251,0) 70%);"
-    aria-labelledby="faq-heading"
-  >
-    <div class="container">
-      <div class="max-w-2xl mx-auto flex flex-col gap-10">
-        <h2 id="faq-heading" class="font-display text-h2 text-neutral-900">Things you are probably wondering</h2>
-        <dl class="flex flex-col divide-y divide-neutral-150">
-          {faqs.map(({ q, a }) => (
-            <details class="group py-6">
-              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-h3 text-neutral-900">
-                {q}
-                <span class="shrink-0 text-violet-500 transition-transform duration-fast group-open:rotate-45" aria-hidden="true">+</span>
-              </summary>
-              <p class="font-sans text-p text-neutral-700 mt-4 leading-relaxed">{a}</p>
-            </details>
-          ))}
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <CTASection />
-
-</BaseLayout>
+<script is:inline>lucide.createIcons();</script>
+</body>
+</html>

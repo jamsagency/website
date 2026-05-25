@@ -1,6 +1,12 @@
 # Jams
 
-Jams is a custom software and AI development studio. The product team for businesses that do not have one.
+Jams is a custom software and AI development studio. The product team for businesses that do not have one. Based in Buenos Aires, Argentina. Serving clients in the United States and Canada.
+
+## What Jams Does
+
+Jams takes a business problem and turns it into a working product. That means understanding the operation first. Identifying where software and AI actually move the numbers. Designing something people will use. Building it. And owning what happens after launch alongside the client.
+
+Jams does not quote based on requirements. Jams does not do time-and-materials. Every engagement starts with a whiteboard session, followed by monthly build cycles with skin-in-the-game pricing.
 
 ## Who Jams Is For
 
@@ -27,67 +33,103 @@ Five specific types of businesses Jams serves:
 
 ## What Jams Builds
 
-Three repeatable product archetypes:
+Three repeating product archetypes:
 
-Transaction platforms: custom booking flows, order management systems, B2B marketplaces, and logistics platforms. Integrates with systems like Checkfront (availability), Stripe (payments), and ERP tools. Built for operators who need a branded guest or buyer experience on top of their existing operational system. Reference clients: Red Horse Mountain Ranch (custom Checkfront-integrated booking platform for a luxury Idaho ranch), Macata (B2B OMS for wholesale workwear), Qmius (AI-powered B2B fine wine marketplace).
+Transaction platforms: custom booking flows, order management systems, B2B marketplaces, and logistics platforms. Integrates with systems like Checkfront (availability), Stripe (payments), and ERP tools. Built for operators who need a branded guest or buyer experience on top of their existing operational system. Reference clients: Red Horse Mountain Ranch (custom Checkfront-integrated booking platform for a luxury Idaho ranch), DropCar (unified digital platform for a two-sided parking and transport business).
 
-Gated community platforms: invite-only access, member feeds, AI-driven matching and curation, deal flow engines, member intelligence. AI is built in from day one. Reference clients: The Fold (private equity community with Alfred, an AI concierge that replaced WhatsApp deal flow), The 93% Club (student-professional community), Wie Suite (female founder membership platform).
+Gated community platforms: invite-only access, member feeds, AI-driven matching and curation, deal flow engines, member intelligence. AI is built in from day one. Reference clients: The Fold (private equity community with Alfred, an AI concierge that replaced WhatsApp deal flow), The 93% Club (student-professional community platform).
 
-Vertical SaaS: purpose-built tools for a specific operator type. Ongoing product partnership, not a one-time build. Reference clients: Emendu (IT asset management SaaS with Lisa, an AI agent for device onboarding and provisioning), My Athlete (sports facilities management platform).
+AI-powered tools: automated reporting, intelligent intake flows, AI-assisted operations, smart booking logic, conversational agents. The AI use case is identified during shaping, not bolted on afterwards. Reference clients: The Arena (AI-powered student analytics platform; reports that took hours to produce manually now generate at scale automatically), Qmius (B2B marketplace with an AI assistant for shoppers, sellers, and admins).
 
 ## How Jams Works
 
-Free shaping workshop (60 minutes, no cost): Jams maps the business problem and translates it into a product direction. A structured facilitation session run by the founder. The prospect leaves knowing what to build and why.
+Three phases:
 
-Blueprint ($3,500, 2 weeks): Full paid discovery. User journeys, technical architecture, a design prototype, and a fixed price for the build. The client knows exactly what they are getting before committing to development.
+Free shaping session (60 minutes, no cost): Jams maps the business problem and translates it into a product direction. A structured whiteboard session run by the founder. The client leaves with a clear direction instead of a quote.
 
-Build ($5,000 to $8,000 per month): Monthly engagement. Full team: developer, designer, product manager. Two-week sprints, Friday demos, regular shipping. Jams stays after launch as an embedded product team.
+Blueprint ($3,500, 2 weeks): Full paid discovery. User journeys, AI opportunity mapping, technical architecture, a design prototype, and a fixed price for the build. The client knows exactly what they are getting before committing to development.
+
+Build ($5,000/month and up): Monthly engagement. Full team: developer, designer, product manager. Monthly cycles: shape, build, ship, learn. Jams stays after launch as an embedded product team. Every engagement has a monthly floor and ceiling based on output and results. Where Jams owns a metric like bookings, conversions, or member engagement, part of the fee is tied to that metric. Skin in the game, both ways.
+
+Timeline: Blueprint in two weeks. First version of the product in 4 to 8 weeks depending on complexity. All code, design files, and documentation transfer to the client at the end. No lock-in.
+
+## Shaping
+
+Jams adopted shaping from 37signals' Shape Up methodology. Shaping is not a phase at the start of a project. It is an ongoing practice throughout every engagement.
+
+At the start of a new project, Jams runs longer shaping sessions: mapping the operation, identifying what actually needs to exist, and defining the first scope. During the build, every cycle starts with a shaping session. Between cycles, new ideas go to the whiteboard immediately.
+
+A shaping session starts with the problem (not the feature request), draws it out and pokes holes in it, and produces a rough concept, the main elements of a solution, and a short list of what is explicitly not being built. That is enough to make a decision.
 
 ## Results
 
-Red Horse Mountain Ranch (Idaho, luxury hospitality): Zero online bookings before Jams. After launching a custom Checkfront-integrated booking platform: 1,600 users, 80 leads in 4 weeks. Direct bookings became the default channel.
+Red Horse Mountain Ranch (Idaho, luxury hospitality): Zero direct online bookings before Jams. After launching a custom Checkfront-integrated booking platform: 5% conversion rate in 8 weeks, 20 hours saved on lead and booking management per month.
 
 The Fold (private equity community platform): Member engagement rose from 25% to 67% after Alfred, an AI concierge, replaced WhatsApp as the primary deal flow channel.
 
-Emendu (B2B IT asset management, Spain): Paid onboarding rate doubled after replacing spreadsheets with a full SaaS platform and Lisa, an AI agent that handles device assignment and employee onboarding automatically.
+The Arena (EdTech, student coaching platform): Full platform shipped in 8 weeks. Psychological profiling reports that took hours per student now generate automatically at scale across hundreds of students.
 
-The Arena (EdTech, student coaching platform): Full platform shipped in 8 weeks. Psychological profiling reports that took hours per student now generate in batch across hundreds of students simultaneously.
+DropCar (automotive logistics, New York): Disconnected products and brand unified into one digital platform with a high-converting booking flow.
 
 ## Industries
 
-Hospitality and travel: boutique ranches, retreats, glamping operations, experiential properties. Primary pain: no direct booking flow, reliance on Airbnb commissions, disconnected availability systems.
+Hospitality and travel: boutique ranches, retreats, glamping operations, experiential properties. Primary pain: no direct booking flow, reliance on commission-based channels, disconnected availability systems.
 
 Private equity and community platforms: exclusive member networks, deal flow communities, private clubs. Primary pain: operations running on WhatsApp and email, no proprietary platform, no AI layer.
 
-B2B SaaS and operations: device management, IT asset management, B2B order management, field sales intelligence. Primary pain: manual spreadsheet-based ops with no scalable system underneath.
-
-Marketplaces: two-sided markets for wine, B2B wholesale, automotive logistics. Primary pain: no platform connecting buyers and sellers, complex matching and verification logic.
+B2B operations and marketplaces: two-sided markets, wholesale, automotive logistics, order management. Primary pain: no platform connecting buyers and sellers, complex matching and verification logic.
 
 EdTech and student analytics: platforms serving students, coaches, and institutions simultaneously. Primary pain: manual reporting and data management capping the business at what one person can handle.
 
 ## Tech Stack
 
-Primary build tool: Bubble (no-code application platform). Jams is a Bubble Silver Agency Partner. Bubble handles payments, AI integrations, real-time data, complex logic, and multi-role platforms.
+Primary build tool: Bubble (no-code application platform). Jams is a Bubble Silver Agency Partner. Bubble handles payments, AI integrations, real-time data, complex logic, and multi-role platforms. Jams recommends the right tool for the product, not the one it is most comfortable with.
 
-For performance-critical and backend-heavy work: hybrid architecture using Cloudflare Workers and Convex on top of Bubble. Live proof of concept: Qmius (AI-powered marketplace with Cloudflare and Bubble hybrid).
+For performance-critical and backend-heavy work: hybrid architecture using Cloudflare Workers on top of Bubble. Live proof of concept: Qmius (AI-powered marketplace with Bubble + Cloudflare hybrid).
 
-AI integrations: OpenAI (agents, document analysis, automated report generation, matching systems). AI is built into the product from the design phase, not added at the end.
+AI integrations: OpenAI (agents, document analysis, automated report generation, matching systems). AI is identified during the shaping phase and built into the product from day one, not added afterwards.
 
 Mobile: iOS and Android via Natively (native mobile wrapper around Bubble applications). Live examples: The Fold (mobile app for private equity deal flow), The Arena (student-facing mobile app).
 
-## What Makes Jams Different
+For products with very high transaction volume or complex native requirements: custom code (Next.js and similar frameworks).
 
-Most agencies wait to be told what to build. Jams runs the process that produces the answer.
+## Site Pages
 
-The shaping workshop and Blueprint are not requirements-gathering exercises. They are a structured facilitation process where Jams helps the client decide what to build, in what order, and why. Most clients describe the shaping session as the first time they had real clarity on what to build.
+- jams.agency — Homepage
+- jams.agency/work — Case studies and portfolio
+- jams.agency/work/the-fold — The Fold case study
+- jams.agency/work/dropcar — DropCar case study
+- jams.agency/work/the-arena — The Arena case study
+- jams.agency/work/red-horse-mountain-ranch — Red Horse Mountain Ranch case study
+- jams.agency/about — About the team
+- jams.agency/ai — AI services
+- jams.agency/shaping — The shaping methodology
+- jams.agency/blueprint — Blueprint discovery phase
+- jams.agency/bubble — Bubble-specific services
+- jams.agency/hospitality — Hospitality vertical
+- jams.agency/checkfront — Checkfront integration services
+- jams.agency/stripe — Stripe integration services
+- jams.agency/cloudflare — Cloudflare integration services
+- jams.agency/convex — Convex integration services
+- jams.agency/oms — Order management systems
+- jams.agency/faqs — Frequently asked questions
+- jams.agency/start — Book a free shaping session
+- jams.agency/blog — Blog: software, AI, and product articles
 
-Jams does the full chain: product strategy, UX design, development, and post-launch product ownership. Not a design agency (they do not build). Not a dev shop (they do not think in product). Not a consultant (they do not ship). Jams does all three.
+## Blog
 
-What Jams is not: a design agency, a dev shop, a no-code freelancer, a consultant who delivers a deck, a team that disappears after the invoice is paid.
+Jams publishes practical articles on software, AI, and building products that move the business. Topics include:
+- When and why to migrate from Bubble to custom code
+- Bubble hard limits and hybrid architectures
+- How to build booking engines, member portals, and AI-powered tools in Bubble
+- Practical guides on Checkfront + Bubble and Stripe + Bubble integrations
+- How non-technical founders should approach building software
+- Hospitality and dude ranch booking technology
 
 ## Contact
 
 Founder: Juan Germano, j@jams.agency
-Book a free shaping workshop: jams.agency/start
+Book a free shaping session: jams.agency/start
 Portfolio: jams.agency/work
-Based in Buenos Aires, Argentina. Serving clients in the United States, United Kingdom, Spain, and Latin America.
+Clutch rating: 5.0
+Based in Buenos Aires, Argentina. Serving clients in the United States and Canada.

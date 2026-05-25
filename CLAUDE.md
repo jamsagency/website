@@ -119,7 +119,7 @@ public/
 ### Every page
 - `<meta charset="UTF-8">`
 - `<meta name="viewport" content="width=device-width, initial-scale=1">`
-- `<meta name="robots" content="index, follow">` — except `/start` and thank-you pages: `noindex`
+- `<meta name="robots" content="index, follow">` on all pages
 - Canonical URL
 - Favicon set: `/favicon.ico`, `/favicon.svg`, `/apple-touch-icon.png`
 - OG image fallback: `/og-default.jpg`
@@ -210,7 +210,7 @@ export default defineConfig({
 });
 ```
 
-Exclude `/start` from sitemap (noindex page).
+All pages included in sitemap.
 
 ---
 
@@ -244,7 +244,6 @@ When implementing pages, follow this priority:
 ## Key decisions
 
 - Self-host all fonts via `@font-face` — no CDN
-- `/start` is noindex; keep separate from sitemap
 - `/start` is the canonical booking page — all CTAs site-wide link to it
 - Blog posts live as `.astro` files (or content collections if blog grows) — TBD at boilerplate stage
 - No dark mode toggle — `.dark` is a section-level class only
