@@ -1,0 +1,109 @@
+---
+import WikiLayout from '../../layouts/WikiLayout.astro';
+
+export const prerender = false;
+---
+
+<WikiLayout title="Wiki">
+  <h1>Jams Wiki</h1>
+  <p>v1.0.0 — Last updated May 26th 2026</p>
+
+  <div class="wiki-cards">
+    <a href="/wiki/values" class="wiki-card">
+      <div class="wiki-card-icon">
+        <i class="ph ph-star"></i>
+      </div>
+      <div class="wiki-card-body">
+        <h3>Company Values</h3>
+        <p>What we stand for and how we make decisions.</p>
+      </div>
+      <i class="ph ph-arrow-right wiki-card-arrow"></i>
+    </a>
+
+    <a href="/wiki/qa" class="wiki-card">
+      <div class="wiki-card-icon">
+        <i class="ph ph-check-square"></i>
+      </div>
+      <div class="wiki-card-body">
+        <h3>QA</h3>
+        <p>Testing process, checklists, and quality standards.</p>
+      </div>
+      <i class="ph ph-arrow-right wiki-card-arrow"></i>
+    </a>
+  </div>
+</WikiLayout>
+
+<style>
+  .wiki-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .wiki-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--bg);
+    border-radius: var(--radius-lg);
+    border: 0.5px solid var(--border-soft);
+    box-shadow: var(--shadow-card), var(--shadow-inset-top);
+    text-decoration: none;
+    transition: box-shadow var(--dur-base) var(--ease-out);
+  }
+
+  .wiki-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10), var(--shadow-inset-top);
+  }
+
+  .wiki-card:hover .wiki-card-arrow {
+    color: var(--orange);
+    transform: translateX(2px);
+  }
+
+  .wiki-card-icon {
+    width: 38px;
+    height: 38px;
+    background: var(--bg-muted);
+    border-radius: 10px;
+    border: 0.5px solid var(--border-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+    color: var(--fg-subtle);
+  }
+
+  .wiki-card-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .wiki-card-body h3 {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--fg);
+    letter-spacing: -0.01em;
+    margin-top: 0;
+    margin-bottom: 2px;
+  }
+
+  .wiki-card-body p {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    color: var(--fg-subtle);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .wiki-card-arrow {
+    font-size: 16px;
+    color: var(--fg-faint);
+    flex-shrink: 0;
+    transition: color var(--dur-base) var(--ease-out),
+                transform var(--dur-base) var(--ease-out);
+  }
+</style>

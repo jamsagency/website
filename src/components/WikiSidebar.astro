@@ -1,0 +1,156 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const nav = [
+  { label: 'Home', href: '/wiki' },
+  { label: 'Company Values', href: '/wiki/values' },
+  {
+    label: 'QA',
+    href: '/wiki/qa',
+    children: [
+      { label: 'Testing Process', href: '/wiki/qa/testing' },
+      { label: 'Workshop Checklists', href: '/wiki/qa/workshop' },
+    ],
+  },
+];
+
+function isActive(href: string) {
+  return currentPath === href;
+}
+---
+
+<aside id="wiki-sidebar" class="wiki-sidebar">
+  <div class="wiki-sidebar-inner">
+    <nav aria-label="Wiki navigation">
+      <ul class="wiki-nav-root">
+        {nav.map((item) => (
+          <li>
+            {'children' in item ? (
+              <>
+                <a
+                  href={item.href}
+                  class:list={['wiki-nav-item wiki-nav-section', { 'wiki-nav-active': isActive(item.href) }]}
+                >
+                  {item.label}
+                </a>
+                <ul class="wiki-nav-children">
+                  {item.children.map((child) => (
+                    <li>
+                      <a
+                        href={child.href}
+                        class:list={['wiki-nav-item wiki-nav-child', { 'wiki-nav-active': isActive(child.href) }]}
+                      >
+                        {child.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <a
+                href={item.href}
+                class:list={['wiki-nav-item wiki-nav-section', { 'wiki-nav-active': isActive(item.href) }]}
+              >
+                {item.label}
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</aside>
+
+<style>
+  .wiki-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background: var(--bg-muted);
+    border-right: 1px solid var(--border);
+    height: calc(100vh - 57px);
+    position: sticky;
+    top: 57px;
+    overflow-y: auto;
+  }
+
+  .wiki-sidebar-inner {
+    padding: 24px 0 40px;
+  }
+
+  .wiki-nav-root,
+  .wiki-nav-children {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wiki-nav-item {
+    display: block;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    color: var(--fg-muted);
+    letter-spacing: -0.01em;
+    position: relative;
+    transition: color var(--dur-fast) var(--ease-out),
+                background var(--dur-fast) var(--ease-out);
+  }
+
+  .wiki-nav-item:hover {
+    color: var(--fg);
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  .wiki-nav-section {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 20px;
+  }
+
+  .wiki-nav-child {
+    font-size: 13.5px;
+    font-weight: 400;
+    padding: 6px 20px 6px 34px;
+    color: var(--fg-subtle);
+  }
+
+  .wiki-nav-child:hover {
+    color: var(--fg-muted);
+  }
+
+  .wiki-nav-active {
+    color: var(--orange) !important;
+    background: rgba(245, 93, 17, 0.05) !important;
+  }
+
+  .wiki-nav-active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--orange);
+    border-radius: 0 2px 2px 0;
+  }
+
+  @media (max-width: 992px) {
+    .wiki-sidebar {
+      display: none;
+      position: fixed;
+      top: 57px;
+      left: 0;
+      z-index: 50;
+      width: 280px;
+      height: calc(100vh - 57px);
+      box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .wiki-sidebar.open {
+      display: block;
+    }
+  }
+</style>
