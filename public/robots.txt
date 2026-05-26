@@ -1,10 +1,13 @@
 User-agent: *
 Allow: /
+Disallow: /wiki
 
 User-agent: GPTBot
 Allow: /
+Disallow: /wiki
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /wiki
 
 Sitemap: https://jams.agency/sitemap-index.xml
