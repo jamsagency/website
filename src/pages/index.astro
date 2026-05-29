@@ -555,56 +555,94 @@ import '@styles/global.css';
 <Nav />
 
 <!-- ===== HERO ===== -->
-<section class="hero-no-bottom-pad" style="background: radial-gradient(circle, #C8C8CC 1.5px, transparent 1.5px) 0 0 / 24px 24px, linear-gradient(in oklab 180deg, oklab(100% 0 0) 14%, oklab(84.3% 0.005 -0.016) 120%); padding: 128px 24px 0; margin-top: 65px;">
+<section class="hero-no-bottom-pad" style="background: radial-gradient(circle, #DCDCDE 1.5px, transparent 1.5px) 0 0 / 24px 24px, linear-gradient(in oklab 180deg, oklab(100% 0 0) 14%, oklab(84.3% 0.005 -0.016) 120%); padding: 80px 24px 0; margin-top: 65px;">
   <div class="hn-container">
-    <h1 style="font-size: clamp(40px, 5.5vw, 80px); font-weight: 500; line-height: 1.0; letter-spacing: -0.025em; color: #111; text-align: center; margin: 0 auto 40px;">
-      Stop spending money on the<br class="desktop-br"> wrong custom software and AI
-    </h1>
-    <div class="hero-grid">
-      <!-- Left: editorial body copy -->
-      <div style="display: flex; flex-direction: column; gap: 20px; padding-top: 8px;">
-        <p class="hero-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">There are plenty of software teams you could hire.</p>
-        <p class="hero-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">But most dev firms build exactly what you ask for, skip the hard questions, and leave you with something that doesn't move the numbers.</p>
-        <p class="hero-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">At Jams we figure out what your business actually needs first. Then we build it.</p>
+    <div class="hero-grid" style="grid-template-columns: 3fr 2fr;">
+
+      <!-- Left: copy -->
+      <div style="display: flex; flex-direction: column; gap: 28px; padding-top: 8px;">
+        <h1 style="font-size: clamp(32px, 3.8vw, 56px); font-weight: 500; line-height: 1.05; letter-spacing: -0.025em; color: #111; margin: 0;">
+          Stop hiring software teams that promise the world and ship excuses.
+        </h1>
+        <p style="font-size: 20px; line-height: 1.55; letter-spacing: -0.01em; color: #000; margin: 0;">
+          We bill less when we under-deliver. Try finding another software agency that does that.
+        </p>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
+          <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #000;">
+            <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
+            Skin-in-the-game pricing where both sides win
+          </li>
+          <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #000;">
+            <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
+            Custom web and mobile apps with built-in AI, not AI wrappers
+          </li>
+          <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #000;">
+            <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
+            US company with South American team that speaks native English
+          </li>
+          <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #000;">
+            <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
+            18 months average customer retention
+          </li>
+          <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #000;">
+            <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
+            Regular visits to the US and Canada for in-person strategy and bonding
+          </li>
+        </ul>
+        <!-- CTAs -->
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+          <a href="/start" class="sticky-btn" style="margin-top: 0; align-self: auto;">
+            <i data-lucide="arrow-right" class="sticky-btn-arrow"></i>
+            <span>Book a call</span>
+          </a>
+          <a href="/start" class="read-link">
+            <i data-lucide="arrow-right" class="read-link-arrow"></i>
+            <span>See how our skin-in-the-game pricing works</span>
+          </a>
+        </div>
+        <!-- Trust bar -->
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="display: flex; align-items: center; flex-shrink: 0;">
+            <img src="/spencer-richardson.jpeg" alt="Spencer Richardson" width="32" height="32" style="width: 32px; height: 32px; border-radius: 999px; object-fit: cover; border: 2px solid #fff; position: relative; z-index: 5;" />
+            <img src="/neill-etheridge.jpeg" alt="Neill Etheridge" width="32" height="32" style="width: 32px; height: 32px; border-radius: 999px; object-fit: cover; border: 2px solid #fff; margin-left: -8px; position: relative; z-index: 4;" />
+            <img src="/don-britton.jpeg" alt="Don Britton" width="32" height="32" style="width: 32px; height: 32px; border-radius: 999px; object-fit: cover; border: 2px solid #fff; margin-left: -8px; position: relative; z-index: 3;" />
+            <img src="/davis-warren.jpg" alt="Davis Warren" width="32" height="32" style="width: 32px; height: 32px; border-radius: 999px; object-fit: cover; border: 2px solid #fff; margin-left: -8px; position: relative; z-index: 2;" />
+            <img src="/nicolas-tanos.jpeg" alt="Nicolas Tanos" width="32" height="32" style="width: 32px; height: 32px; border-radius: 999px; object-fit: cover; border: 2px solid #fff; margin-left: -8px; position: relative; z-index: 1;" />
+          </div>
+          <span style="font-size: 15px; font-weight: 400; color: #6B6B75; letter-spacing: -0.01em;">Trusted by US and Canadian founders</span>
+        </div>
       </div>
-      <!-- Right: CTA card -->
-      <div class="liquid-glass hero-liquid-card" style="padding: 32px 40px 44px; display: flex; flex-direction: column; gap: 16px;">
-        <p class="hero-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">If you're sitting on ideas and don't know where to start:</p>
-        <p class="hero-body-text" style="margin: 0; font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A;">Book a call. Show up with your ideas and pains. Leave with a clear roadmap instead of a quote.</p>
-        <a href="/start" class="sticky-btn">
-          <i data-lucide="arrow-right" class="sticky-btn-arrow"></i>
-          <span>Book your free shaping session</span>
-        </a>
+
+      <!-- Right: liquid glass card — photo + Juan intro + action buttons -->
+      <div class="liquid-glass hero-liquid-card" style="padding: 0; display: flex; flex-direction: column;">
+        <img src="/jmg-avatar.jpg" alt="Juan Merizalde, founder of Jams" width="120" height="120"
+          style="width: 120px; height: 120px; border-radius: 999px; object-fit: cover; object-position: center top; display: block; flex-shrink: 0; margin: 24px 24px 0;" />
+        <div style="padding: 20px 24px 28px; display: flex; flex-direction: column; gap: 20px; position: relative; z-index: 1;">
+          <div>
+            <p style="font-size: 22px; font-weight: 600; letter-spacing: -0.015em; color: #111; margin: 0 0 8px; line-height: 1.3;">Hey, I'm Juan.</p>
+            <p style="font-size: 17px; line-height: 1.55; letter-spacing: -0.01em; color: #404040; margin: 0;">Before you send us a spec, ask me the awkward questions.</p>
+          </div>
+          <div style="display: flex; flex-direction: row; gap: 8px; flex-wrap: wrap;">
+            <a href="tel:+13079981554" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 14px; border-radius: 8px; background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08); font-size: 14px; font-weight: 500; color: #111; text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; transition: background 120ms cubic-bezier(0.22,1,0.36,1);" onmouseenter="this.style.background='rgba(0,0,0,0.08)'" onmouseleave="this.style.background='rgba(0,0,0,0.04)'">
+              <i class="ph ph-phone" style="font-size: 16px; flex-shrink: 0;"></i>
+              Call me
+            </a>
+            <a href="https://wa.me/+13079981554" target="_blank" rel="noopener noreferrer" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 14px; border-radius: 8px; background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08); font-size: 14px; font-weight: 500; color: #111; text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; transition: background 120ms cubic-bezier(0.22,1,0.36,1);" onmouseenter="this.style.background='rgba(0,0,0,0.08)'" onmouseleave="this.style.background='rgba(0,0,0,0.04)'">
+              <i class="ph ph-whatsapp-logo" style="font-size: 16px; flex-shrink: 0;"></i>
+              WhatsApp
+            </a>
+            <a href="/start" class="hn-btn-orange" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 14px; border-radius: 8px; font-size: 14px; width: auto; white-space: nowrap; text-decoration: none;">
+              <svg class="hn-btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <span>Book a call</span>
+            </a>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ===== CUSTOMER BADGES ===== -->
-<section style="background: #fff; padding: 32px 24px;">
-  <div class="hn-container credentials-bar">
-    <!-- Left: platform badges -->
-    <div style="display: flex; align-items: center; gap: 16px; flex-shrink: 0;">
-      <a href="https://bubble.io/expert/jamsagency" target="_blank" rel="noopener noreferrer" style="text-decoration: none; flex-shrink: 0; display: block; opacity: 1; transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);" onmouseenter="this.style.opacity='0.7'" onmouseleave="this.style.opacity='1'">
-        <img src="/bubble-badge.svg" alt=".bubble Silver Agency Partner" height="72" style="height: 72px; width: auto; display: block;" />
-      </a>
-      <a href="https://clutch.co/profile/jams-agency" target="_blank" rel="noopener noreferrer" style="text-decoration: none; flex-shrink: 0; display: block; opacity: 1; transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);" onmouseenter="this.style.opacity='0.7'" onmouseleave="this.style.opacity='1'">
-        <img src="/clutch-badge.svg" alt="Clutch 5.0" height="72" style="height: 72px; width: auto; display: block;" />
-      </a>
-    </div>
-    <!-- Right: label + client logos grouped together -->
-    <div class="trusted-by-group">
-      <span class="trusted-by-label" style="font-size: 15px; font-weight: 400; color: #6B6B75; width: 224px; line-height: 1.3; letter-spacing: -0.01em;">
-        Trusted by +30 founders and operators from teams like
-      </span>
-      <div class="client-logos">
-        <img src="/logo-dropcar.png" alt="DropCar" height="32" style="height: 32px; width: auto; object-fit: contain;" />
-        <img src="/redhorse-logo-2x.png" alt="Red Horse Mountain Ranch" height="65" style="height: 65px; width: auto; object-fit: contain;" />
-        <img src="/logo-93percent.png" alt="93 Percent Club" height="32" style="height: 32px; width: auto; object-fit: contain;" />
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ===== FEELS ===== -->
 <section style="background: #F3F3F3; padding: 128px 24px;">
@@ -612,18 +650,23 @@ import '@styles/global.css';
     <h2 style="font-size: clamp(36px, 4.2vw, 60px); font-weight: 500; letter-spacing: -0.02em; text-align: center; margin: 0 0 48px; color: #111;">
       It probably feels like this...
     </h2>
-    <div class="sticky-board">
-      <div class="sticky" style="left: 2%; top: 7%; transform: rotate(-3.5deg);">We have twenty ideas. Which one do we start with?</div>
-      <div class="sticky" style="left: 25%; top: 3%; transform: rotate(2.5deg);">What if we look up in Upwork?</div>
-      <div class="sticky" style="left: 53%; top: 9%; transform: rotate(-1.5deg); max-width: 220px;">US software firms are so expensive, but could we trust a team from abroad?</div>
-      <div class="sticky" style="right: 1%; top: 4%; transform: rotate(5deg);">9 months for custom software??!</div>
-      <div class="sticky" style="left: 9%; top: 44%; transform: rotate(-6deg);">What should we actually build?</div>
-      <div class="sticky" style="left: 40%; top: 37%; transform: rotate(3.5deg);">Dev firms don't really get us</div>
-      <div class="sticky" style="right: 3%; top: 41%; transform: rotate(-2.5deg); max-width: 200px;">Where does AI actually move the needle for our business?</div>
-      <div class="sticky" style="left: 2%; top: 65%; transform: rotate(3deg); max-width: 210px;">Who do we trust to deliver and not disappear halfway through?</div>
-      <div class="sticky" style="left: 29%; top: 71%; transform: rotate(-5deg);">Dev firms just come back with quotes</div>
-      <div class="sticky" style="left: 55%; top: 62%; transform: rotate(2deg);">Should we just hire our own dev?</div>
-      <div class="sticky" style="right: 2%; top: 68%; transform: rotate(-3.5deg);">How much is this going to cost?</div>
+    <div class="sticky-board" style="height: 640px;">
+      <div class="sticky" style="left: 2%; top: 5%; transform: rotate(-3.5deg);">We have twenty ideas. Which one do we start with?</div>
+      <div class="sticky" style="left: 25%; top: 2%; transform: rotate(2.5deg);">What if we look up in Upwork?</div>
+      <div class="sticky" style="left: 53%; top: 6%; transform: rotate(-1.5deg); max-width: 220px;">US software firms are so expensive, but could we trust a team from abroad?</div>
+      <div class="sticky" style="right: 1%; top: 3%; transform: rotate(5deg);">9 months for custom software??!</div>
+      <div class="sticky" style="left: 27%; top: 22%; transform: rotate(-3deg); max-width: 220px;">Can you build a real AI app instead of an AI wrapper?</div>
+      <div class="sticky" style="left: 62%; top: 20%; transform: rotate(3.5deg);">Can we trust a team from South America?</div>
+      <div class="sticky" style="left: 9%; top: 42%; transform: rotate(-6deg);">What should we actually build?</div>
+      <div class="sticky" style="left: 40%; top: 38%; transform: rotate(3.5deg);">Dev firms don't really get us</div>
+      <div class="sticky" style="right: 3%; top: 40%; transform: rotate(-2.5deg); max-width: 200px;">Where does AI actually move the needle for our business?</div>
+      <div class="sticky" style="left: 22%; top: 58%; transform: rotate(4deg); max-width: 215px;">What if we don't like the product by the end of the project?</div>
+      <div class="sticky" style="left: 55%; top: 55%; transform: rotate(-3deg);">Do you actually speak english?</div>
+      <div class="sticky" style="left: 2%; top: 72%; transform: rotate(3deg); max-width: 210px;">Who do we trust to deliver and not disappear halfway through?</div>
+      <div class="sticky" style="left: 29%; top: 78%; transform: rotate(-5deg);">Dev firms just come back with quotes</div>
+      <div class="sticky" style="left: 55%; top: 73%; transform: rotate(2deg);">Should we just hire our own dev?</div>
+      <div class="sticky" style="right: 2%; top: 76%; transform: rotate(-3.5deg);">How much is this going to cost?</div>
+      <div class="sticky" style="right: 3%; top: 57%; transform: rotate(2.5deg); max-width: 215px;">We've hired multiple dev agencies. How can we trust you won't deliver half a product?</div>
     </div>
   </div>
 </section>
@@ -654,11 +697,11 @@ import '@styles/global.css';
             A custom booking engine for an all-inclusive experience
           </h3>
           <ul style="margin: 0 0 28px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
-            <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #1A1A1A;">
+            <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #000;">
               <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
               From 0 to 5% conversion rate in 8 weeks
             </li>
-            <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #1A1A1A;">
+            <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #000;">
               <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
               20 hours saved on lead &amp; booking management
             </li>
@@ -681,7 +724,7 @@ import '@styles/global.css';
             A custom student management tool with built-in AI
           </h3>
           <ul style="margin: 0 0 28px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px;">
-            <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #1A1A1A;">
+            <li style="display: flex; align-items: baseline; gap: 10px; font-size: 17px; line-height: 1.5; letter-spacing: -0.01em; color: #000;">
               <span style="color: #F55D11; font-size: 20px; line-height: 0.9; flex-shrink: 0;">•</span>
               From hundreds of manual Notion pages to thousands of automated student reports
             </li>
@@ -710,7 +753,7 @@ import '@styles/global.css';
           Free Shaping Session
         </div>
         <p style="font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A; margin: 0 0 24px;">
-          One hour. We map your idea, identify where the real problem is, and figure out what to build. No pitch, no deck. You leave with a plan instead of a quote.
+          We map your idea, identify where the real problem is, and figure out what to build. No pitch, no deck. You leave with a plan instead of a quote.
         </p>
         <a href="/start" class="sticky-btn">
           <i data-lucide="arrow-right" class="sticky-btn-arrow"></i>
@@ -724,7 +767,7 @@ import '@styles/global.css';
           Blueprint
         </div>
         <p style="font-size: 22px; line-height: 1.5em; letter-spacing: -0.01em; color: #1A1A1A; margin: 0;">
-          Two weeks. Flows, AI opportunity mapping, technical architecture, a design prototype, and a fixed price for the build. Everything defined before a single line of code is written. No surprises later.
+          Flows, AI opportunity mapping, technical architecture, a design prototype, and a fixed price for the build. Everything defined before a single line of code is written. No surprises later.
         </p>
       </div>
       <!-- 03 -->
@@ -750,29 +793,29 @@ import '@styles/global.css';
     <div style="border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden;">
       <div class="why-grid" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
         <div style="padding: 40px; border-right: 1px solid rgba(255,255,255,0.1);">
-          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">AI makes it faster, not better</h3>
+          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">US company with South American roots</h3>
           <p style="font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">
-            Figuring out what to build and what impact it will create still takes time. Combining AI and our expertise, we can launch earlier, run more iteration cycles, learn faster and move the right metrics.
+            We're a team based in South America. We're a US entity, so payments and contracts are dead simple. And we speak native english. We have a close network of customers, colleagues and friends around North America. So we understand your culture. We also regularly visit the area to meet our customers in person.
           </p>
         </div>
         <div style="padding: 40px;">
-          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">We speak in plain english</h3>
+          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">We put our skin in the game</h3>
           <p style="font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">
-            We're obsessed with making things as simple as possible for our clients. We avoid the technical jargon at all times, and we always look for ways to make software feel easier.
+            We want to work with you and your business for the long term. And since we've been doing this for a long time, we've seen how bad software projects can go. So we changed that through our skin-in-the-game pricing. From day 1, we price through a variable model that puts your business first. When it makes sense, we tie part of our fee to actual results like conversions.
           </p>
         </div>
       </div>
       <div class="why-grid">
         <div style="padding: 40px; border-right: 1px solid rgba(255,255,255,0.1);">
-          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">We're in for the long term</h3>
+          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">We translate instead of speaking technical</h3>
           <p style="font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">
-            From day one, we'll put your business first and work towards a long term relationship. We do this through our skin in the game pricing.
+            The best thing we do is translating your vision into a real product, back and forth. We avoid technical jargon at all times, and we make sure to make the experience of building custom software as easy and seamless as possible for you and your team.
           </p>
         </div>
         <div style="padding: 40px;">
-          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">We're a great non-US alternative</h3>
+          <h3 style="font-size: 18px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; color: #fff; margin: 0 0 14px;">AI makes it faster, not better</h3>
           <p style="font-size: 17px; line-height: 1.65; letter-spacing: -0.01em; color: #CCCCCC; margin: 0;">
-            Based in LATAM, we're timezone friendly with you and reasonably priced to provide your business with great talent.
+            The cost of writing code is everyday cheaper. Figuring out what to build in the first place, why and what impact it will create is what actually takes time. Combining AI and our product and strategy expertise, we can launch earlier, run more iteration cycles, learn faster and move the right metrics.
           </p>
         </div>
       </div>
