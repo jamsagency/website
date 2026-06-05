@@ -522,7 +522,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   document.addEventListener('input', e => (e.target as HTMLElement).classList.remove('error'));
   backBtn.addEventListener('click', () => goto(current - 1));
-  nextBtn.addEventListener('click', () => { if (validate(current)) goto(current + 1); });
+  nextBtn.addEventListener('click', () => {
+    if (validate(current)) {
+      (window as any).posthog?.capture('application_step_completed', { step: current });
+      goto(current + 1);
+    }
+  });
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -530,9 +535,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     submitBtn.textContent = 'Submitting...';
     submitBtn.disabled = true;
     try {
-      const res  = await fetch('/api/apply', { method: 'POST', body: new FormData(form) });
+      const sessionId = (window as any).posthog?.get_session_id?.() || undefined;
+      const res  = await fetch('/api/apply', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: sessionId ? { 'X-PostHog-Session-Id': sessionId } : {},
+      });
       const json = await res.json();
       if (json.ok) {
+        const email = (document.getElementById('f-email') as HTMLInputElement)?.value?.trim();
+        if (email) {
+          (window as any).posthog?.identify(email);
+        }
+        (window as any).posthog?.capture('application_step_completed', { step: current });
         formCard!.style.display   = 'none';
         successCard!.style.display = 'flex';
       } else {
@@ -543,6 +558,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       submitBtn.textContent = 'Submit';
       submitBtn.disabled = false;
     }
+  });
+
+  // Track cal.com booking link click after successful submission
+  document.querySelector<HTMLAnchorElement>('#success-card a[href*="cal.com"]')?.addEventListener('click', () => {
+    (window as any).posthog?.capture('cal_booking_clicked');
   });
 
   goto(1);

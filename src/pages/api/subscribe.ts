@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { getPostHogServer } from '../../lib/posthog-server';
 
 export const prerender = false;
 
@@ -43,6 +44,13 @@ export const POST: APIRoute = async ({ request }) => {
         headers: { 'Content-Type': 'application/json' },
       });
     }
+
+    const posthog = getPostHogServer();
+    posthog.capture({
+      distinctId: email,
+      event: 'newsletter_subscribed',
+      properties: { email },
+    });
 
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,

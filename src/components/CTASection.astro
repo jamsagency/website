@@ -18,12 +18,23 @@ const {
     <p style="font-size: 20px; line-height: 1.55; letter-spacing: -0.01em; color: #1A1A1A; margin: 0 auto 44px; max-width: 540px;">
       {body}
     </p>
-    <a href="/start" class="btn-primary" style="padding: 12px 28px; width: auto;">
+    <a href="/start" class="btn-primary" id="cta-section-btn" style="padding: 12px 28px; width: auto;">
       <i data-lucide="arrow-right" class="btn-arrow"></i>
       <span>Book a call</span>
     </a>
   </div>
 </section>
+
+<script is:inline>
+(function () {
+  var btn = document.getElementById('cta-section-btn');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      window.posthog?.capture('cta_clicked', { location: 'cta_section' });
+    });
+  }
+})();
+</script>
 
 <style is:global>
   .jams-cta-section {

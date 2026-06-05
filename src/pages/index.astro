@@ -3,6 +3,7 @@ import SEOHead from '@components/SEOHead.astro';
 import Nav from '@components/Nav.astro';
 import Footer from '@components/Footer.astro';
 import CTASection from '@components/CTASection.astro';
+import PostHog from '@components/posthog.astro';
 import '@styles/global.css';
 ---
 
@@ -630,6 +631,7 @@ import '@styles/global.css';
       pointer-events: none;
     }
   </style>
+  <PostHog />
 </head>
 <body>
 
@@ -1057,6 +1059,41 @@ import '@styles/global.css';
     var pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
     if (vid.duration) vid.currentTime = pct * vid.duration;
   });
+
+  // Track first video play
+  var videoPlayed = false;
+  vid.addEventListener('play', function () {
+    if (!videoPlayed) {
+      videoPlayed = true;
+      window.posthog?.capture('hero_video_played');
+    }
+  });
+})();
+</script>
+<script is:inline>
+(function () {
+  // Track hero CTA clicks
+  document.querySelectorAll('a[href="/start"]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      window.posthog?.capture('hero_cta_clicked', { location: 'homepage_hero' });
+    });
+  });
+
+  // Track phone call click
+  var phoneLink = document.querySelector('a[href^="tel:"]');
+  if (phoneLink) {
+    phoneLink.addEventListener('click', function () {
+      window.posthog?.capture('phone_call_clicked');
+    });
+  }
+
+  // Track WhatsApp click
+  var waLink = document.querySelector('a[href*="wa.me"]');
+  if (waLink) {
+    waLink.addEventListener('click', function () {
+      window.posthog?.capture('whatsapp_clicked');
+    });
+  }
 })();
 </script>
 </body>

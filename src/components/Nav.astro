@@ -20,7 +20,7 @@ const pathname = Astro.url.pathname;
       {links.map(({ label, href }) => (
         <a href={href} class={pathname.startsWith(href) ? 'nav-active' : ''}>{label}</a>
       ))}
-      <a href="/start" class="btn-primary jams-nav-cta">
+      <a href="/start" class="btn-primary jams-nav-cta" id="nav-cta-btn">
         <i data-lucide="arrow-right" class="btn-arrow"></i>
         <span>Book a call</span>
       </a>
@@ -258,5 +258,9 @@ const pathname = Astro.url.pathname;
 
   document.querySelectorAll('.mobile-menu-link').forEach(link => {
     link.addEventListener('click', closeMenu);
+  });
+
+  document.getElementById('nav-cta-btn')?.addEventListener('click', () => {
+    window.posthog?.capture('nav_cta_clicked');
   });
 </script>
