@@ -1,0 +1,419 @@
+---
+import LandingPageLayout from '../layouts/LandingPageLayout.astro';
+import CTASection from '../components/CTASection.astro';
+
+const faqs = [
+  {
+    q: 'What does it cost?',
+    a: 'Blueprint: starting at $3,500. Development: starting at $5,000 per month. Most community portals run 8 to 16 weeks for the first version depending on complexity.',
+  },
+  {
+    q: 'How does the skin-in-the-game pricing work?',
+    a: 'Every engagement has a monthly floor and a ceiling based on output and results. You pay less when we miss the bar. You pay the top-up when we exceed it. For clients where it makes sense, we tie part of our fee to actual results. We do not bill by the hour and we do not do time-and-materials.',
+  },
+  {
+    q: 'Do I own everything at the end?',
+    a: 'Yes. The application, all design files, and all documentation transfer to you at the end of the engagement. No lock-in.',
+  },
+  {
+    q: 'Can you migrate us from Kajabi or Circle?',
+    a: 'Yes. We handle member data migration and build the new platform in parallel so there is no downtime for your existing community.',
+  },
+  {
+    q: 'Do you integrate with tools we already use?',
+    a: 'Yes. We integrate with Stripe, GHL, Zoom, and most tools community founders are already running. We extend what you have rather than replace everything from scratch.',
+  },
+  {
+    q: 'What if our community is still early?',
+    a: 'If you have fewer than 50 paying members and are still figuring out the model, it is probably too early for a custom build. The free shaping session will tell you honestly whether now is the right time or not.',
+  },
+];
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: 'Custom Community Portals for Membership Founders',
+      provider: { '@type': 'Organization', name: 'Jams', url: 'https://jams.agency' },
+      areaServed: 'Worldwide',
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
+
+const whyJams = [
+  {
+    title: 'We figure out what to build before we build it',
+    body: 'Most dev teams take what you describe and build it. We start with the whiteboard. We map how your community actually works, where members drop off, what the onboarding experience is doing wrong, and what needs to exist before a single screen gets designed. The most expensive mistake in community software is building the wrong thing well.',
+  },
+  {
+    title: 'We put skin in the game',
+    body: 'We want to work with you for the long term. So we changed the incentive structure. From day one, we price through a variable model that puts your business first. We bill less when we under-deliver. Where it makes sense, we tie part of our fee to actual results. Both sides win or neither does.',
+  },
+  {
+    title: 'We translate instead of speaking technical',
+    body: 'You do not need to know what a database schema is or how an API works. We run whiteboard sessions, show you prototypes, and make every decision in plain language. The engineering happens behind the scenes.',
+  },
+  {
+    title: 'We are in for the long term',
+    body: 'We do not build and disappear. We ship, watch what the data says, and shape the next cycle based on what we learn. The communities we build with are still clients 18 months later on average.',
+  },
+];
+
+const whatWeBuild = [
+  {
+    title: 'Custom onboarding and vetting flows',
+    body: 'Application form, review process, approval or denial, automated notifications at each stage. Built exactly the way you want to qualify members, not the way Circle assumed you might.',
+  },
+  {
+    title: 'Member profiles and discovery',
+    body: 'Custom profile fields that reflect what actually matters in your community. AI-powered matching that surfaces the right connections instead of leaving members to scroll a directory hoping to find someone relevant.',
+  },
+  {
+    title: 'Payments and membership tiers',
+    body: 'Stripe-integrated, with whatever tier structure you need: annual, monthly, cohort-based, hybrid. Custom logic without workarounds or third-party plugins breaking every other update.',
+  },
+  {
+    title: 'AI concierge',
+    body: 'An onboarding agent that builds member profiles through conversation. A matching engine that proactively suggests connections. A concierge that handles introductions so you do not have to do them manually at 11pm.',
+  },
+  {
+    title: 'Feed, groups, and content',
+    body: 'A member-facing experience designed around how your community actually interacts, not how the platform designers assumed communities would work.',
+  },
+  {
+    title: 'Automated engagement',
+    body: 'Email sequences, event notifications, weekly digests, re-engagement flows. All connected to your member data and triggered by the right moments.',
+  },
+  {
+    title: 'A backend your team can actually use',
+    body: 'Member management, approval queues, analytics, content management. The admin side built for how your team runs the operation day to day.',
+  },
+];
+
+const steps = [
+  {
+    n: '1',
+    title: 'Apply',
+    body: 'Tell us about your community: how many members, how it\'s structured, what is not working with your current setup.',
+  },
+  {
+    n: '2',
+    title: 'Free shaping session',
+    body: '60 minutes. We map your community flow end to end, identify what needs to exist, and figure out what to build first. No pitch. No jargon. You leave with a clear direction, not a quote.',
+  },
+  {
+    n: '3',
+    title: 'The Blueprint',
+    body: 'Two weeks, starting at $3,500. Every flow designed, a prototype you can click through, and a fixed price for the build. Everything defined before a line of code is written.',
+  },
+  {
+    n: '4',
+    title: 'Build and stay',
+    body: 'We build what we scoped, ship on time, and watch what happens after launch. Where it makes sense, we tie part of our ongoing fee to your retention and engagement metrics. Both sides win when it works.',
+  },
+];
+
+const comparisonRows = [
+  { label: 'Onboarding experience',          note: 'Generic form',               ours: 'Built around your exact vetting process' },
+  { label: 'Member profiles',                note: 'Standard fields only',        ours: 'Custom fields, AI-built profiles' },
+  { label: 'Member discovery',               note: 'Basic keyword search',        ours: 'AI-powered matching and introductions' },
+  { label: 'Brand and aesthetic',            note: 'Platform template',           ours: '100% yours' },
+  { label: 'Integrations',                   note: 'Limited, plugin-dependent',   ours: 'Anything you already use' },
+  { label: 'Membership tiers and payments',  note: 'Basic, no custom logic',      ours: 'Custom tiers, custom logic, Stripe-native' },
+  { label: 'AI features',                    note: 'None',                        ours: 'Built in from day one' },
+  { label: 'You own the platform',           note: null,                          ours: 'Always — full IP transfer at end of engagement' },
+  { label: 'Scales with your vision',        note: 'Up to a point',               ours: 'No ceiling' },
+  { label: 'Vendor tied to your results',    note: null,                          ours: 'Yes — we bill less when we under-deliver' },
+];
+---
+
+<LandingPageLayout
+  title="Custom community portals for membership founders | Jams"
+  description="Custom-built membership portals for paid communities. We figure out what to build first, then build it. And we tie part of our fee to your member retention."
+  vertical="Custom Community Portals for Membership Founders"
+  schema={pageSchema}
+>
+
+  <!-- Hero -->
+  <section class="pt-[100px] md:pt-[160px] pb-[48px] md:pb-[80px]" style="background: radial-gradient(circle, #DCDCDE 1.5px, transparent 1.5px) 0 0 / 24px 24px, linear-gradient(in oklab 180deg, oklab(100% 0 0) 14%, oklab(84.3% 0.005 -0.016) 120%)">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-6">
+        <h1 class="font-display text-h1 text-neutral-900">
+          Your community runs on Circle. So does everyone else's.
+        </h1>
+        <p class="font-sans text-p-l text-neutral-700">
+          We build custom member portals from scratch. And we bill less when we under-deliver. Try finding another software team that does that.
+        </p>
+        <ul class="flex flex-col gap-3">
+          {[
+            'Skin-in-the-game pricing where both sides win',
+            'Custom onboarding, vetting, member matching, and AI concierge',
+            'Built around your community, not a template you share with thousands of others',
+            'You own the platform at the end — no lock-in, ever',
+          ].map((item) => (
+            <li class="flex items-start gap-3 font-sans text-p text-neutral-700">
+              <span class="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style="background: #F55D11;" aria-hidden="true"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <a href="/start" class="communities-hero-btn" style="margin-top: 0; align-self: flex-start;">
+          <i data-lucide="arrow-right" class="communities-hero-btn-arrow"></i>
+          <span>Book a call</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- This is for you if -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-6">
+        <h2 class="eyebrow">This is for you if</h2>
+        <ul class="flex flex-col gap-3">
+          {[
+            'You run a paid membership community with real members and real revenue',
+            'Your platform does not reflect the quality of what you have built',
+            'You want a custom onboarding and vetting experience that is actually yours',
+            'You are doing manually what a good platform should do automatically: introductions, matching, follow-ups',
+            'You want a team that figures out what to build with you, not one that just takes a brief and runs',
+          ].map((item) => (
+            <li class="flex items-start gap-3 font-sans text-p text-neutral-700">
+              <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" aria-hidden="true"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is actually happening -->
+  <section class="section hairline">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-6">
+        <h2 class="eyebrow">What is actually happening</h2>
+        <p class="font-sans text-p-l text-neutral-700">
+          Generic community platforms have a ceiling. You hit it faster than you expect.
+        </p>
+        <p class="font-sans text-p-l text-neutral-700">
+          Kajabi is built for course creators who added a community tab. Circle is better, but it is still a template. WordPress with BuddyBoss is duct tape. And none of them let you build the thing that actually drives retention: a member experience that feels like it was made specifically for your community.
+        </p>
+        <p class="font-sans text-p-l text-neutral-700">
+          You cannot customize the onboarding to match your vetting process. You cannot build AI-powered introductions. You cannot design the member feed around how your members actually interact. You cannot integrate cleanly with your CRM, your payment setup, or your events tool without workarounds.
+        </p>
+        <p class="font-sans text-p-l text-neutral-700">
+          You are bending your community to fit the software. It should be the other way around.
+        </p>
+        <p class="font-sans text-p-l text-neutral-700">
+          And the agency you hire to fix this? Most of them will take your brief, build what is in it, and hand you something that technically works but does not move retention. Because they get paid regardless of what happens after launch.
+        </p>
+        <p class="font-sans text-p-l font-medium text-neutral-900">
+          We do not work that way.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison table -->
+  <section class="section hairline" style="background: #F3F3F3;">
+    <div class="container flex flex-col gap-8">
+      <h2 class="eyebrow" style="text-align: center;">How it compares</h2>
+      <div style="overflow-x: auto;">
+        <div style="min-width: 520px; max-width: 980px; margin: 0 auto; background: #fff; border-radius: 16px; border: 1px solid #E8E8E8; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
+          <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+            <thead>
+              <tr style="border-bottom: 1px solid #EBEBEB;">
+                <th style="width: 32%; padding: 20px 24px 17px; text-align: left; font-size: 18px; font-weight: 600; color: #111; letter-spacing: -0.02em; font-family: inherit;">Features</th>
+                <th style="width: 28%; padding: 20px 24px 17px; text-align: left; font-size: 18px; font-weight: 600; color: #111; letter-spacing: -0.02em; font-family: inherit;">Kajabi / Circle</th>
+                <th style="width: 28%; padding: 20px 24px 17px; text-align: left; font-size: 18px; font-weight: 600; color: #111; letter-spacing: -0.02em; font-family: inherit; border-top: 3px solid #F55D11; background: rgba(245,93,17,0.04);">Jams</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonRows.map(({ label, note, ours }) => (
+                <tr class="comp-row">
+                  <td style="padding: 16px 24px; font-size: 15px; font-weight: 500; color: #1A1A1A; font-family: inherit; border-bottom: 1px solid #EBEBEB; vertical-align: top;">{label}</td>
+                  <td style="padding: 16px 24px; border-bottom: 1px solid #EBEBEB; vertical-align: top;">
+                    <div style="display: flex; align-items: flex-start; gap: 8px;">
+                      <i class="ph ph-x" style="font-size: 15px; color: #D0D0D0; flex-shrink: 0; margin-top: 1px;"></i>
+                      {note && <span style="font-size: 13px; color: #B0B0B0; line-height: 1.45;">{note}</span>}
+                    </div>
+                  </td>
+                  <td style="padding: 16px 24px; background: rgba(245,93,17,0.04); border-bottom: 1px solid #EBEBEB; vertical-align: top;">
+                    <div style="display: flex; align-items: flex-start; gap: 8px;">
+                      <i class="ph ph-check" style="font-size: 15px; color: #F55D11; flex-shrink: 0; margin-top: 1px;"></i>
+                      <span style="font-size: 13px; font-weight: 500; color: #1A1A1A; line-height: 1.45;">{ours}</span>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Jams -->
+  <section class="section hairline">
+    <div class="container flex flex-col gap-12">
+      <h2 class="eyebrow">Why Jams</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {whyJams.map(({ title, body }) => (
+          <div class="flex flex-col gap-3">
+            <h3 class="font-display text-h4 text-neutral-900">{title}</h3>
+            <p class="font-sans text-p text-neutral-700">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What we build -->
+  <section class="section hairline" style="background: #F3F3F3;">
+    <div class="container flex flex-col gap-12">
+      <h2 class="eyebrow">What we build</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {whatWeBuild.map(({ title, body }) => (
+          <div class="flex flex-col gap-3 bg-white rounded-2xl p-8" style="box-shadow: 0 2px 10px 0 rgba(0,0,0,0.06), inset 0 2px 2px 0 rgb(254,254,254);">
+            <h3 class="font-display text-h4 text-neutral-900">{title}</h3>
+            <p class="font-sans text-p text-neutral-700">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Case study: The Fold -->
+  <section class="section hairline dark" style="background: #111;">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-6">
+        <h2 class="eyebrow text-neutral-400">The Fold</h2>
+        <p class="font-sans text-p-l text-neutral-300">
+          The Fold is a private community for founders and investors in the private equity space. Invite-only. Deals shared. Introductions worth more than anything else.
+        </p>
+        <p class="font-sans text-p-l text-neutral-300">
+          The founders came to Jams with a real problem: WhatsApp threads and email were running the community. There was no platform that could hold what they were building. Nothing off the shelf could replicate the feel or the function of what they needed.
+        </p>
+        <p class="font-sans text-p-l text-neutral-300">
+          Before we wrote a line of code, we mapped the full member journey on a whiteboard. What does a new member need to feel in the first five minutes? How do introductions actually happen in this world? What is Alfred supposed to do that a directory never could? We challenged every assumption before we designed a single screen.
+        </p>
+        <p class="font-sans text-p-l text-neutral-300">
+          We built a custom portal with an AI concierge named Alfred. Alfred handles member onboarding through a conversational flow, builds profiles from the conversation, and matches members to deal flows and other members based on expertise and interest. Members do not browse a directory. They get introductions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case study: The Wie Suite -->
+  <section class="section hairline dark" style="background: #1a1a1a;">
+    <div class="container">
+      <div class="max-w-2xl flex flex-col gap-6">
+        <h2 class="eyebrow text-neutral-400">The Wie Suite</h2>
+        <p class="font-sans text-p-l text-neutral-300">
+          The Wie Suite is a paid membership community for senior women executives and founders. Application-based, highly vetted, built around the kind of trust and authentic connection that most networks only claim to offer.
+        </p>
+        <p class="font-sans text-p-l text-neutral-300">
+          We helped scale the platform that holds it: custom application flow, vetting process, payment and membership management, member profiles, feed, events, and cohort tools.
+        </p>
+        <p class="font-sans text-p-l font-medium text-white">
+          The experience from first click to active member is entirely theirs. Not borrowed from a template.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section hairline">
+    <div class="container flex flex-col gap-12">
+      <h2 class="eyebrow">How it works</h2>
+      <ol class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {steps.map(({ n, title, body }) => (
+          <li class="flex flex-col gap-4">
+            <span class="font-display text-h3 text-violet-500">{n}</span>
+            <h3 class="font-display text-h4 text-neutral-900">{title}</h3>
+            <p class="font-sans text-p text-neutral-700">{body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section hairline" style="background: #F3F3F3;">
+    <div class="container">
+      <div class="max-w-2xl mx-auto flex flex-col gap-10">
+        <h2 class="font-display text-h2 text-neutral-900">Common questions</h2>
+        <dl class="flex flex-col divide-y divide-neutral-150">
+          {faqs.map(({ q, a }) => (
+            <details class="group py-6">
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none font-display text-h4 text-neutral-900">
+                {q}
+                <span class="shrink-0 text-violet-500 transition-transform duration-fast group-open:rotate-45" aria-hidden="true">+</span>
+              </summary>
+              <p class="font-sans text-p text-neutral-700 mt-4 leading-relaxed">{a}</p>
+            </details>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <CTASection
+    headline="You built something worth joining. Now build the platform that proves it."
+    body="Book a call and show us your community. We will map what needs to exist, what is holding you back, and what a custom portal would actually do for your retention and growth."
+  />
+
+</LandingPageLayout>
+
+<style>
+  .comp-row:last-child td {
+    border-bottom: none;
+  }
+
+  .communities-hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #F9AA43;
+    color: #111;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    transform: rotate(-1deg);
+    box-shadow: 2px 5px 14px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06);
+    transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .communities-hero-btn:hover {
+    transform: rotate(-1deg) scale(1.01);
+    box-shadow: 3px 10px 24px rgba(0,0,0,0.16), 0 2px 6px rgba(0,0,0,0.08);
+  }
+  .communities-hero-btn-arrow {
+    width: 0;
+    height: 16px;
+    opacity: 0;
+    overflow: hidden;
+    flex-shrink: 0;
+    stroke: #111;
+    margin-right: 0;
+    transition: width 200ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms cubic-bezier(0.22, 1, 0.36, 1), margin-right 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .communities-hero-btn:hover .communities-hero-btn-arrow {
+    width: 16px;
+    opacity: 1;
+    margin-right: 6px;
+  }
+</style>

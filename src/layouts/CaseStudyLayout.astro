@@ -89,4 +89,8 @@ const breadcrumbSchema = {
   <slot />
 
   <CTASection />
+
+  <script is:inline define:vars={{ projectName, tags }}>
+    window.posthog?.capture('case_study_viewed', { project_name: projectName, tags });
+  </script>
 </BaseLayout>

@@ -1,50 +1,45 @@
 <wizard-report>
 # PostHog post-wizard report
 
-The wizard has completed a deep integration of PostHog analytics into jams.agency. Here's a summary of all changes made:
-
-**New files created:**
-- `src/components/posthog.astro` — Reusable PostHog client-side snippet using `PUBLIC_POSTHOG_PROJECT_TOKEN` and `PUBLIC_POSTHOG_HOST` environment variables. Included in all layouts.
-- `src/lib/posthog-server.ts` — Singleton `posthog-node` client for server-side event tracking in API routes.
+The wizard extended the existing PostHog integration for jams.agency with five new client-side events. The project already had a solid foundation — `posthog.astro` snippet in all layouts, a server-side `posthog-node` singleton, and events on the main conversion path (application form steps, newsletter, nav CTA). The wizard added coverage for content engagement pages, mobile navigation, and direct contact actions.
 
 **Files modified:**
-- `src/layouts/BaseLayout.astro` — Replaced the old hardcoded PostHog snippet with the new `<PostHog />` component. Removed the outdated `PUBLIC_POSTHOG_KEY` env var reference.
-- `src/pages/index.astro` — Added `<PostHog />` to the head (this page has its own HTML structure and wasn't previously tracked). Added client-side tracking for hero CTA clicks, phone call clicks, WhatsApp clicks, and first hero video play.
-- `src/components/CTASection.astro` — Added tracking for the "Book a call" CTA button in the shared section CTA component.
-- `src/components/Nav.astro` — Added tracking for the "Book a call" nav CTA button.
-- `src/pages/start.astro` — Added `application_step_completed` tracking on each Next button click, `identify()` call with the applicant's email on successful submission, session ID forwarding to the API, and `cal_booking_clicked` tracking on the post-submission booking link.
-- `src/pages/api/apply.ts` — Added server-side `application_submitted` event with session correlation via `X-PostHog-Session-Id` header. Captures budget, timeline, revenue, source, and existing-stack properties. Also calls `posthog.identify()` server-side to tie the email to the person.
-- `src/pages/api/subscribe.ts` — Added server-side `newsletter_subscribed` event.
-- `package.json` — Added `posthog-js` and `posthog-node` dependencies. Run `npm install` to install them.
-- `.env` — Added `PUBLIC_POSTHOG_PROJECT_TOKEN` and `PUBLIC_POSTHOG_HOST` values (file is gitignored).
+- `src/layouts/CaseStudyLayout.astro` — Added `case_study_viewed` event with `project_name` and `tags` properties.
+- `src/layouts/BlogLayout.astro` — Added `blog_post_viewed` event with `title`, `slug`, `author`, and `publish_date` properties.
+- `src/components/Nav.astro` — Added `mobile_cta_clicked` event on the mobile overlay "Book a call" button; added `id="mobile-cta-btn"` to the link.
+- `src/components/Footer.astro` — Added `contact_link_clicked` event (with `method`: email / phone / whatsapp) and `social_link_clicked` event (with `platform`: linkedin / x / instagram). Added `data-contact` and `data-social` attributes to the respective links.
 
 ## Events instrumented
 
 | Event | Description | File |
 |---|---|---|
-| `application_submitted` | Server-side: shaping session application successfully sent — primary conversion | `src/pages/api/apply.ts` |
-| `newsletter_subscribed` | Server-side: email list subscription confirmed | `src/pages/api/subscribe.ts` |
-| `application_step_completed` | Client-side: visitor advances a step in the multi-step application form (includes step number) | `src/pages/start.astro` |
-| `cal_booking_clicked` | Client-side: visitor clicks "Book a call now" on the post-submission success card | `src/pages/start.astro` |
-| `cta_clicked` | Client-side: "Book a call" clicked in the reusable CTASection component | `src/components/CTASection.astro` |
-| `nav_cta_clicked` | Client-side: "Book a call" clicked in the main navigation bar | `src/components/Nav.astro` |
-| `hero_cta_clicked` | Client-side: any "Book a call" or "Book a session" CTA clicked in the homepage hero | `src/pages/index.astro` |
-| `phone_call_clicked` | Client-side: "Call me" telephone link clicked in the homepage hero card | `src/pages/index.astro` |
-| `whatsapp_clicked` | Client-side: "WhatsApp" link clicked in the homepage hero card | `src/pages/index.astro` |
-| `hero_video_played` | Client-side: first play of the hero video on the homepage | `src/pages/index.astro` |
+| `case_study_viewed` | User lands on a case study page — top-of-funnel signal for portfolio-driven leads | `src/layouts/CaseStudyLayout.astro` |
+| `blog_post_viewed` | User lands on a blog post — content engagement signal for inbound leads | `src/layouts/BlogLayout.astro` |
+| `mobile_cta_clicked` | User clicks the "Book a call" CTA inside the mobile navigation overlay | `src/components/Nav.astro` |
+| `contact_link_clicked` | User clicks a direct contact link (email, phone, or WhatsApp) in the footer | `src/components/Footer.astro` |
+| `social_link_clicked` | User clicks a social media link (LinkedIn, X, or Instagram) in the footer | `src/components/Footer.astro` |
+
+**Pre-existing events (already instrumented):**
+
+| Event | Description | File |
+|---|---|---|
+| `application_submitted` | Application form fully submitted — primary conversion (server-side) | `src/pages/api/apply.ts` |
+| `application_step_completed` | User completes a step in the multi-step form | `src/pages/start.astro` |
+| `newsletter_subscribed` | Footer newsletter subscription confirmed (server-side) | `src/pages/api/subscribe.ts` |
+| `nav_cta_clicked` | Desktop nav "Book a call" CTA clicked | `src/components/Nav.astro` |
+| `cta_clicked` | CTA section "Book a call" button clicked | `src/components/CTASection.astro` |
+| `cal_booking_clicked` | Post-submission cal.com booking link clicked | `src/pages/start.astro` |
 
 ## Next steps
 
-We've built a dashboard with 5 insights to monitor user behavior and conversion:
+We've built some insights and a dashboard for you to keep an eye on user behavior, based on the events we just instrumented:
 
-- [Analytics basics (wizard) — Dashboard](https://us.posthog.com/project/456099/dashboard/1675051)
-- [Application conversion funnel](https://us.posthog.com/project/456099/insights/cJG1wDhS) — Funnel from hero CTA click → application submitted
-- [Applications submitted](https://us.posthog.com/project/456099/insights/fK5b2Iyo) — Daily trend of submitted applications
-- [CTA engagement](https://us.posthog.com/project/456099/insights/XD1ESBon) — Clicks across nav, hero, and section CTAs
-- [Newsletter subscriptions](https://us.posthog.com/project/456099/insights/hxMHOWaw) — Email list signup trend
-- [Post-application cal.com bookings](https://us.posthog.com/project/456099/insights/w1FCj20s) — How many applicants follow through to book a call
-
-**One action needed:** Run `npm install` to install the new `posthog-js` and `posthog-node` packages.
+- [Analytics basics (wizard) — Dashboard](https://us.posthog.com/project/456099/dashboard/1675110)
+- [Application submission funnel](https://us.posthog.com/project/456099/insights/WNZuLDJp) — Conversion from form start → submitted → cal.com booked
+- [Applications submitted](https://us.posthog.com/project/456099/insights/mg9i87Pg) — Total applications in the last 30 days (bold number)
+- [CTA clicks by location](https://us.posthog.com/project/456099/insights/sanoQBsj) — Nav vs. mobile vs. CTA section click comparison
+- [Content engagement](https://us.posthog.com/project/456099/insights/lXHclPEX) — Case study and blog post views over time
+- [Newsletter subscriptions](https://us.posthog.com/project/456099/insights/Qi3vP9dJ) — Footer newsletter sign-ups over time
 
 ### Agent skill
 
